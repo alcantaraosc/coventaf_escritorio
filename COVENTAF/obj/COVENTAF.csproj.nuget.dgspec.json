@@ -1,0 +1,507 @@
+{
+  "format": 1,
+  "restore": {
+    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\COVENTAF\\COVENTAF.csproj": {}
+  },
+  "projects": {
+    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj",
+        "projectName": "Api.Context",
+        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj"
+              },
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Helpers\\Api.Helpers.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Helpers\\Api.Helpers.csproj",
+        "projectName": "Api.Helpers",
+        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Helpers\\Api.Helpers.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Helpers\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj",
+        "projectName": "Api.Model",
+        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Service\\Api.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Service\\Api.Service.csproj",
+        "projectName": "Api.Service",
+        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Service\\Api.Service.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj"
+              },
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Helpers\\Api.Helpers.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Helpers\\Api.Helpers.csproj"
+              },
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj",
+        "projectName": "Api.Setting",
+        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Controladores\\Controladores.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Controladores\\Controladores.csproj",
+        "projectName": "Controladores",
+        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Controladores\\Controladores.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Controladores\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj"
+              },
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Service\\Api.Service.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Service\\Api.Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\COVENTAF\\COVENTAF.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\COVENTAF\\COVENTAF.csproj",
+        "projectName": "COVENTAF",
+        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\COVENTAF\\COVENTAF.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\COVENTAF\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0-windows7.0": {
+            "targetAlias": "net5.0-windows",
+            "projectReferences": {
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj"
+              },
+              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Controladores\\Controladores.csproj": {
+                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Controladores\\Controladores.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "dependencies": {
+            "FontAwesome.Sharp": {
+              "target": "Package",
+              "version": "[6.2.1, )"
+            },
+            "Guna.UI2.WinForms": {
+              "target": "Package",
+              "version": "[2.0.4, )"
+            },
+            "MaterialSkin.2.RTL": {
+              "target": "Package",
+              "version": "[2.3.1.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "devexpress.win.design": {
+              "target": "Package",
+              "version": "[21.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
