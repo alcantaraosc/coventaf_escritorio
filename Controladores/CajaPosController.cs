@@ -68,12 +68,12 @@ namespace Controladores
             return responseModel;
         }
 
-        public ResponseModel VerificarsiExisteAperturaCaja(string cajero)
+        public ResponseModel VerificarsiExisteAperturaCaja(string cajero, string sucursalID)
         {
             ResponseModel responseModel = new ResponseModel();
             try
             {
-                 _serviceCaja_Pos.VerificarExistenciaAperturaCaja(cajero, responseModel);                
+                 _serviceCaja_Pos.VerificarExistenciaAperturaCaja(cajero, sucursalID, responseModel);                
             }
             catch (Exception ex)
             {

@@ -57,7 +57,7 @@ namespace Api.Context
             modelBuilder.Entity<Moneda_Hist>().ToTable("MONEDA_HIST", schema: "TIENDA");
             modelBuilder.Entity<Tipo_Tarjetas>().ToTable("TIPO_TARJETA", schema: "TIENDA");
             modelBuilder.Entity<Condicion_Pagos>().ToTable("CONDICION_PAGO", schema: "TIENDA");
-            modelBuilder.Entity<FacturaTemporal>().ToTable("FacturaTemporal", schema: "dbo");
+            modelBuilder.Entity<Facturando>().ToTable("Facturando", schema: "dbo");
             modelBuilder.Entity<Usuarios>().ToTable("USUARIO", schema: "ERPADMIN");
             modelBuilder.Entity<RolesUsuarios>().ToTable("RolesUsuarios", schema: "dbo");
             modelBuilder.Entity<Roles>().ToTable("Roles", schema: "dbo");
@@ -73,6 +73,9 @@ namespace Api.Context
             modelBuilder.Entity<Tipo_Tarjeta_Pos>().ToTable("TIPO_TARJETA_POS", schema: "TIENDA");
             modelBuilder.Entity<Bodegas>().ToTable("BODEGA", schema: "TIENDA");
             modelBuilder.Entity<FacturaBloqueada>().ToTable("FACTURA_BLOQUEADA", schema: "dbo");
+            modelBuilder.Entity<Denominacion>().ToTable("DENOMINACION", schema: "TIENDA");
+            modelBuilder.Entity<Membresia>().ToTable("MEMBRESIA", schema: "ERPADMIN");
+            modelBuilder.Entity<Cierre_Det_Pago>().ToTable("CIERRE_DET_PAGO", schema: "TIENDA");
 
 
 
@@ -93,7 +96,7 @@ namespace Api.Context
             modelBuilder.Entity<Forma_Pagos>().HasKey(fp => fp.Forma_Pago);
             modelBuilder.Entity<Moneda_Hist>().HasKey(mh => new { mh.Moneda, mh.Fecha });
             modelBuilder.Entity<Tipo_Tarjetas>().HasKey(tt => tt.Tipo_Tarjeta);
-            modelBuilder.Entity<FacturaTemporal>().HasKey(ft => new { ft.Factura, ft.ArticuloID });
+            modelBuilder.Entity<Facturando>().HasKey(ft => new { ft.Factura, ft.ArticuloID });
             modelBuilder.Entity<Condicion_Pagos>().HasKey(cp => cp.Condicion_Pago);
             modelBuilder.Entity<Usuarios>().HasKey(u => u.Usuario);
             modelBuilder.Entity<RolesUsuarios>().HasKey(ru => new { ru.RolID, ru.UsuarioID });
@@ -112,6 +115,9 @@ namespace Api.Context
             modelBuilder.Entity<Tipo_Tarjeta_Pos>().HasKey(ttp => new { ttp.Tipo_Tarjeta, ttp.Cliente, ttp.Tipo_Cobro });
             modelBuilder.Entity<Bodegas>().HasKey(b => b.Bodega );
             modelBuilder.Entity<FacturaBloqueada>().HasKey(fb => fb.NoFactura);
+            modelBuilder.Entity<Denominacion>().HasKey(dm => new { dm.Tipo, dm.Denom_Monto });
+            modelBuilder.Entity<Membresia>().HasKey(m => new { m.Grupo, m.Usuario });
+            modelBuilder.Entity<Cierre_Det_Pago>().HasKey(cdp => new { cdp.Num_Cierre, cdp.Cajero, cdp.Caja,cdp.Tipo_Pago });
 
             //vista            
             modelBuilder.Entity<ViewArticulo>().ToView("ViewArticulo", schema: "dbo");
@@ -299,7 +305,7 @@ namespace Api.Context
         //public virtual DbSet<CHEQUES_RUBROS_CF> CHEQUES_RUBROS_CF { get; set; }
         public virtual DbSet<Cierre_Caja> Cierre_Caja { get; set; }
         //public virtual DbSet<CIERRE_DESG_TARJ> CIERRE_DESG_TARJ { get; set; }
-        //public virtual DbSet<CIERRE_DET_PAGO> CIERRE_DET_PAGO { get; set; }
+        public virtual DbSet<Cierre_Det_Pago> Cierre_Det_Pago { get; set; }
         //public virtual DbSet<CIERRE_INFO_TARJ> CIERRE_INFO_TARJ { get; set; }
         public virtual DbSet<Cierre_Pos> Cierre_Pos { get; set; }
         //public virtual DbSet<CIERRE_TIENDA> CIERRE_TIENDA { get; set; }
@@ -399,7 +405,7 @@ namespace Api.Context
         //public virtual DbSet<DCTO_ART_X_CLI> DCTO_ART_X_CLI { get; set; }
         //public virtual DbSet<DCTO_CLAS_X_CLI> DCTO_CLAS_X_CLI { get; set; }
         //public virtual DbSet<DEFINICION_PIVOTE_BI> DEFINICION_PIVOTE_BI { get; set; }
-        //public virtual DbSet<DENOMINACION> DENOMINACION { get; set; }
+        public virtual DbSet<Denominacion> Denominacion { get; set; }
         //public virtual DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
         //public virtual DbSet<DEPOSITO_POS> DEPOSITO_POS { get; set; }
         //public virtual DbSet<DEPR_CENTRO_COSTO> DEPR_CENTRO_COSTO { get; set; }
@@ -1018,13 +1024,14 @@ namespace Api.Context
         //public virtual DbSet<USO_CFDI> USO_CFDI { get; set; }
 
         
-        public virtual DbSet<FacturaTemporal> FacturaTemporal { get; set; }
+        public virtual DbSet<Facturando> Facturando { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<RolesUsuarios> RolesUsuarios { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<FuncionesRoles> FuncionesRoles { get; set; }
         public virtual DbSet<Funciones> Funciones { get; set; }
         public virtual DbSet<FacturaBloqueada> FacturaBloqueada { get; set; }
+        public virtual DbSet<Membresia> Membresia { get; set; }
 
 
         //vista

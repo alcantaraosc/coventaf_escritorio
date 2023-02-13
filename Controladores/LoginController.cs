@@ -48,8 +48,7 @@ namespace Controladores
 
                     //obtener el token del JWT
                     var token = _authService.GenerateToken(fechaActual, crendenciales.Usuario, validez);
-                    responseModel.Exito = 1;
-                    responseModel.Mensaje = "usuario logeado exitosamente";
+            
 
                     User.Usuario = datosUsuario.Usuario;
                     User.NombreUsuario = datosUsuario.NombreUsuario;
@@ -86,7 +85,6 @@ namespace Controladores
                 responseModel.Mensaje = ex.Message;
                 responseModel.Data = null;
             }
-
 
             return responseModel;
         }

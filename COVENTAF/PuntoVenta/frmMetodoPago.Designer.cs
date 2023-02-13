@@ -849,6 +849,7 @@ namespace COVENTAF.PuntoVenta
             this.btnVerDetallePago.Text = "Ver Detalle Pago";
             this.btnVerDetallePago.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVerDetallePago.UseVisualStyleBackColor = false;
+            this.btnVerDetallePago.Click += new System.EventHandler(this.btnVerDetallePago_Click);
             // 
             // notifyIcon1
             // 

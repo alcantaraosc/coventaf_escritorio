@@ -61,10 +61,10 @@ namespace Api.Service.DataService
             return listaFactura;
         }
 
-        public async Task<List<FacturaTemporal>> ListarFacturaTemporalesAsync(FiltroFactura filtroFactura, ResponseModel responseModel)
+        public async Task<List<Facturando>> ListarFacturaTemporalesAsync(FiltroFactura filtroFactura, ResponseModel responseModel)
         {
                     
-            var listaFacturaTemp = new List<FacturaTemporal>();
+            var listaFacturaTemp = new List<Facturando>();
 
             try
             {
@@ -73,7 +73,7 @@ namespace Api.Service.DataService
                
 
                     case "Factura Perdidas":
-                        listaFacturaTemp = await _db.FacturaTemporal.Where(x => x.Factura == filtroFactura.Busqueda).ToListAsync();
+                        listaFacturaTemp = await _db.Facturando.Where(x => x.Factura == filtroFactura.Busqueda).ToListAsync();
                         //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
                         break;
                 }
@@ -153,32 +153,41 @@ namespace Api.Service.DataService
               return result;
           }*/
 
-        public async Task<int> InsertOrUpdateFacturaTemporal(FacturaTemporal model, ResponseModel responseModel)
+        public async Task<int> InsertOrUpdateFacturaTemporal(Facturando model, ResponseModel responseModel)
         {
             int result = 0;
             try
             {               
-                model.Fecha = DateTime.Now.Date;
+                model.FechaRegistro = DateTime.Now.Date;
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand("USP_INSERT_FACTURA_TEMP", cn);
+                    SqlCommand cmd = new SqlCommand("[SP_GuardarFacturaTemporal]", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@Factura", model.Factura);
-                    cmd.Parameters.AddWithValue("@Fecha", model.Fecha);
-                    cmd.Parameters.AddWithValue("@TipoCambio", model.TipoCambio);
-                    cmd.Parameters.AddWithValue("@Bodega", model.Bodega);
-                    cmd.Parameters.AddWithValue("@Consecutivo", model.Consecutivo);
                     cmd.Parameters.AddWithValue("@ArticuloID", model.ArticuloID);
+                    cmd.Parameters.AddWithValue("@CodigoCliente", model.CodigoCliente);
+                    cmd.Parameters.AddWithValue("@FacturaEnEspera", model.FacturaEnEspera);
+                    cmd.Parameters.AddWithValue("@Cajero", model.Cajero);
+                    cmd.Parameters.AddWithValue("@Caja", model.Caja);
+                    cmd.Parameters.AddWithValue("@NumCierre", model.NumCierre);
+                    cmd.Parameters.AddWithValue("@TiendaID", model.TiendaID);
+                    cmd.Parameters.AddWithValue("@TipoCambio", model.TipoCambio);
+                    cmd.Parameters.AddWithValue("@Bodega", model.BodegaID);
+                    cmd.Parameters.AddWithValue("@Consecutivo", model.Consecutivo);
                     cmd.Parameters.AddWithValue("@CodigoBarra", model.CodigoBarra);
                     cmd.Parameters.AddWithValue("@Cantidad", model.Cantidad);
                     cmd.Parameters.AddWithValue("@Descripcion", model.Descripcion);
                     cmd.Parameters.AddWithValue("@Unidad", model.Unidad);
-                    cmd.Parameters.AddWithValue("@Precio", model.Precio);           
-                    cmd.Parameters.AddWithValue("@Descuento", model.Descuento);                
+                    cmd.Parameters.AddWithValue("@Precio", model.Precio);
+                    cmd.Parameters.AddWithValue("@Moneda", model.Moneda);
+                    cmd.Parameters.AddWithValue("@DescuentoLinea", model.DescuentoLinea);
+                    cmd.Parameters.AddWithValue("@DescuentoGeneral", model.DescuentoGeneral);
+                    cmd.Parameters.AddWithValue("@AplicarDescuento", model.AplicarDescuento);           
+                    cmd.Parameters.AddWithValue("@Observaciones", model.Observaciones);
                     result = await cmd.ExecuteNonQueryAsync();
                 }
                             
@@ -301,7 +310,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand("USP_ELIMINAR_ITEM_TABLA_TEMP", cn);
+                    SqlCommand cmd = new SqlCommand("SP_EliminarArticuloTablaTemp", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 

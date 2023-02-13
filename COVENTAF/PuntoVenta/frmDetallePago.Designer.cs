@@ -29,66 +29,72 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.TipoPago = new System.Windows.Forms.ColumnHeader();
-            this.Monto = new System.Windows.Forms.ColumnHeader();
-            this.Detalle = new System.Windows.Forms.ColumnHeader();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.dgvDetallePago = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetallePago)).BeginInit();
             this.SuspendLayout();
             // 
-            // listView1
+            // dgvDetallePago
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.TipoPago,
-            this.Monto,
-            this.Detalle});
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
-            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1});
-            this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listView1.Location = new System.Drawing.Point(12, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(478, 246);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // TipoPago
-            // 
-            this.TipoPago.Text = "Tipo Pago";
-            this.TipoPago.Width = 120;
-            // 
-            // Monto
-            // 
-            this.Monto.Text = "Monto";
-            this.Monto.Width = 120;
-            // 
-            // Detalle
-            // 
-            this.Detalle.Text = "Detalle";
-            this.Detalle.Width = 200;
+            this.dgvDetallePago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDetallePago.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvDetallePago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(189)))), ((int)(((byte)(255)))));
+            this.dgvDetallePago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvDetallePago.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvDetallePago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvDetallePago.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDetallePago.EnableHeadersVisualStyles = false;
+            this.dgvDetallePago.GridColor = System.Drawing.Color.Maroon;
+            this.dgvDetallePago.Location = new System.Drawing.Point(0, 0);
+            this.dgvDetallePago.Name = "dgvDetallePago";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvDetallePago.RowTemplate.Height = 25;
+            this.dgvDetallePago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetallePago.Size = new System.Drawing.Size(954, 567);
+            this.dgvDetallePago.TabIndex = 95;
             // 
             // frmDetallePago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listView1);
+            this.ClientSize = new System.Drawing.Size(954, 567);
+            this.Controls.Add(this.dgvDetallePago);
             this.Name = "frmDetallePago";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDetallePago";
+            this.Load += new System.EventHandler(this.frmDetallePago_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetallePago)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader TipoPago;
-        private System.Windows.Forms.ColumnHeader Monto;
-        private System.Windows.Forms.ColumnHeader Detalle;
+        private System.Windows.Forms.DataGridView dgvDetallePago;
     }
 }

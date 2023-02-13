@@ -536,17 +536,17 @@ namespace COVENTAF.PuntoVenta
                     //establecer dos decimales a la variable de tipo decimal
                     detfact.cantidadExistencia = Math.Round(detfact.cantidadExistencia, 2);
                     detfact.precioDolar = Math.Round(detfact.precioDolar, 2);
-                    detfact.precioCordobas = Math.Round(detfact.precioCordobas, 2);
+                    detfact.precioCordobas = Math.Round(detfact.precioCordobas, 4);
                     detfact.subTotalDolar = Math.Round(detfact.subTotalDolar, 2);
-                    detfact.subTotalCordobas = Math.Round(detfact.subTotalCordobas, 2);
+                    detfact.subTotalCordobas = Math.Round(detfact.subTotalCordobas, 4);
                     detfact.porCentajeDescuentoXArticulo = Math.Round(detfact.porCentajeDescuentoXArticulo, 2);
                     detfact.descuentoInactivo = Math.Round(detfact.descuentoInactivo, 2);
                     detfact.descuentoDolar = Math.Round(detfact.descuentoDolar, 2);
-                    detfact.descuentoCordoba = Math.Round(detfact.descuentoCordoba, 2);
+                    detfact.descuentoCordoba = Math.Round(detfact.descuentoCordoba, 4);
                     detfact.descuentoGeneralDolar = Math.Round(detfact.descuentoGeneralDolar, 2);
-                    detfact.descuentoGeneralCordoba = Math.Round(detfact.descuentoGeneralCordoba, 2);
+                    detfact.descuentoGeneralCordoba = Math.Round(detfact.descuentoGeneralCordoba, 4);
                     detfact.totalDolar = Math.Round(detfact.totalDolar, 2);
-                    detfact.totalCordobas = Math.Round(detfact.totalCordobas, 2);
+                    detfact.totalCordobas = Math.Round(detfact.totalCordobas, 4);
                   
                 }
 
@@ -937,19 +937,37 @@ namespace COVENTAF.PuntoVenta
             //comprobar si no si es inputUnicoSigArticulo activo
             if (!listDetFactura[consecut].inputActivoParaBusqueda)
             {
-                var facturaTemporal = new FacturaTemporal()
+                var facturaTemporal = new Facturando
                 {
                     Factura = this.txtNoFactura.Text,
-                    TipoCambio = listVarFactura.TipoDeCambio,
-                    Bodega = this.cboBodega.SelectedValue.ToString(),
-                    Consecutivo = Convert.ToInt32(listDetFactura[consecut].consecutivo),
                     ArticuloID = listDetFactura[consecut].articuloId,
+
+                    CodigoCliente = this.txtCodigoCliente.Text,
+                    //aqui le indico que no es una factura en espera
+                    FacturaEnEspera = false,
+
+                    Cajero = User.Usuario,
+                    Caja = User.Caja,
+                    NumCierre = User.ConsecCierreCT,
+                    TiendaID = User.TiendaID,
+                    FechaRegistro = DateTime.Now,
+                    TipoCambio = listVarFactura.TipoDeCambio,
+
+                    BodegaID = listDetFactura[consecut].BodegaID,
+                    Consecutivo = Convert.ToInt32(listDetFactura[consecut].consecutivo),
+
                     CodigoBarra = listDetFactura[consecut].codigoBarra,
+
                     Cantidad = listDetFactura[consecut].cantidad,
                     Descripcion = listDetFactura[consecut].descripcion,
                     Unidad = listDetFactura[consecut].unidad,
-                    Precio = listDetFactura[consecut].precioDolar,
-                    Descuento = listDetFactura[consecut].porCentajeDescuentoXArticulo
+                    Precio = listDetFactura[consecut].moneda == 'L' ? listDetFactura[consecut].precioCordobas : listDetFactura[consecut].precioDolar,
+                    Moneda = listDetFactura[consecut].moneda.ToString(),
+                    DescuentoLinea = listDetFactura[consecut].porCentajeDescuentoXArticulo,
+                    DescuentoGeneral = listVarFactura.AplicarDescuentoGeneral,
+                    AplicarDescuento = this.chkDescuentoGeneral.Checked,
+                    Observaciones = this .txtObservaciones.Text              
+
                 };
 
                 ResponseModel responseModel = new ResponseModel();
@@ -1437,6 +1455,7 @@ namespace COVENTAF.PuntoVenta
             else
             {
                 this.btnGuardarFactura.Visible = true;
+                this.btnGuardarFactura.Enabled = true;
                 MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
             }
         }

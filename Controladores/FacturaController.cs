@@ -118,7 +118,7 @@ namespace Controladores
         public async Task<ResponseModel> EliminarArticuloDetalleFacturaAsync(string noFactura, string articulo)
         {
             var responseModel = new ResponseModel();
-            responseModel.Data = new FacturaTemporal();
+            responseModel.Data = new Facturando();
             try
             {
                 responseModel.Data = await _serviceFactura.EliminarFacturaTemporal(responseModel, noFactura, articulo);
@@ -160,7 +160,7 @@ namespace Controladores
 
 
         //[HttpPost("GuardarDatosFacturaTemporal")]
-        public async Task<ResponseModel> GuardarDatosFacturaTemporal(FacturaTemporal model)
+        public async Task<ResponseModel> GuardarDatosFacturaTemporal(Facturando model)
         {
             var result = 0;
             ResponseModel responseModel = new ResponseModel();

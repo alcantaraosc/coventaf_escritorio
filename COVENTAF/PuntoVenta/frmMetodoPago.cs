@@ -68,9 +68,10 @@ namespace COVENTAF.PuntoVenta
             metodoPago[0].DescripcionFormPago = "Total a Cobrar";
             metodoPago[0].MontoCordoba = TotalCobrar;
             metodoPago[0].Moneda = 'L'; //L=Local (C$)
-            metodoPago[0].MontoDolar = Math.Round((TotalCobrar * tipoCambioOficial), 2);
+            metodoPago[0].MontoDolar = Math.Round((TotalCobrar / tipoCambioOficial), 2);
             metodoPago[0].MontoPagado = 0.0000M;
-            metodoPago[0].Diferencia = 0.0000M;
+            metodoPago[0].DiferenciaCordoba = metodoPago[0].MontoCordoba;
+            metodoPago[0].DiferenciaDolar = metodoPago[0].MontoDolar;
             metodoPago[0].TeclaPresionaXCajero = false;
             metodoPago[0].DescripcionTecla = "No Existe Tecla";
 
@@ -88,7 +89,8 @@ namespace COVENTAF.PuntoVenta
                 MontoCordoba = 0.0000M,
                 MontoDolar = 0.0000M,
                 MontoPagado = 0.0000M,
-                Diferencia = 0.0000M
+                DiferenciaCordoba = 0.0000M,
+                DiferenciaDolar = 0.0000M
             };
 
             //agregar push para agregar un nuevo registro
@@ -169,21 +171,48 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
+        //void VerificarMontoDolar(decimal montoDolarCobrar)
+        //{
+
+        //      //  metodoPago[0].MontoCordoba
+
+        //    //comprobar si el cliente pago en cordoba y adema si el monto a pagar es el monto final en dolares
+        //        if (cobrasteCordobas & montoDolarCobrar == montoFinalCobrarDolar)
+        //    {
+        //        //metodoPago[0].Diferencia
+
+
+        //        //este es el monto con error
+        //        decimal montoConError = (montoDolarCobrar * tipoCambioOficial);
+        //        montoConError = Math.Round(montoConError, 2);
+
+        //        //este es el monto al que tengo q llegar
+        //        decimal montoTotalCobrar = metodoPago[0].Diferencia;
+
+        //        if (montoConError == montoTotalCobrar)
+        //        {
+        //            nuevoTipoCambioAproximado = tipoCambioOficial;
+        //        }
+        //        else
+        //        {
+        //            nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
+        //        }
+
+        //    }
+        //}
+
         void VerificarMontoDolar(decimal montoDolarCobrar)
         {
-            //comprobar si el cliente pago en cordoba y adema si el monto a pagar es el monto final en dolares
-            if (cobrasteCordobas & montoDolarCobrar == montoFinalCobrarDolar)
-            {
-                //metodoPago[0].Diferencia
 
-               
+            if (montoDolarCobrar ==  metodoPago[0].DiferenciaDolar)
+            {
                 //este es el monto con error
                 decimal montoConError = (montoDolarCobrar * tipoCambioOficial);
                 montoConError = Math.Round(montoConError, 2);
 
-                //este es el monto al que tengo q llegar
-                decimal montoTotalCobrar = metodoPago[0].Diferencia;
-               
+                //este es el monto al que tengo q llegar en cordobas
+                decimal montoTotalCobrar = Math.Round(metodoPago[0].DiferenciaCordoba, 2);
+
                 if (montoConError == montoTotalCobrar)
                 {
                     nuevoTipoCambioAproximado = tipoCambioOficial;
@@ -192,8 +221,31 @@ namespace COVENTAF.PuntoVenta
                 {
                     nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
                 }
-                
             }
+            /*
+            //comprobar si el cliente pago en cordoba y adema si el monto a pagar es el monto final en dolares
+            if (cobrasteCordobas & montoDolarCobrar == montoFinalCobrarDolar)
+            {
+                //metodoPago[0].Diferencia
+
+
+                //este es el monto con error
+                decimal montoConError = (montoDolarCobrar * tipoCambioOficial);
+                montoConError = Math.Round(montoConError, 2);
+
+                //este es el monto al que tengo q llegar
+                decimal montoTotalCobrar = metodoPago[0].Diferencia;
+
+                if (montoConError == montoTotalCobrar)
+                {
+                    nuevoTipoCambioAproximado = tipoCambioOficial;
+                }
+                else
+                {
+                    nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
+                }
+
+            }*/
         }
 
         void VerificarMonto(decimal montoDolarCobrar)
@@ -211,7 +263,7 @@ namespace COVENTAF.PuntoVenta
                 montoConError = Math.Round(montoConError, 2);
 
                 //este es el monto al que tengo q llegar
-                decimal montoTotalCobrar = metodoPago[0].Diferencia;
+                decimal montoTotalCobrar = metodoPago[0].DiferenciaCordoba;
 
                 if (montoConError == montoTotalCobrar)
                 {
@@ -229,13 +281,13 @@ namespace COVENTAF.PuntoVenta
         void AsginarMetodoPago(string formaPago ,string nombreMetodoPago, decimal monto, char moneda, bool TeclaPresionaXCajero, string tecla,  string condicionPago, string DescripcionCondicionPago="", string tipoTarjeta = null)
         {
             decimal montoDolar = 0;
-            decimal montoCordoba = 0;
-            monto = Math.Round(monto, 2);
+            decimal montoCordoba = 0;           
 
             switch (moneda)
             {
                 //comprobar si la monedad es local(L=Local=C$)
                 case 'L':
+                    monto = Math.Round(monto, 2);
                     //si el cliente paga con cordobas y luego dolares, entonces en el tipo de cambio existe un restante
                     //o faltante de centavo por el tipo de cambio, de modo que aqui controlo si el usuario hizo pago en cordobas y reajusto el nuevo tipo de cambio para que sea exacto.
                     //aqui le indico al sistema que el cliente realizo un pago en cordobas.
@@ -247,6 +299,12 @@ namespace COVENTAF.PuntoVenta
 
                 //comprobar si la monedad es Dolaar(D=Dolar=U$)
                 case 'D':
+
+
+                    monto = Math.Round(monto, 2);
+
+
+
                     //aqui tendria que ver q tipo de cambio usar
                     VerificarMontoDolar(monto);                  
                     montoDolar = monto;
@@ -281,7 +339,7 @@ namespace COVENTAF.PuntoVenta
             metodoPago[Index].Moneda = moneda;
             metodoPago[Index].MontoDolar += montoDolar;
             metodoPago[Index].MontoPagado = 0.000M;
-            metodoPago[Index].Diferencia = 0.0000M;
+            metodoPago[Index].DiferenciaCordoba = 0.0000M;            
             metodoPago[Index].TeclaPresionaXCajero = TeclaPresionaXCajero;
             metodoPago[Index].DescripcionTecla = tecla;
 
@@ -293,7 +351,8 @@ namespace COVENTAF.PuntoVenta
             var diferencia = metodoPago[0].MontoCordoba - metodoPago[0].MontoPagado;
 
             diferencia = Math.Round(diferencia, 2);
-            metodoPago[0].Diferencia = diferencia;
+            metodoPago[0].DiferenciaCordoba = diferencia;
+            metodoPago[0].DiferenciaDolar = Math.Round((diferencia / tipoCambioOficial), 2);
             //validar si la diferencia es negativa entonces existe un cambio para el cliente
             if (diferencia < 0.00M)
             {
@@ -308,7 +367,7 @@ namespace COVENTAF.PuntoVenta
             }
             else
             {
-
+                
                 var valorPendientePagar = GetMontoCobrar();
                 bloquearMetodoPago = (valorPendientePagar > 0 ? false : true);
                 this.btnGuardarFactura.Enabled = bloquearMetodoPago;
@@ -330,7 +389,7 @@ namespace COVENTAF.PuntoVenta
             metodoPago[Index].DescripcionFormPago = "Vuelto";
             metodoPago[Index].MontoCordoba = diferencial;
             metodoPago[Index].MontoPagado = 0.0000M;
-            metodoPago[Index].Diferencia = 0.0000M;
+            metodoPago[Index].DiferenciaCordoba = 0.0000M;
             metodoPago[Index].TeclaPresionaXCajero = false;
             metodoPago[Index].DescripcionTecla = "No Existe Tecla";
                   
@@ -422,29 +481,32 @@ namespace COVENTAF.PuntoVenta
         private void frmMetodoPago_Load(object sender, EventArgs e)
         {
             tipoCambioOficial = Math.Round(tipoCambioOficial, 2);
+            nuevoTipoCambioAproximado = tipoCambioOficial;
 
-
+            var montoTotalCobrar = Math.Round(TotalCobrar, 2);
+            
             lblTitulo.Text = $"Cobrar Factura. Tipo de Cambio: {tipoCambioOficial}";
             AddNuevaFilaMetodoPago();
             //inicializar los datos
             InicializarDatos();
 
-            decimal montoDolares = (TotalCobrar / tipoCambioOficial);
+            /*
+            decimal montoDolares = (montoTotalCobrar / tipoCambioOficial);
             montoDolares = Math.Round(montoDolares, 2);
             var nuevomontoDol = montoDolares;
 
             decimal montoConError = (nuevomontoDol * tipoCambioOficial);
             montoConError = Math.Round(montoConError, 2);
-            if (montoConError == TotalCobrar)
+            if (montoConError == montoTotalCobrar)
             {
                 nuevoTipoCambioAproximado = Math.Round(tipoCambioOficial, 2);
                 tipoCambioOficial = Math.Round(tipoCambioOficial, 2);
             }
             else
             {
-                nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(TotalCobrar, montoConError, montoDolares);
+                nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolares);
                 //nuevoTipoCambioAproximado = tipoCambioOficial;
-            }
+            }*/
 
 
             //llenar el combox tipo de tarjeta
@@ -1166,6 +1228,7 @@ namespace COVENTAF.PuntoVenta
 
         decimal ObtenerNuevoTipoCambioExcto(decimal montoExacto, decimal montoConError, decimal montoDolares )
         {
+            montoExacto = Math.Round(montoExacto, 2);
 
             decimal nuevoTipoCambio = tipoCambioOficial;
             //si el monto con error es mayor entonces hay que ir restando el tipo de cambio
@@ -1208,10 +1271,21 @@ namespace COVENTAF.PuntoVenta
             {
                 if (this.txtTarjetaDolar.Enabled)
                 {
+                   
                     //obtener el valor del textbox, ademas valida por si el textbox esta vacio
                     decimal valor = this.txtTarjetaDolar.Text.Trim().Length == 0 ? 0.00M : Convert.ToDecimal(this.txtTarjetaDolar.Text);
-                    //hacer la conversion al tipo de  cambio del dia             
-                    this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${(valor * tipoCambioOficial).ToString("N2")}";
+                    if (Convert.ToDecimal(this.txtTarjetaDolar.Text) == metodoPago[0].DiferenciaDolar)
+                    {
+                        //hacer la conversion al tipo de  cambio del dia             
+                        this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${metodoPago[0].DiferenciaCordoba.ToString("N2")}";
+                    }
+                    else
+                    {
+                        //hacer la conversion al tipo de  cambio del dia             
+                        this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${(valor * tipoCambioOficial).ToString("N2")}";
+                    }
+
+
                 }
             }
             catch
@@ -1284,6 +1358,12 @@ namespace COVENTAF.PuntoVenta
             this.Close();
         }
 
-       
+        private void btnVerDetallePago_Click(object sender, EventArgs e)
+        {
+            var Detalleform = new frmDetallePago();
+            Detalleform.metodoPago = metodoPago;
+            Detalleform.ShowDialog();
+            Detalleform.Dispose();
+        }
     }
 }

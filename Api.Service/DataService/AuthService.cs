@@ -152,8 +152,16 @@ namespace Api.Service.DataService
                         roles.Add(new RolesUsuarioActual() { RolID = Convert.ToInt32(dr["RolID"]), NombreRol = dr["NombreRol"]?.ToString() });
                     }
                     
+                    //si
+                    if (respuesta  && ViewModelUser.Grupo.Length==0 && roles[0].NombreRol.ToString() != "ADMIN" )
+                    {
+                        respuesta = false;
+                        ViewModelUser = null;
+                        responseModel.Exito = 0;
+                        responseModel.Mensaje = "El Cajero no tiene una tienda asignada";
+                    }
 
-                    if (respuesta)
+                    else if (respuesta)
                     {
                         responseModel.DataAux = roles;
                         responseModel.Exito = 1;

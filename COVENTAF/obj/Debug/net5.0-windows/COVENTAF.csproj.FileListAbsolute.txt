@@ -410,6 +410,7 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-wind
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\ref\COVENTAF.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.pdb
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.genruntimeconfig.cache
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.VistaPrevia.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\bin\Debug\net5.0-windows\COVENTAF.exe
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\bin\Debug\net5.0-windows\COVENTAF.deps.json
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\bin\Debug\net5.0-windows\COVENTAF.runtimeconfig.json
@@ -568,6 +569,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmPuntoVenta.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmVentas.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.Security.frmUsuario.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.VistaPrevia.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.csproj.GenerateResource.cache
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.GeneratedMSBuildEditorConfig.editorconfig
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.AssemblyInfoInputs.cache
@@ -578,5 +580,3 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\ref\COVENTAF.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.pdb
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.genruntimeconfig.cache
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.VistaPrevia.resources
-D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.VistaPrevia.resources

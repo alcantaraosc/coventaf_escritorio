@@ -20,7 +20,8 @@ namespace Api.Model.ViewModels
         public char Moneda { get; set; } //L=Local(C$), D=Dolar(U$)
         public decimal MontoDolar { get; set; }
         public decimal MontoPagado { get; set; }
-        public decimal Diferencia { get; set; }
+        public decimal DiferenciaCordoba { get; set; }
+        public decimal DiferenciaDolar { get; set; }
 
         public bool TeclaPresionaXCajero { get; set; }
         public string DescripcionTecla { get; set; }

@@ -35,9 +35,6 @@ namespace COVENTAF.PuntoVenta
         CoreDBContext _db = new CoreDBContext();
         private readonly CajaPosController _cajaPosController;
 
-
-
-
         public frmPuntoVenta()
         {
             InitializeComponent();
@@ -77,9 +74,10 @@ namespace COVENTAF.PuntoVenta
         }
 
         private void VerificarsiExisteAperturaCaja()
+        
         {
             ResponseModel responseModel = new ResponseModel();
-            responseModel = _cajaPosController.VerificarsiExisteAperturaCaja(User.Usuario);
+            responseModel = _cajaPosController.VerificarsiExisteAperturaCaja(User.Usuario, User.TiendaID);
             if (responseModel.Exito == 1)
             {
                 this.btnNuevaFactura1.Enabled = true;

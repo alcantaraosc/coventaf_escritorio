@@ -53,8 +53,7 @@ namespace COVENTAF
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            
             this.PanelContenedor.SuspendLayout();
             this.pnlBarraInformacion.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -423,8 +422,6 @@ namespace COVENTAF
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private System.Windows.Forms.Panel pnlBarraInformacion;
         private System.Windows.Forms.Label lblInformacion;
     }

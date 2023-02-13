@@ -283,7 +283,6 @@ namespace Api.Service.DataService
                         //ConsecutivoCierreCT
                         listResult.Add(dr["ConsecutivoCierreCT"].ToString());                       
                     }
-
                                     
                 }
 
@@ -323,7 +322,7 @@ namespace Api.Service.DataService
             return bodegaID;
         }
 
-        private bool CajaEstaAperturadoPorCajeroActual(string cajero, ResponseModel responseModel)
+        private bool CajaEstaAperturadoPorCajeroActual(string cajero, string sucursalID, ResponseModel responseModel)
         {
             bool aperturadoPorCajero = false;
             var bodegaID = "";
@@ -339,7 +338,7 @@ namespace Api.Service.DataService
                     {
                         aperturadoPorCajero = true;
                         //luego obtener la bodega ID
-                        bodegaID = _db.Caja_Pos.Where(cp => cp.Caja == cierre_Pos.Caja && cp.Sucursal == cp.Sucursal).Select(x => x.Bodega).FirstOrDefault();
+                        bodegaID = _db.Caja_Pos.Where(cp => cp.Caja == cierre_Pos.Caja && cp.Sucursal == sucursalID).Select(x => x.Bodega).FirstOrDefault();
                         //asignar los datos para enviarlos
                         responseModel.Data = cierre_Pos as Cierre_Pos;
                         //asignar la bodega
@@ -356,10 +355,10 @@ namespace Api.Service.DataService
             return aperturadoPorCajero;
         }
 
-        public void VerificarExistenciaAperturaCaja(string cajero,  ResponseModel responseModel)
+        public void VerificarExistenciaAperturaCaja(string cajero, string sucursalID, ResponseModel responseModel)
         { 
             //si ya existe la apertura de caja entonces obtener la bodega por defecto           
-            if (CajaEstaAperturadoPorCajeroActual(cajero, responseModel))
+            if (CajaEstaAperturadoPorCajeroActual(cajero, sucursalID, responseModel))
             {          
                 responseModel.Exito = 1;
                 responseModel.Mensaje = "Apertura de Caja ya existe";
