@@ -14,6 +14,7 @@ namespace Api.Model.ViewModels
         public bool inputArticuloDesactivado { get; set; }
         public string codigoBarra { get; set; }
         public decimal cantidad { get; set; }
+        public decimal porCentajeDescuentoXArticulo { get; set; }
         public string descripcion { get; set; }
         public string unidad { get; set; }        
         public decimal cantidadExistencia { get; set; }
@@ -24,8 +25,7 @@ namespace Api.Model.ViewModels
         public string BodegaID { get; set; }
         public string NombreBodega { get; set; }
         public decimal subTotalDolar { get; set; }
-        public decimal subTotalCordobas { get; set; }
-        public decimal porCentajeDescuentoXArticulo { get; set; }
+        public decimal subTotalCordobas { get; set; }       
         public decimal descuentoInactivo { get; set; }
         public decimal descuentoDolar { get; set; }        
         public decimal descuentoCordoba { get; set; }

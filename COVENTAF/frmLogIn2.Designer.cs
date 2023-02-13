@@ -138,7 +138,6 @@ namespace COVENTAF
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(349, 20);
             this.txtPassword.TabIndex = 10;
-            this.txtPassword.Text = "123";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // pictureBox3
@@ -162,7 +161,6 @@ namespace COVENTAF
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(349, 20);
             this.txtUser.TabIndex = 9;
-            this.txtUser.Text = "GERNESTO";
             // 
             // label2
             // 

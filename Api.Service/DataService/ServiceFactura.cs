@@ -163,7 +163,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand("[SP_GuardarFacturaTemporal]", cn);
+                    SqlCommand cmd = new SqlCommand("SP_GuardarFacturaTemporal", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 

@@ -53,7 +53,6 @@ namespace COVENTAF
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            
             this.PanelContenedor.SuspendLayout();
             this.pnlBarraInformacion.SuspendLayout();
             this.panelMenu.SuspendLayout();

@@ -302,9 +302,6 @@ namespace COVENTAF.PuntoVenta
 
 
                     monto = Math.Round(monto, 2);
-
-
-
                     //aqui tendria que ver q tipo de cambio usar
                     VerificarMontoDolar(monto);                  
                     montoDolar = monto;
@@ -1002,7 +999,7 @@ namespace COVENTAF.PuntoVenta
             if (e.KeyChar == 13 && this.txtCredito.Text.Length > 0 && !char.IsDigit(e.KeyChar))
             {
                 //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("0002", "Cheque", Convert.ToDecimal(this.txtCredito.Text), 'L', true, teclaPresionadaXCajero, this.cboCondicionPago.SelectedValue.ToString(), this.cboCondicionPago.Text, null);
+                AsginarMetodoPago("0004", "Credito", Convert.ToDecimal(this.txtCredito.Text), 'L', true, teclaPresionadaXCajero, this.cboCondicionPago.SelectedValue.ToString(), this.cboCondicionPago.Text, null);
                 //cambiar el estado
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado

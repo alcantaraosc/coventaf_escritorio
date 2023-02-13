@@ -20,6 +20,8 @@ namespace COVENTAF.PuntoVenta
     public partial class frmVentas : Form
     {
         public bool cancelarFactura = false;
+        public bool facturaGuardada = false;
+
 
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -126,6 +128,7 @@ namespace COVENTAF.PuntoVenta
 
         private void FrmVentas_Load(object sender, EventArgs e)
         {
+            //this.WindowState = WindowState.
 
             TiendaID = User.TiendaID;
             BodegaID = User.BodegaID;
@@ -339,6 +342,10 @@ namespace COVENTAF.PuntoVenta
 
                     //inicializar los datos del cliente para luego mostrarlo en HTML
                     _procesoFacturacion.inicializarDatosClienteParaVisualizarHTML(listVarFactura);
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
+                else
+                {
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
 
@@ -1406,7 +1413,7 @@ namespace COVENTAF.PuntoVenta
                 RecolectarDatosFactura();
                 //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
                 RecopilarDatosMetodoPago(metodoPago);
-                GuardarDatosFacturaBaseDatos();
+                GuardarDatosFacturaBaseDatos(GuardarFactura);
             }
             
         }
@@ -1419,7 +1426,7 @@ namespace COVENTAF.PuntoVenta
                 noFactura = txtNoFactura.Text.ToString(),
                 fecha = listVarFactura.FechaFactura,
                 bodega = this.cboBodega.SelectedValue.ToString(),
-                caja = User.Caja,
+                caja = User.NombreUsuario,
                 tipoCambio = listVarFactura.TipoDeCambio,
                 codigoCliente = this.txtCodigoCliente.Text,
                 cliente = listVarFactura.NombreCliente,
@@ -1447,9 +1454,9 @@ namespace COVENTAF.PuntoVenta
             if (responseModel.Exito == 1)
             {
                 //imprimir la factura
-                _procesoFacturacion.ImprimirTicketFactura(listDetFactura, datoEncabezadoFact);
-                                
+                _procesoFacturacion.ImprimirTicketFactura(listDetFactura, datoEncabezadoFact);                             
                 MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                facturaGuardada = true;
                 this.Close();
             }
             else

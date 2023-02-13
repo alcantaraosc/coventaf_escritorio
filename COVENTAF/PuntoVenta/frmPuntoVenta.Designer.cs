@@ -548,6 +548,7 @@ namespace COVENTAF.PuntoVenta
             this.button7.TabIndex = 0;
             this.button7.Text = "Seguridad";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             // 
             // btnCierreCaja
             // 

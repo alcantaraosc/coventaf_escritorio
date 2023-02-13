@@ -466,8 +466,8 @@ namespace COVENTAF.Services
             //vista.Controls.Add(this.PrintPreviewControl1);
             
            vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+           doc.Print();
+            //vista.ShowDialog();
         }
 
 
@@ -629,10 +629,10 @@ namespace COVENTAF.Services
                 posY += 18;
                 e.Graphics.DrawString("Atendido Por: " + _encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 18;
+                posY += 25;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 18;
+                posY += 25;
                 e.Graphics.DrawString("RECIBIDO: ", fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 30;
