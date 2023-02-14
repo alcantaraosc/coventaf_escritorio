@@ -169,6 +169,11 @@ namespace COVENTAF.PuntoVenta
             {
                 btnReInicioCobro_Click(null, null);
             }
+
+            else if (e.KeyCode == Keys.Escape)
+            {
+                btnCerrar_Click(null, null);
+            }
         }
 
         //void VerificarMontoDolar(decimal montoDolarCobrar)

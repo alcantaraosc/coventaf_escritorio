@@ -626,6 +626,11 @@ namespace COVENTAF.Services
                 posY += 18;               
                 e.Graphics.DrawString("Observaciones: " + _encabezadoFact.observaciones, fuenteRegular, Brushes.Black, posX, posY);
 
+                for(var fila=0; fila < _encabezadoFact.observaciones.Length; fila++ )
+                {
+
+                }
+
                 posY += 18;
                 e.Graphics.DrawString("Atendido Por: " + _encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX, posY);
 

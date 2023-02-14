@@ -789,7 +789,7 @@ namespace COVENTAF.PuntoVenta
             this.btnReInicioCobro.Name = "btnReInicioCobro";
             this.btnReInicioCobro.Size = new System.Drawing.Size(167, 34);
             this.btnReInicioCobro.TabIndex = 191;
-            this.btnReInicioCobro.Text = "Reiniciar Cobro - F12";
+            this.btnReInicioCobro.Text = "Resetear Cobro - F12";
             this.btnReInicioCobro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReInicioCobro.UseVisualStyleBackColor = false;
             this.btnReInicioCobro.Click += new System.EventHandler(this.btnReInicioCobro_Click);

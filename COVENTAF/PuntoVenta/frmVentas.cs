@@ -1413,7 +1413,7 @@ namespace COVENTAF.PuntoVenta
                 RecolectarDatosFactura();
                 //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
                 RecopilarDatosMetodoPago(metodoPago);
-                GuardarDatosFacturaBaseDatos(GuardarFactura);
+                GuardarDatosFacturaBaseDatos();
             }
             
         }
@@ -1875,8 +1875,19 @@ namespace COVENTAF.PuntoVenta
             {
                 btnCobrar_Click(null, null);
             }
+            //F6 y chkDescuentoGeneral este habilitado
+            else if (e.KeyCode == Keys.F6 && this.chkDescuentoGeneral.Enabled)
+            {
+                this.chkDescuentoGeneral.Checked = !this.chkDescuentoGeneral.Checked;
+                chkDescuentoGeneral_Click(null, null);
+            }
 
-            else if (e.KeyCode == Keys.F8 && this.btnGuardarFactura.Visible)
+            else if (e.KeyCode == Keys.F5)
+            {
+                this.txtObservaciones.Focus();
+            }
+
+            else if (e.KeyCode == Keys.F10 && this.btnGuardarFactura.Visible)
             {
                 btnGuardarFactura_Click(null, null);
             }
@@ -1885,6 +1896,17 @@ namespace COVENTAF.PuntoVenta
             {
                 btnEliminarArticulo_Click(null, null);
             }
+            //ubicar el cursor el textbox codigo de barra
+            else if (e.KeyCode == Keys.F12)
+            {
+                this.txtCodigoBarra.Focus();
+            }
+
+            else if (e.KeyCode == Keys.Escape)
+            {
+                btnCerrar_Click(null, null);
+            }
+
         }
 
        

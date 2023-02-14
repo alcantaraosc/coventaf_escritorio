@@ -194,20 +194,22 @@ namespace COVENTAF.PuntoVenta
 
             if (dialogResult == DialogResult.Yes)
             {
-                var frm = new frmVentas();
-                frm.ShowDialog();
-                //liberar recurso
-                frm.Dispose();
+                /* NuevaFactura();
+                 var frm = new frmVentas();
+                 frm.ShowDialog();
+                 //liberar recurso
+                 frm.Dispose();
 
-                //asignar los valores por defectos para iniciar el form
-                filtroFactura.Busqueda = "";
-                filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
-                filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
-                filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
-                filtroFactura.Cajero = User.Usuario;
+                 //asignar los valores por defectos para iniciar el form
+                 filtroFactura.Busqueda = "";
+                 filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
+                 filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
+                 filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
+                 filtroFactura.Cajero = User.Usuario;
 
-                //listar las facturas en el Grid
-                onListarGridFacturas(filtroFactura);
+                 //listar las facturas en el Grid
+                 onListarGridFacturas(filtroFactura);*/
+                NuevaFactura();
 
             }                        
         }
@@ -237,8 +239,6 @@ namespace COVENTAF.PuntoVenta
             {
                 NuevaFactura();
             }
-
-
 
         }
     }
