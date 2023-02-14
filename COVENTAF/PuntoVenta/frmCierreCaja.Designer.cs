@@ -621,7 +621,7 @@ namespace COVENTAF.PuntoVenta
             // btnGuardarCierre
             // 
             this.btnGuardarCierre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGuardarCierre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(52)))), ((int)(((byte)(95)))));
+            this.btnGuardarCierre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.btnGuardarCierre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardarCierre.Enabled = false;
             this.btnGuardarCierre.FlatAppearance.BorderSize = 0;
@@ -644,7 +644,7 @@ namespace COVENTAF.PuntoVenta
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(52)))), ((int)(((byte)(95)))));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Enabled = false;
             this.button1.FlatAppearance.BorderSize = 0;

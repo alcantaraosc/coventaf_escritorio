@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Api.Model.ViewModels
 {
     public class varFacturacion
-    {
-        public int ConsecutivoActualFactura { get; set; }
+    {        
         public string inputActivo { get; set; }
         public string IdActivo { get; set; }
 

@@ -168,8 +168,7 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         /// <param name="listVarFactura"></param>
         void InicializarTodaslasVariable(varFacturacion listVarFactura)
-        {
-            listVarFactura.ConsecutivoActualFactura = 0;
+        {            
             listVarFactura.inputActivo = "";
             listVarFactura.IdActivo = "";
             //indica si el descuento esta aplicado o no esta aplicado
@@ -773,6 +772,8 @@ namespace COVENTAF.PuntoVenta
                 //activar la busqueda de inputActivoParaBusqueda
                 //listDetFactura[consecutivoActualFactura].inputActivoParaBusqueda = true;
 
+               // AsignarArticuloGrid();
+
                 dgvDetalleFactura.DataSource = null;
                 dgvDetalleFactura.DataSource = listDetFactura;
                 configurarDataGridView();
@@ -852,6 +853,25 @@ namespace COVENTAF.PuntoVenta
             }
 
             return resultado;
+        }
+
+        private void AsignarArticuloGrid()
+        {
+            //limpiar el grid
+            //dgvDetalleFactura.DataSource = null;
+            dgvDetalleFactura.Columns.Clear();
+            //asignar la lista detalle del articulo
+            dgvDetalleFactura.DataSource = listDetFactura;
+            //configurar Grid
+            configurarDataGridView();
+
+            //dgvDetalleFactura.Columns["NombreDeUsuario"].Index;
+
+            // 'Mueve el cursor a dicha fila
+            ////dgvDetalleFactura.CurrentCell = dgvDetalleFactura[listVarFactura.ConsecutivoActualFactura, 2];
+             dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
+            //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
+            dgvDetalleFactura.Rows[consecutivoActualFactura].Selected = true;      
         }
 
         //poner el descuento
@@ -1094,15 +1114,14 @@ namespace COVENTAF.PuntoVenta
         private void dgvDetalleFactura_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
 
-            //si la columna es cantidad (4) o descuento(13)
-            if (e.ColumnIndex == 4 || e.ColumnIndex == 13)
+            //si la columna es cantidad (4) o descuento(5)
+            if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
             {
                 consecutivoActualFactura = e.RowIndex;
                 validarCantidadGrid();
                 //calcular totales
                 onCalcularTotales();
             }
-
         }
         void configurarDataGridView()
         {
@@ -1126,8 +1145,7 @@ namespace COVENTAF.PuntoVenta
 
             this.dgvDetalleFactura.Columns["codigoBarra"].HeaderText = "Codigo Barra";
             this.dgvDetalleFactura.Columns["descripcion"].HeaderText = "Descripcion";
-            this.dgvDetalleFactura.Columns["cantidad"].HeaderText = "Cantidad";
-           
+            this.dgvDetalleFactura.Columns["cantidad"].HeaderText = "Cantidad";           
             this.dgvDetalleFactura.Columns["cantidadExistencia"].HeaderText = "Existencia";
             this.dgvDetalleFactura.Columns["precioCordobas"].HeaderText = "Precio C$";
             this.dgvDetalleFactura.Columns["descuentoCordoba"].HeaderText = "Descuento C$";
@@ -1148,13 +1166,15 @@ namespace COVENTAF.PuntoVenta
 
             if (index != -1 && columna != -1)
             {
+                //(columna 4) es cantidad
                 //columna Cantidad del DataGridView (columna=4)
                 if (columnaIndex == 4)
                 {
-                    //antes de editar guardar temporalmente la cantidad en la variable  cantidadGrid
+                    //antes de editar guardar temporalmente la cantidad en la variable  cantidadGrid por si la cantidad excede lo que digita el cajero, entonce regresa al valor 
                     cantidadGrid = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value);
                 }
-                else if (columnaIndex == 13)
+                //(columna 5) es descuento
+                else if (columnaIndex == 5)
                 {
                     //antes de editar guardar temporalmente la cantidad en la variable  cantidadGrid
                     descuentoGrid = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value);
@@ -1179,7 +1199,7 @@ namespace COVENTAF.PuntoVenta
                         //obtener la cantidad del DataGridView
                         decimal cantidad = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value);
                         //obtener la existencia del DataGridView
-                        decimal existencia = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[7].Value);
+                        decimal existencia = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[8].Value);
 
                         if (cantidad > existencia)
                         {
@@ -1202,7 +1222,7 @@ namespace COVENTAF.PuntoVenta
                         break;
 
                     //columna descuento
-                    case 13:
+                    case 5:
                         //obtener la cantidad del DataGridView
                         decimal descuento = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value);
 
@@ -1773,7 +1793,7 @@ namespace COVENTAF.PuntoVenta
                         Linea = (short)detFactura.consecutivo,
                         Bodega = detFactura.BodegaID,
                         //preguntarajuan
-                        //ya revise en softland y no hay informacion
+                        //ya revise en softland y no hay informacion [COSTO_PROM_DOL] * cantidad
                         Costo_Total_Dolar = 0.00M,
                         //pedido?=string
                         Articulo = detFactura.articuloId,
@@ -1789,7 +1809,7 @@ namespace COVENTAF.PuntoVenta
                         Desc_Tot_Linea = detFactura.descuentoCordoba,
                         //este es el descuento general (el famoso 5% q le dan a los militares)
                         Desc_Tot_General = detFactura.descuentoGeneralCordoba,
-                        //revisar
+                        //revisar [COSTO_PROM_LOC] * cantidad
                         Costo_Total = 0.000M,
                         //aqui ya tiene restado el descuento. precio_total_x_linea. ya lo verifique con softland
                         Precio_Total = detFactura.totalCordobas,
@@ -1800,7 +1820,7 @@ namespace COVENTAF.PuntoVenta
                         Tipo_Linea = "N",
                         Cantidad_Aceptada = 0.00000000M,
                         Cant_No_Entregada = 0.00000000M,
-                        //revisar
+                        //revisar [COSTO_PROM_LOC] * cantidad
                         Costo_Total_Local = 0.00M,
                         Pedido_Linea = 0,
                         Multiplicador_Ev = 1,
@@ -1822,11 +1842,11 @@ namespace COVENTAF.PuntoVenta
                         Fase?=string
                         Centro_Costo?=string
                         Cuenta_Contable?=string*/
-                        //revisar
+                        //revisar [COSTO_PROM_LOC] * cantidad
                         Costo_Total_Comp = 0,
-                        //revisar
+                        //revisar [COSTO_PROM_LOC] * cantidad
                         Costo_Total_Comp_Local = 0,
-                        //revisar
+                        //revisar [COSTO_PROM_DOL] * cantidad
                         Costo_Total_Comp_Dolar = 0,
                         Costo_Estim_Comp_Local = 0.00000000M,
                         Costo_Estim_Comp_Dolar = 0.00000000M,
