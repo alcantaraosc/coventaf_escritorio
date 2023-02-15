@@ -241,5 +241,25 @@ namespace COVENTAF.PuntoVenta
             }
 
         }
+
+        private void btnCierreCaja_Click(object sender, EventArgs e)
+        {
+            var frmCierreCaja = new frmCierreCaja();
+            frmCierreCaja.ShowDialog();
+            if (frmCierreCaja.exitoCierreCaja)
+            {
+                this.lblCajaApertura.Text = "Caja de Apertura: Sin Apertura";
+                this.lblNoCierre.Text = "No. Cierre: ";
+                //desactivar la opcion de caja de apertura
+                this.btnAperturaCaja.Enabled = true;
+                this.btnCierreCaja.Enabled = false;
+                this.btnNuevaFactura1.Enabled = false;
+
+            }
+            //liberar recurso del form
+            frmCierreCaja.Dispose();
+        }
+
+        
     }
 }

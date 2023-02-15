@@ -41,7 +41,7 @@ namespace COVENTAF.PuntoVenta
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCierreCaja));
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMminizar = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnCierre = new System.Windows.Forms.PictureBox();
             this.btnMinizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -79,7 +79,7 @@ namespace COVENTAF.PuntoVenta
             this.button1 = new System.Windows.Forms.Button();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportePagoCajero)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -89,7 +89,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.barraTitulo.Controls.Add(this.btnMminizar);
-            this.barraTitulo.Controls.Add(this.pictureBox1);
+            this.barraTitulo.Controls.Add(this.btnCierre);
             this.barraTitulo.Controls.Add(this.btnMinizar);
             this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.lblTitulo);
@@ -113,18 +113,20 @@ namespace COVENTAF.PuntoVenta
             this.btnMminizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMminizar.TabIndex = 83;
             this.btnMminizar.TabStop = false;
+            this.btnMminizar.Visible = false;
             // 
-            // pictureBox1
+            // btnCierre
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.pictureBox1.Location = new System.Drawing.Point(974, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 21);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 81;
-            this.pictureBox1.TabStop = false;
+            this.btnCierre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCierre.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCierre.Image = global::COVENTAF.Properties.Resources.close_login;
+            this.btnCierre.Location = new System.Drawing.Point(974, 0);
+            this.btnCierre.Name = "btnCierre";
+            this.btnCierre.Size = new System.Drawing.Size(25, 21);
+            this.btnCierre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnCierre.TabIndex = 81;
+            this.btnCierre.TabStop = false;
+            this.btnCierre.Click += new System.EventHandler(this.btnCierre_Click);
             // 
             // btnMinizar
             // 
@@ -164,7 +166,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(4, 3);
+            this.lblTitulo.Location = new System.Drawing.Point(6, 4);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(137, 17);
@@ -698,10 +700,11 @@ namespace COVENTAF.PuntoVenta
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCierreCaja";
             this.Text = "frmCierreCaja";
+            this.Load += new System.EventHandler(this.frmCierreCaja_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReportePagoCajero)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -717,7 +720,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnMinimizar;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox btnCierre;
         private System.Windows.Forms.PictureBox btnMminizar;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;

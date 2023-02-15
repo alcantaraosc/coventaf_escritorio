@@ -549,6 +549,7 @@ namespace COVENTAF.PuntoVenta
             this.button7.Text = "Seguridad";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Visible = false;
+            
             // 
             // btnCierreCaja
             // 
@@ -567,6 +568,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCierreCaja.TabIndex = 0;
             this.btnCierreCaja.Text = "Cierre de Caja";
             this.btnCierreCaja.UseVisualStyleBackColor = true;
+            this.btnCierreCaja.Click += new System.EventHandler(this.btnCierreCaja_Click);
             // 
             // notifyIcon1
             // 

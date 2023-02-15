@@ -23,6 +23,13 @@ namespace Api.Service.DataService
             
         }
 
+        /// <summary>
+        /// Listar las cajas disponible para cada sucursal
+        /// </summary>
+        /// <param name="cajero"></param>
+        /// <param name="sucursalID"></param>
+        /// <param name="responseModel"></param>
+        /// <returns></returns>
         public async Task<List<ViewCajaDisponible>> ListarCajasDisponibles( string cajero, string sucursalID, ResponseModel responseModel)
         {
             var listaCajaDisponible = new List<ViewCajaDisponible>();
@@ -174,6 +181,13 @@ namespace Api.Service.DataService
 
             return aperutadoPorCajero;
         }*/
+        /// <summary>
+        /// verifica que la caja que esta aperturada esta ocupado por un cajero
+        /// </summary>
+        /// <param name="caja"></param>
+        /// <param name="cajero"></param>
+        /// <param name="responseModel"></param>
+        /// <returns></returns>
         public bool CajaAperturaOcupadaConCajeroX(string caja, string cajero, ResponseModel responseModel)
         {
             bool ocupada = false;
@@ -272,8 +286,7 @@ namespace Api.Service.DataService
 
                     SqlParameter paramReturned = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
                     paramReturned.Direction = ParameterDirection.ReturnValue;
-
-                    
+                                     
 
                     var dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
@@ -374,5 +387,68 @@ namespace Api.Service.DataService
         {
 
         }*/
+
+        public async Task<List<ViewModelCierreCaja>> ObtenerDatosParaCierreCaja(string caja, string cajero, string numCierre, ResponseModel responseModel)
+        {
+            //aqui vas almacenar la bodegaId y Consec_Cierre_CT
+            var datosCierreCaja = new List<ViewModelCierreCaja>();           
+            try
+            {
+                //model.Fecha = DateTime.Now.Date;
+                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand("SP_PrepararCierreCaja", cn);
+                    cmd.CommandTimeout = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Caja", caja);
+                    cmd.Parameters.AddWithValue("@Cajero", cajero);
+                    cmd.Parameters.AddWithValue("@NumCierre", numCierre);
+                   
+                    //// Se añaden los parámetros de salida y se crean variables para facilitar su recuperacion
+                    //SqlParameter paramOutConsec_Cierre_CT = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
+                    //paramOutConsec_Cierre_CT.Direction = ParameterDirection.Output;
+
+                    //SqlParameter paramReturned = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
+                    //paramReturned.Direction = ParameterDirection.ReturnValue;
+
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (await dr.ReadAsync())
+                    {
+                        var datos_ = new ViewModelCierreCaja()
+                        {
+                            Monto_Local = Convert.ToDecimal(dr["MONTO_LOCAL"]),
+                            Monto_Dolar = Convert.ToDecimal(dr["MONTO_DOLAR"]),
+                            Forma_Pago = dr["FORMA_PAGO"].ToString(),
+                            Descripcion = dr["DESCRIPCION"].ToString()                            
+                        };
+
+                        datosCierreCaja.Add(datos_);
+                                               
+                    }
+
+                }
+
+                if (datosCierreCaja.Count > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Consulta exitosa";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"No hay registro para el cierre";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return datosCierreCaja;
+        }
     }
 }
