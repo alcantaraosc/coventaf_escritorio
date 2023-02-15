@@ -583,6 +583,7 @@ namespace COVENTAF.PuntoVenta
             this.txtDescripcionArticulo.ForeColor = System.Drawing.Color.White;
             this.txtDescripcionArticulo.Location = new System.Drawing.Point(271, 308);
             this.txtDescripcionArticulo.Name = "txtDescripcionArticulo";
+            this.txtDescripcionArticulo.ReadOnly = true;
             this.txtDescripcionArticulo.Size = new System.Drawing.Size(336, 20);
             this.txtDescripcionArticulo.TabIndex = 88;
             // 
@@ -669,7 +670,7 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDetalleFactura.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.dgvDetalleFactura.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvDetalleFactura.EnableHeadersVisualStyles = false;
             this.dgvDetalleFactura.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetalleFactura.Location = new System.Drawing.Point(12, 343);
@@ -1365,6 +1366,7 @@ namespace COVENTAF.PuntoVenta
             this.btnLimpiarFactura.Text = "Limpiar Factura - F8";
             this.btnLimpiarFactura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpiarFactura.UseVisualStyleBackColor = false;
+            this.btnLimpiarFactura.Click += new System.EventHandler(this.btnLimpiarFactura_Click);
             // 
             // frmVentas
             // 

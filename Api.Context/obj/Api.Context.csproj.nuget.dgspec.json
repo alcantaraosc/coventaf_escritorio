@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj": {}
+    "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Context\\Api.Context.csproj": {}
   },
   "projects": {
-    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj": {
+    "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Context\\Api.Context.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj",
+        "projectUniqueName": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Context\\Api.Context.csproj",
         "projectName": "Api.Context",
-        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\Api.Context.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Context\\obj\\",
+        "projectPath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Context\\Api.Context.csproj",
+        "packagesPath": "C:\\Users\\alcantara\\.nuget\\packages\\",
+        "outputPath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Context\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alcantara\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,11 +33,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
-                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj"
+              "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
+                "projectPath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Model\\Api.Model.csproj"
               },
-              "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj": {
-                "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj"
+              "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj": {
+                "projectPath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj"
               }
             }
           }
@@ -72,24 +72,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
+    "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Model\\Api.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj",
+        "projectUniqueName": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Model\\Api.Model.csproj",
         "projectName": "Api.Model",
-        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\Api.Model.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Model\\obj\\",
+        "projectPath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Model\\Api.Model.csproj",
+        "packagesPath": "C:\\Users\\alcantara\\.nuget\\packages\\",
+        "outputPath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alcantara\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -137,24 +137,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj": {
+    "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj",
+        "projectUniqueName": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj",
         "projectName": "Api.Setting",
-        "projectPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Setting\\obj\\",
+        "projectPath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Setting\\Api.Setting.csproj",
+        "packagesPath": "C:\\Users\\alcantara\\.nuget\\packages\\",
+        "outputPath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Setting\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\DevExpress 21.2\\Components\\Offline Packages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\alcantara\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 21.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -196,7 +196,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
         }
       }
     }

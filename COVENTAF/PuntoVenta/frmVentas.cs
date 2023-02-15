@@ -158,8 +158,7 @@ namespace COVENTAF.PuntoVenta
             configurarDataGridView();
 
             this.btnCobrar.Enabled = false;
-            this.txtDescuentoGeneral.Enabled = this.chkDescuentoGeneral.Checked;            
-           
+            this.txtDescuentoGeneral.Enabled = this.chkDescuentoGeneral.Checked;                       
         }
 
 
@@ -644,8 +643,10 @@ namespace COVENTAF.PuntoVenta
             try
             {
                 //actualizar el datagridView
+                /*
                 dgvDetalleFactura.DataSource = null;
-                dgvDetalleFactura.DataSource = listDetFactura;
+                dgvDetalleFactura.DataSource = listDetFactura;*/
+                LlenarGridviewDetalleFactura();
                 configurarDataGridView();
             }
             catch(Exception ex)
@@ -771,12 +772,12 @@ namespace COVENTAF.PuntoVenta
                 //idActivo = 'codigoBarra_' + consecutivoActualFactura.toString();
                 //activar la busqueda de inputActivoParaBusqueda
                 //listDetFactura[consecutivoActualFactura].inputActivoParaBusqueda = true;
+                //llenar el grid detalle Factura
+                LlenarGridviewDetalleFactura();
 
-               // AsignarArticuloGrid();
-
-                dgvDetalleFactura.DataSource = null;
+                /*dgvDetalleFactura.DataSource = null;
                 dgvDetalleFactura.DataSource = listDetFactura;
-                configurarDataGridView();
+                configurarDataGridView();*/
 
                 LimpiarTextBoxBusquedaArticulo();
 
@@ -813,11 +814,14 @@ namespace COVENTAF.PuntoVenta
                 //comprobar si existe el codigo de barra en la lista y la bodega
                 if (detFact.codigoBarra == codigoBarra && detFact.BodegaID ==BodegaID)
                 {
+                    consecutivoLocalizado = detFact.consecutivo;
+                    //asignar el indice localizado de la lista.
+                    consecutivoActualFactura = consecutivoLocalizado;
+
                     //asignar las cantidad 
                     decimal cantidad = detFact.cantidad + 1.00M;
                     if (detFact.cantidadExistencia >= cantidad)
-                    {
-                        consecutivoLocalizado = detFact.consecutivo;
+                    {                                             
                         //sumarle un producto mas
                         detFact.cantidad = detFact.cantidad + 1.00M;
                         //obtener el subtotal en dolares
@@ -835,6 +839,10 @@ namespace COVENTAF.PuntoVenta
                     }
                     else
                     {
+                        dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
+                        //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
+                        dgvDetalleFactura.Rows[consecutivoActualFactura].Selected = true;
+
                         resultado = "NO_EXISTE_INVENTARIO";
                         MessageBox.Show("Este articulo se ha agotado", "Sistema COVENTAF");
                     }
@@ -845,8 +853,11 @@ namespace COVENTAF.PuntoVenta
             if (resultado == "ARTICULO_EXISTE")
             {
                 //actualizar la informacion del grid
-                dgvDetalleFactura.DataSource = null;
-                dgvDetalleFactura.DataSource = listDetFactura;
+                /*dgvDetalleFactura.DataSource = null;
+                dgvDetalleFactura.DataSource = listDetFactura;*/
+
+                LlenarGridviewDetalleFactura();
+                //configurar el grid
                 configurarDataGridView();
                 //guardar en base datos informacion del registro actual
                 guardarBaseDatosFacturaTemp(consecutivoLocalizado);
@@ -855,23 +866,26 @@ namespace COVENTAF.PuntoVenta
             return resultado;
         }
 
-        private void AsignarArticuloGrid()
+        private void LlenarGridviewDetalleFactura()
         {
             //limpiar el grid
-            //dgvDetalleFactura.DataSource = null;
-            dgvDetalleFactura.Columns.Clear();
+            dgvDetalleFactura.DataSource = null;
+            //dgvDetalleFactura.Columns.Clear();
             //asignar la lista detalle del articulo
             dgvDetalleFactura.DataSource = listDetFactura;
             //configurar Grid
-            configurarDataGridView();
+            //configurarDataGridView();
 
             //dgvDetalleFactura.Columns["NombreDeUsuario"].Index;
-
-            // 'Mueve el cursor a dicha fila
-            ////dgvDetalleFactura.CurrentCell = dgvDetalleFactura[listVarFactura.ConsecutivoActualFactura, 2];
-             dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
-            //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
-            dgvDetalleFactura.Rows[consecutivoActualFactura].Selected = true;      
+            //comprobar si tiene registro la lista de detalle de factura
+            if (listDetFactura.Count >0)
+            {
+                // 'Mueve el cursor a dicha fila
+                ////dgvDetalleFactura.CurrentCell = dgvDetalleFactura[listVarFactura.ConsecutivoActualFactura, 2];
+                dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
+                //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
+                dgvDetalleFactura.Rows[consecutivoActualFactura].Selected = true;
+            }
         }
 
         //poner el descuento
@@ -1080,25 +1094,29 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        public async void eliminarProductoFactura(List<DetalleFactura> producto, string noFactura, string articuloId, int consecutivo)
+        public async void eliminarProductoFactura(List<DetalleFactura> detalleFactura, string noFactura, string articuloId, int consecutivo)
         {
             //eliminar el registro de la lista.
-            producto.RemoveAt(consecutivo);
+            detalleFactura.RemoveAt(consecutivo);
             int rows = 0;
 
-            foreach (var prod in producto)
+            foreach (var prod in detalleFactura)
             {
                 //actualizar el consecutivo de la lista
                 prod.consecutivo = rows;
                 rows += 1;
             }
+            //actualizar el consecutivo
+            consecutivoActualFactura = detalleFactura.Count - 1;
 
             ResponseModel responseModel = new ResponseModel();
             //eliminar de la tabla temporal el articulo
             responseModel = await _facturaController.EliminarArticuloDetalleFacturaAsync(noFactura, articuloId);
 
-            dgvDetalleFactura.DataSource = null;
-            dgvDetalleFactura.DataSource = listDetFactura;
+            /*dgvDetalleFactura.DataSource = null;
+            dgvDetalleFactura.DataSource = listDetFactura;*/
+            //lenar el grid 
+            LlenarGridviewDetalleFactura();
             configurarDataGridView();
         }
 
@@ -1391,10 +1409,12 @@ namespace COVENTAF.PuntoVenta
             if (this.txtCodigoCliente.Text.Trim().Length==0)
             {
                 MessageBox.Show("Debes de Ingresar el codigo de clientes", "Sistema COVENTAF");
+                this.txtCodigoCliente.Focus();
             }
             else if (this.dgvDetalleFactura.RowCount == 0)
             {
                 MessageBox.Show("Debes de Ingresar el articulo", "Sistema COVENTAF");
+                this.txtCodigoBarra.Focus();
             }
             else
             {
@@ -1907,6 +1927,11 @@ namespace COVENTAF.PuntoVenta
                 this.txtObservaciones.Focus();
             }
 
+            else if (e.KeyCode == Keys.F8)
+            {
+                btnLimpiarFactura_Click(null, null);
+            }
+
             else if (e.KeyCode == Keys.F10 && this.btnGuardarFactura.Visible)
             {
                 btnGuardarFactura_Click(null, null);
@@ -1978,7 +2003,30 @@ namespace COVENTAF.PuntoVenta
             GuardarDatosFacturaBaseDatos();
         }
 
-        
-    }
+        private void btnLimpiarFactura_Click(object sender, EventArgs e)
+        {
+            //falta eliminar de la tabla facturando
+            InicializarTodaslasVariable(listVarFactura);
+            this.txtCodigoCliente.Enabled = true;
+            this.txtCodigoCliente.Text = "";
+            this.txtNombreCliente.Text = "";
+            this.txtDisponibleCliente.Text = "";
+            this.txtDescuentoCliente.Text = "";
+            this.cboBodega.SelectedValue = User.BodegaID;
+            listDetFactura = null;
+            listDetFactura = new List<DetalleFactura>();
+            this.txtObservaciones.Text = "";
+            this.chkDescuentoGeneral.Enabled = false;
+            this.chkDescuentoGeneral.Checked = false;
+            this.txtDescuentoGeneral.Text = "0.00%";
+            this.txtCodigoBarra.Text = "";
+            this.txtDescripcionArticulo.Text = "";
+            onCalcularTotales();
+            this.btnValidarDescuento.Enabled = true;
+            this.btnCobrar.Enabled = false;
+            this.txtCodigoCliente.Focus();
+            this.txtFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        }
+}
 }
 
