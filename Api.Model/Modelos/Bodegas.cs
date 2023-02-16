@@ -17,7 +17,11 @@ namespace Api.Model.Modelos
         [Column(TypeName = "varchar(40)")]
         public string Nombre { get; set; }
         [Required]
-        [Column(TypeName = "varchar(3)")]
+        [Column(TypeName = "varchar(1)")]
+        public string Tipo { get; set; }
+        public bool Activo { get; set; }
+        [Required]
+        [Column(TypeName = "varchar(3)")]        
         public string U_Tienda_Madre { get; set; }
         
     }

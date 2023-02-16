@@ -9,7 +9,9 @@ namespace Api.Model.ViewModels
 {
     public class DetalleFactura
     {
+        //public bool seleccionar { get; set; }
         public int consecutivo { get; set; }
+
         public string articuloId { get; set; }
         public bool inputArticuloDesactivado { get; set; }
         public string codigoBarra { get; set; }

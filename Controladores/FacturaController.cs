@@ -58,7 +58,7 @@ namespace Controladores
         {
             var listarCombox = new ListarDrownList();
             //se refiere a la bodega. mal configurado en base de datos
-            listarCombox.bodega = new List<Vendedores>();
+            listarCombox.bodega = new List<Bodegas>();
             listarCombox.FormaPagos = new List<Forma_Pagos>();
             listarCombox.CondicionPago = new List<Condicion_Pagos>();
             listarCombox.NoFactura = "";
@@ -73,7 +73,7 @@ namespace Controladores
                 //en caso que no encuentre el tipo de cambio del dia el sistema mandara una alerta
                  listarCombox.tipoDeCambio = (moneda_Hist is null ? 0.0000M : moneda_Hist.Monto);                
                 //obtener la lista de bodegas que estan activas
-                listarCombox.bodega = await _serviceBodega.ListarBodegasAsync(responseModel);
+                listarCombox.bodega = await _serviceBodega.ListarBodegasAsync(User.TiendaID, responseModel);
                 listarCombox.FormaPagos = (List<Forma_Pagos>)await _serviceFormaPago.ListarFormaDePago(responseModel);
                 responseModel = null;
                 responseModel = new ResponseModel();

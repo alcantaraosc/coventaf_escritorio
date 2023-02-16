@@ -40,6 +40,9 @@
     <Compile Update="PuntoVenta\frmDetallePago.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PuntoVenta\frmFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="PuntoVenta\frmMetodoPago.cs">
       <SubType>Form</SubType>
     </Compile>

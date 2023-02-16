@@ -24,12 +24,13 @@ namespace Api.Service.DataService
         /// </summary>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<List<Vendedores>> ListarBodegasAsync(ResponseModel responseModel)
+        public async Task<List<Bodegas>> ListarBodegasAsync(string tiendaID, ResponseModel responseModel)
         {
-            var ListBodega = new List<Vendedores>();
+            var ListBodega = new List<Bodegas>();
             try
             {
-                ListBodega = await _db.Vendedores.Where(b=>b.Activo=="S").ToListAsync();
+                //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
+                ListBodega = await _db.Bodegas.Where(b=>b.Activo== true && b.Tipo =="V" && b.U_Tienda_Madre == tiendaID).ToListAsync();
                 if (ListBodega.Count >0)
                 {
                     responseModel.Exito = 1;

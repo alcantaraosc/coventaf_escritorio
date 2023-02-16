@@ -18,14 +18,14 @@ namespace Controladores
         public BodegasController() => _serviceBodega = new ServiceBodega();
 
         //[HttpGet("ListarBodegasAsync")]
-        public async Task<ResponseModel> ListarBodegasAsync()
+        public async Task<ResponseModel> ListarBodegasAsync(string sucursalID)
         {
             var responseModel = new ResponseModel();
-            responseModel.Data = new List<Vendedores>();
+            responseModel.Data = new List<Bodegas>();
             try
             {
                 //obtener la lista de bodegas que estan activas
-                responseModel.Data = await _serviceBodega.ListarBodegasAsync(responseModel);
+                responseModel.Data = await _serviceBodega.ListarBodegasAsync(sucursalID, responseModel);
             }
             catch (Exception ex)
             {

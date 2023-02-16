@@ -420,8 +420,8 @@ namespace Api.Service.DataService
                     {
                         var datos_ = new ViewModelCierreCaja()
                         {
-                            Monto_Local = Convert.ToDecimal(dr["MONTO_LOCAL"]),
-                            Monto_Dolar = Convert.ToDecimal(dr["MONTO_DOLAR"]),
+                            Monto = Convert.ToDecimal(dr["MONTO"]),
+                            //Monto_Dolar = Convert.ToDecimal(dr["MONTO_DOLAR"]),
                             Forma_Pago = dr["FORMA_PAGO"].ToString(),
                             Descripcion = dr["DESCRIPCION"].ToString()                            
                         };

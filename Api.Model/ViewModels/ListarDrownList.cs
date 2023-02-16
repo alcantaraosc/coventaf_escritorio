@@ -14,7 +14,7 @@ namespace Api.Model.ViewModels
         public string NoFactura { get; set; }
         public decimal tipoDeCambio { get; set; }
         //Vendedores se refiere a la bodega
-        public List<Vendedores> bodega { get; set; }
+        public List<Bodegas> bodega { get; set; }
         public List<Forma_Pagos> FormaPagos { get; set; }
         public List<Tipo_Tarjeta_Pos> TipoTarjeta { get; set; }
         public List<Condicion_Pagos> CondicionPago { get; set; }

@@ -580,3 +580,4 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\ref\COVENTAF.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.pdb
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.genruntimeconfig.cache
+D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmFactura.resources
