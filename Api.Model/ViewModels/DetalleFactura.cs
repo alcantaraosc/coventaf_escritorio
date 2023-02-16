@@ -29,11 +29,11 @@ namespace Api.Model.ViewModels
         public decimal subTotalDolar { get; set; }
         public decimal subTotalCordobas { get; set; }       
         public decimal descuentoInactivo { get; set; }
-        public decimal descuentoDolar { get; set; }        
-        public decimal descuentoCordoba { get; set; }
+        public decimal descuentoPorLineaDolar { get; set; }        
+        public decimal descuentoPorLineaCordoba { get; set; }
         
-        public decimal descuentoGeneralCordoba { get; set; }
-        public decimal descuentoGeneralDolar { get; set; }
+        public decimal MontoDescGeneralCordoba { get; set; }
+        public decimal MontoDescGeneralDolar { get; set; }
 
         public decimal totalDolar { get; set; }
        

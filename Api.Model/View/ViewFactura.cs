@@ -16,6 +16,7 @@ namespace Api.Model.View
         public string Usuario { get; set; }
         public DateTime Fecha { get; set; }
         public decimal Total_Unidades { get; set; }
+        public string Num_Cierre { get; set; }
 
     }
 }

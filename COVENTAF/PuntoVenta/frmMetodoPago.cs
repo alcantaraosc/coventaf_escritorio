@@ -482,7 +482,7 @@ namespace COVENTAF.PuntoVenta
 
         private void frmMetodoPago_Load(object sender, EventArgs e)
         {
-            tipoCambioOficial = Math.Round(tipoCambioOficial, 2);
+            tipoCambioOficial = Math.Round(tipoCambioOficial, 4);
             nuevoTipoCambioAproximado = tipoCambioOficial;
 
             var montoTotalCobrar = Math.Round(TotalCobrar, 2);

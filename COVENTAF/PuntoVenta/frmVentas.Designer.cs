@@ -935,7 +935,7 @@ namespace COVENTAF.PuntoVenta
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(35, 660);
+            this.label18.Location = new System.Drawing.Point(53, 698);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(149, 20);
             this.label18.TabIndex = 121;
@@ -948,19 +948,19 @@ namespace COVENTAF.PuntoVenta
             this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtObservaciones.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtObservaciones.ForeColor = System.Drawing.Color.White;
-            this.txtObservaciones.Location = new System.Drawing.Point(28, 691);
+            this.txtObservaciones.Location = new System.Drawing.Point(250, 691);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(579, 114);
+            this.txtObservaciones.Size = new System.Drawing.Size(357, 114);
             this.txtObservaciones.TabIndex = 122;
             // 
             // pictureBox24
             // 
             this.pictureBox24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox24.Image = global::COVENTAF.Properties.Resources.background_text;
-            this.pictureBox24.Location = new System.Drawing.Point(20, 683);
+            this.pictureBox24.Location = new System.Drawing.Point(237, 683);
             this.pictureBox24.Name = "pictureBox24";
-            this.pictureBox24.Size = new System.Drawing.Size(596, 131);
+            this.pictureBox24.Size = new System.Drawing.Size(379, 131);
             this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox24.TabIndex = 123;
             this.pictureBox24.TabStop = false;

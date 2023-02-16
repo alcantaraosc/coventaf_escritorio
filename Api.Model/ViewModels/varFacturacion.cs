@@ -25,15 +25,15 @@ namespace Api.Model.ViewModels
         public string NombreCliente { get; set; }
         public decimal SaldoDisponible { get; set; }
         public decimal PorCentajeDescCliente { get; set; }
-        public decimal AplicarDescuentoGeneral { get; set; }
+        public decimal PorCentajeDescGeneral { get; set; }
          // fechaDay = new Date();
 
         /**Totales */
         public decimal SubTotalDolar { get; set; }
         public decimal SubTotalCordoba { get; set; }
         //descuento
-        public decimal DescuentoDolar { get; set; }
-        public decimal DescuentoCordoba { get; set; }
+        public decimal DescuentoPorLineaDolar { get; set; }
+        public decimal DescuentoPorLineaCordoba { get; set; }
         
         //subtotales 
         public decimal DescuentoGeneralCordoba { get; set; }

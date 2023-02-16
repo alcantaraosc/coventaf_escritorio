@@ -155,7 +155,7 @@ namespace COVENTAF.Services
             listVarFactura.SaldoDisponible =Convert.ToDecimal(datosCliente.U_SaldoDisponible is null ? 0.00M : datosCliente.U_SaldoDisponible);
             //porcentaje del cliente
             listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_Descuento is null ? 0.00M : datosCliente.U_Descuento);
-            listVarFactura.AplicarDescuentoGeneral = 0.00M;
+            listVarFactura.PorCentajeDescGeneral = 0.00M;
         }
 
         public void inicializarDatosClienteParaVisualizarHTML(varFacturacion listVarFactura)
@@ -166,7 +166,7 @@ namespace COVENTAF.Services
             listVarFactura.SaldoDisponible = 0;
           //el porcentaje del cliente, descrito 5.20 %
             listVarFactura.PorCentajeDescCliente = 0.00M;
-            listVarFactura.AplicarDescuentoGeneral = 0.00M;
+            listVarFactura.PorCentajeDescGeneral = 0.00M;
         }
 
         //despues de obtener los datos del cliente del servidor el sistema inicia valores
@@ -364,7 +364,9 @@ namespace COVENTAF.Services
             /**Totales */
             listVarFactura.SubTotalDolar = 0.0000M; listVarFactura.SubTotalCordoba = 0.0000M;
             //descuento
-            listVarFactura.DescuentoDolar = 0.0000M; listVarFactura.DescuentoCordoba = 0.0000M; listVarFactura.DescuentoGeneralCordoba = 0.0000M; listVarFactura.DescuentoGeneralDolar = 0.0000M;
+            listVarFactura.DescuentoPorLineaDolar = 0.0000M; listVarFactura.DescuentoPorLineaCordoba = 0.0000M; 
+            //descuento general
+            listVarFactura.DescuentoGeneralCordoba = 0.0000M; listVarFactura.DescuentoGeneralDolar = 0.0000M;
             //subtotales 
             listVarFactura.SubTotalDescuentoDolar = 0.0000M; listVarFactura.SubTotalDescuentoCordoba = 0.0000M;
             //iva
@@ -466,8 +468,8 @@ namespace COVENTAF.Services
             //vista.Controls.Add(this.PrintPreviewControl1);
             
            vista.Document = doc;
-           doc.Print();
-            //vista.ShowDialog();
+           //doc.Print();
+            vista.ShowDialog();
         }
 
 
@@ -478,8 +480,7 @@ namespace COVENTAF.Services
             Font fuente = new Font("consola", 8, FontStyle.Bold);
             Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
             Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
-
-            var nombreEstablecimiento = "TIENDA DE ELECTRODOMESTICO";
+            
             var direccion = "Km 6 Carretera Norte, 700 Mts al norte";
             var direccion2 = "Puente a Desnivel";
             var telefono = "Tel:(505)22493187 Fax: 22493184";
@@ -492,7 +493,7 @@ namespace COVENTAF.Services
                 posY += 20;
                 e.Graphics.DrawString("EJERCITO DE NICARAGUA " , fuente, Brushes.Black, posX+53, posY);
                 posY += 15;
-                e.Graphics.DrawString("TIENDA DE ELECTRODOMESTICO", fuente, Brushes.Black, posX+45, posY);
+                e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX+45, posY);
                 posY += 15;
                 e.Graphics.DrawString(direccion, fuente, Brushes.Black, posX+ 35, posY);
                 posY += 15;
@@ -531,7 +532,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("Precio", fuente, Brushes.Black, posX, posY);
                 // posY += 15;
                 posX += 70;
-                e.Graphics.DrawString("% ", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Desc", fuente, Brushes.Black, posX, posY);
                 //posY += 15;
                 posX += 40;
                 e.Graphics.DrawString("Monto", fuente, Brushes.Black, posX, posY);
@@ -557,7 +558,7 @@ namespace COVENTAF.Services
                     e.Graphics.DrawString( detalleFactura.precioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                    
                     posX += 60;
-                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.porCentajeDescuentoXArticulo).ToString("N2") + " %", fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.descuentoPorLineaCordoba).ToString("N2") , fuenteRegular, Brushes.Black, posX, posY);
                    
                     posX += 50;
                     e.Graphics.DrawString(detalleFactura.subTotalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -634,13 +635,13 @@ namespace COVENTAF.Services
                 posY += 18;
                 e.Graphics.DrawString("Atendido Por: " + _encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 25;
+                posY += 40;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 25;
+                posY += 40;
                 e.Graphics.DrawString("RECIBIDO: ", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 30;
+                posY += 40;
                 posX = 30;
                 e.Graphics.DrawString("NO SE ACEPTAN CAMBIOS DESPUES DE", fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;

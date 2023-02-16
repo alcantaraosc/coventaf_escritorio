@@ -35,7 +35,7 @@ namespace Api.Service.DataService
                     case "Factura del dia":
                         var fechaDeHoy = DateTime.Now.Date;
                        
-                        listaFactura = await _db.ViewFactura.Where(x => x.Fecha.Date == fechaDeHoy.Date && x.Usuario== filtroFactura.Cajero).ToListAsync();
+                        listaFactura = await _db.ViewFactura.Where(x => x.Num_Cierre == filtroFactura.Busqueda).ToListAsync();
                         //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
                         break;
 

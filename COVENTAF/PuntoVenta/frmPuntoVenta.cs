@@ -58,9 +58,12 @@ namespace COVENTAF.PuntoVenta
 
             //seleccionar el primer index de la lista del combox tipo de filtro
             this.cboTipoFiltro.SelectedIndex = 0;
+                      
+
+            VerificarsiExisteAperturaCaja();
 
             //asignar los valores por defectos para iniciar el form
-            filtroFactura.Busqueda = "";
+            filtroFactura.Busqueda = User.ConsecCierreCT;
             filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
             filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
             filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
@@ -68,9 +71,7 @@ namespace COVENTAF.PuntoVenta
 
 
             //listar las facturas en el Grid
-            onListarGridFacturas(filtroFactura);
-
-            VerificarsiExisteAperturaCaja();
+            onListarGridFacturas(filtroFactura);                        
         }
 
         private void VerificarsiExisteAperturaCaja()

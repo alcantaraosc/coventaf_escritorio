@@ -131,10 +131,12 @@ namespace Api.Model.Modelos
         [StringLength(1)]
         public string Tipo_Descuento2 { get; set; }
         [Required]
+        //Monto  del descuento General
         public decimal Monto_Descuento1 { get; set; }
         [Required]
         public decimal Monto_Descuento2 { get; set; }
         [Required]
+        //PorCentaje Descuento General
         public decimal Porc_Descuento1 { get; set; }
         [Required]
         public decimal Total_Factura { get; set; }
@@ -528,10 +530,7 @@ namespace Api.Model.Modelos
         public string Act_Detrac { get; set; }
 
         public decimal? Porc_Detrac { get; set; }
-        public decimal? PorCentaj_Desc_General { get; set; }
-
-        
-
+              
 
         //public virtual CLIENTES CLIENTES { get; set; }
 
