@@ -183,10 +183,6 @@ namespace Api.Service.DataService
             return ViewModelUser;
         }
            
-    
-            
-         
-        
 
         public async Task<bool> GetDatosLogIn(string usuario, ViewModelUsuario ViewModelUser, ResponseModel responseModel)
         {

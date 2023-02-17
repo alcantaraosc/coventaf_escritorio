@@ -195,7 +195,7 @@ namespace COVENTAF.PuntoVenta
             this.btnRestaurar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnRestaurar.TabIndex = 83;
             this.btnRestaurar.TabStop = false;
-            this.btnRestaurar.Visible = false;
+            this.btnRestaurar.Click += new System.EventHandler(this.btnRestaurar_Click);
             // 
             // btnCerrar
             // 
@@ -236,6 +236,8 @@ namespace COVENTAF.PuntoVenta
             this.btnMaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMaximizar.TabIndex = 81;
             this.btnMaximizar.TabStop = false;
+            this.btnMaximizar.Visible = false;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
             // pictureBox1
             // 
@@ -432,7 +434,7 @@ namespace COVENTAF.PuntoVenta
             this.grpDatosCliente.Controls.Add(this.label8);
             this.grpDatosCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.grpDatosCliente.ForeColor = System.Drawing.Color.White;
-            this.grpDatosCliente.Location = new System.Drawing.Point(8, 91);
+            this.grpDatosCliente.Location = new System.Drawing.Point(8, 96);
             this.grpDatosCliente.Name = "grpDatosCliente";
             this.grpDatosCliente.Size = new System.Drawing.Size(729, 95);
             this.grpDatosCliente.TabIndex = 50;
@@ -594,7 +596,6 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDetalleFactura.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvDetalleFactura.EnableHeadersVisualStyles = false;
             this.dgvDetalleFactura.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetalleFactura.Location = new System.Drawing.Point(12, 277);

@@ -107,11 +107,15 @@ namespace COVENTAF.PuntoVenta
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+            this.btnMaximizar.Visible = false;
+            this.btnRestaurar.Visible = true;
         }
 
         private void btnRestaurar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+            this.btnRestaurar.Visible = false;
+            this.btnMaximizar.Visible = true;
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)
@@ -2005,6 +2009,9 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoCliente.Focus();
             this.lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
-}
+
+    
+   
+    }
 }
 

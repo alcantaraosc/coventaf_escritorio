@@ -90,6 +90,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel5.SuspendLayout();
@@ -114,7 +115,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Location = new System.Drawing.Point(5, 0);
             this.barraTitulo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(844, 32);
+            this.barraTitulo.Size = new System.Drawing.Size(1009, 32);
             this.barraTitulo.TabIndex = 32;
             // 
             // btnCerrar
@@ -122,7 +123,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCerrar.Location = new System.Drawing.Point(814, 2);
+            this.btnCerrar.Location = new System.Drawing.Point(979, 2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(25, 24);
             this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -135,7 +136,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.pictureBox1.Location = new System.Drawing.Point(4053, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(4218, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 24);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -158,28 +159,29 @@ namespace COVENTAF.PuntoVenta
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel1.Controls.Add(this.pnlTipoTarjeta);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 534);
+            this.panel1.Size = new System.Drawing.Size(5, 681);
             this.panel1.TabIndex = 148;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(5, 529);
+            this.panel3.Location = new System.Drawing.Point(5, 676);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(844, 5);
+            this.panel3.Size = new System.Drawing.Size(1009, 5);
             this.panel3.TabIndex = 149;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(849, 0);
+            this.panel2.Location = new System.Drawing.Point(1014, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(10, 534);
+            this.panel2.Size = new System.Drawing.Size(10, 681);
             this.panel2.TabIndex = 150;
             // 
             // lblTotalPagar
@@ -206,7 +208,7 @@ namespace COVENTAF.PuntoVenta
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(5, 32);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(844, 84);
+            this.panel4.Size = new System.Drawing.Size(1009, 84);
             this.panel4.TabIndex = 173;
             // 
             // txtPendientePagarCliente
@@ -254,7 +256,6 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.pnlTipoCredito);
             this.panel5.Controls.Add(this.lblConvertidorDolares);
             this.panel5.Controls.Add(this.lblGiftCardDolar);
             this.panel5.Controls.Add(this.lblTarjetaDolar);
@@ -268,7 +269,6 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Controls.Add(this.txtBono);
             this.panel5.Controls.Add(this.txtCredito);
             this.panel5.Controls.Add(this.txtTarjetaCordoba);
-            this.panel5.Controls.Add(this.pnlTipoTarjeta);
             this.panel5.Controls.Add(this.txtChequeCordoba);
             this.panel5.Controls.Add(this.txtEfectivoCordoba);
             this.panel5.Controls.Add(this.lblGiftCardCordoba);
@@ -285,16 +285,16 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Controls.Add(this.btnEfectivo);
             this.panel5.Location = new System.Drawing.Point(5, 170);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(844, 260);
+            this.panel5.Size = new System.Drawing.Size(1007, 260);
             this.panel5.TabIndex = 174;
             // 
             // pnlTipoCredito
             // 
             this.pnlTipoCredito.Controls.Add(this.lblCondicionPago);
             this.pnlTipoCredito.Controls.Add(this.cboCondicionPago);
-            this.pnlTipoCredito.Location = new System.Drawing.Point(11, 184);
+            this.pnlTipoCredito.Location = new System.Drawing.Point(5, 445);
             this.pnlTipoCredito.Name = "pnlTipoCredito";
-            this.pnlTipoCredito.Size = new System.Drawing.Size(844, 39);
+            this.pnlTipoCredito.Size = new System.Drawing.Size(1004, 39);
             this.pnlTipoCredito.TabIndex = 191;
             this.pnlTipoCredito.Visible = false;
             // 
@@ -518,8 +518,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.pnlTipoTarjeta.Controls.Add(this.lblTipoTarjeta);
             this.pnlTipoTarjeta.Controls.Add(this.cboTipoTarjeta);
-            this.pnlTipoTarjeta.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTipoTarjeta.Location = new System.Drawing.Point(0, 221);
+            this.pnlTipoTarjeta.Location = new System.Drawing.Point(3, 490);
             this.pnlTipoTarjeta.Name = "pnlTipoTarjeta";
             this.pnlTipoTarjeta.Size = new System.Drawing.Size(844, 39);
             this.pnlTipoTarjeta.TabIndex = 175;
@@ -754,7 +753,7 @@ namespace COVENTAF.PuntoVenta
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.panel8.Location = new System.Drawing.Point(2, 436);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(846, 3);
+            this.panel8.Size = new System.Drawing.Size(880, 3);
             this.panel8.TabIndex = 178;
             // 
             // lblCambioCliente
@@ -765,7 +764,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCambioCliente.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblCambioCliente.ForeColor = System.Drawing.Color.Green;
             this.lblCambioCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCambioCliente.Location = new System.Drawing.Point(441, 488);
+            this.lblCambioCliente.Location = new System.Drawing.Point(807, 562);
             this.lblCambioCliente.Name = "lblCambioCliente";
             this.lblCambioCliente.Size = new System.Drawing.Size(114, 35);
             this.lblCambioCliente.TabIndex = 179;
@@ -784,7 +783,7 @@ namespace COVENTAF.PuntoVenta
             this.btnReInicioCobro.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnReInicioCobro.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnReInicioCobro.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnReInicioCobro.Location = new System.Drawing.Point(10, 451);
+            this.btnReInicioCobro.Location = new System.Drawing.Point(10, 598);
             this.btnReInicioCobro.Margin = new System.Windows.Forms.Padding(2);
             this.btnReInicioCobro.Name = "btnReInicioCobro";
             this.btnReInicioCobro.Size = new System.Drawing.Size(167, 34);
@@ -808,7 +807,7 @@ namespace COVENTAF.PuntoVenta
             this.btnGuardarFactura.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnGuardarFactura.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarFactura.Image")));
             this.btnGuardarFactura.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnGuardarFactura.Location = new System.Drawing.Point(190, 451);
+            this.btnGuardarFactura.Location = new System.Drawing.Point(190, 598);
             this.btnGuardarFactura.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardarFactura.Name = "btnGuardarFactura";
             this.btnGuardarFactura.Size = new System.Drawing.Size(225, 34);
@@ -823,7 +822,7 @@ namespace COVENTAF.PuntoVenta
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label11.ForeColor = System.Drawing.Color.Green;
-            this.label11.Location = new System.Drawing.Point(443, 457);
+            this.label11.Location = new System.Drawing.Point(644, 531);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 24);
             this.label11.TabIndex = 193;
@@ -841,7 +840,7 @@ namespace COVENTAF.PuntoVenta
             this.btnVerDetallePago.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnVerDetallePago.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnVerDetallePago.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnVerDetallePago.Location = new System.Drawing.Point(12, 129);
+            this.btnVerDetallePago.Location = new System.Drawing.Point(10, 130);
             this.btnVerDetallePago.Margin = new System.Windows.Forms.Padding(2);
             this.btnVerDetallePago.Name = "btnVerDetallePago";
             this.btnVerDetallePago.Size = new System.Drawing.Size(167, 34);
@@ -861,7 +860,8 @@ namespace COVENTAF.PuntoVenta
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(859, 534);
+            this.ClientSize = new System.Drawing.Size(1024, 681);
+            this.Controls.Add(this.pnlTipoCredito);
             this.Controls.Add(this.btnVerDetallePago);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnGuardarFactura);
@@ -887,6 +887,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

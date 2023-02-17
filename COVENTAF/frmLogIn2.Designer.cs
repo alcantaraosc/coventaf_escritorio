@@ -33,7 +33,6 @@ namespace COVENTAF
             this.label5 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLogIn = new MaterialSkin.Controls.MaterialButton();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtUser = new System.Windows.Forms.TextBox();
@@ -50,6 +49,7 @@ namespace COVENTAF
             this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.cboBodega = new System.Windows.Forms.ComboBox();
+            this.btnLogIn = new System.Windows.Forms.Button();
             this.titleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -103,30 +103,6 @@ namespace COVENTAF
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(473, 10);
             this.panel1.TabIndex = 1;
-            // 
-            // btnLogIn
-            // 
-            this.btnLogIn.AllowDrop = true;
-            this.btnLogIn.AutoSize = false;
-            this.btnLogIn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnLogIn.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.btnLogIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogIn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.btnLogIn.Depth = 0;
-            this.btnLogIn.HighEmphasis = true;
-            this.btnLogIn.Icon = global::COVENTAF.Properties.Resources._3994376_arrow_back_left_navigation_previous_icon;
-            this.btnLogIn.Location = new System.Drawing.Point(39, 448);
-            this.btnLogIn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnLogIn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.btnLogIn.Size = new System.Drawing.Size(398, 46);
-            this.btnLogIn.TabIndex = 15;
-            this.btnLogIn.Text = "Iniciar Sesion";
-            this.btnLogIn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btnLogIn.UseAccentColor = false;
-            this.btnLogIn.UseVisualStyleBackColor = true;
-            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
             // txtPassword
             // 
@@ -299,13 +275,33 @@ namespace COVENTAF
             this.cboBodega.TabIndex = 132;
             this.cboBodega.Visible = false;
             // 
+            // btnLogIn
+            // 
+            this.btnLogIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
+            this.btnLogIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogIn.FlatAppearance.BorderSize = 0;
+            this.btnLogIn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnLogIn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnLogIn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLogIn.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnLogIn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnLogIn.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnLogIn.Location = new System.Drawing.Point(34, 442);
+            this.btnLogIn.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLogIn.Name = "btnLogIn";
+            this.btnLogIn.Size = new System.Drawing.Size(412, 46);
+            this.btnLogIn.TabIndex = 152;
+            this.btnLogIn.Text = "Iniciar Sesion";
+            this.btnLogIn.UseVisualStyleBackColor = false;
+            this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
+            // 
             // frmLogIn2
             // 
-            this.AcceptButton = this.btnLogIn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(473, 635);
+            this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.cboBodega);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel3);
@@ -316,7 +312,6 @@ namespace COVENTAF
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.txtUser);
@@ -348,7 +343,6 @@ namespace COVENTAF
         private System.Windows.Forms.Panel titleBar;
         private System.Windows.Forms.PictureBox btnCerrar;
         private System.Windows.Forms.Panel panel1;
-        private MaterialSkin.Controls.MaterialButton btnLogIn;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox txtUser;
@@ -366,5 +360,6 @@ namespace COVENTAF
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboBodega;
+        private System.Windows.Forms.Button btnLogIn;
     }
 }

@@ -31,9 +31,9 @@ namespace COVENTAF.PuntoVenta
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCobrarFactura));
             this.barraTitulo = new System.Windows.Forms.Panel();
+            this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.btnCierre = new System.Windows.Forms.PictureBox();
-            this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.btnMminizar = new System.Windows.Forms.PictureBox();
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -46,51 +46,55 @@ namespace COVENTAF.PuntoVenta
             this.label14 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btnEfectivo = new System.Windows.Forms.Label();
-            this.txtEfectivo = new System.Windows.Forms.TextBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.btnCheque = new System.Windows.Forms.Label();
-            this.txtCheque = new System.Windows.Forms.TextBox();
-            this.btnTarjeta = new System.Windows.Forms.Label();
-            this.btnCredito = new System.Windows.Forms.Label();
-            this.txtCredito = new System.Windows.Forms.TextBox();
-            this.btnBono = new System.Windows.Forms.Label();
-            this.btnGifCard = new System.Windows.Forms.Label();
-            this.txtTarjeta = new System.Windows.Forms.TextBox();
-            this.txtBono = new System.Windows.Forms.TextBox();
-            this.txtGiftCard = new System.Windows.Forms.TextBox();
-            this.cboBodega = new System.Windows.Forms.ComboBox();
+            this.grpDatosCliente = new System.Windows.Forms.GroupBox();
+            this.txtCodigoCliente = new System.Windows.Forms.TextBox();
+            this.txtNombreCliente = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtDescuentoCliente = new System.Windows.Forms.TextBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtDisponibleCliente = new System.Windows.Forms.TextBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnEfectivo = new System.Windows.Forms.PictureBox();
+            this.btnCheque = new System.Windows.Forms.PictureBox();
+            this.btnTarjeta = new System.Windows.Forms.PictureBox();
+            this.btnCredito = new System.Windows.Forms.PictureBox();
+            this.lblChequeCordoba = new System.Windows.Forms.Label();
+            this.btnReInicioCobro = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.barraTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            this.panel4.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEfectivo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCheque)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTarjeta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCredito)).BeginInit();
             this.SuspendLayout();
             // 
             // barraTitulo
             // 
             this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.btnRestaurar);
             this.barraTitulo.Controls.Add(this.btnCierre);
-            this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.btnMminizar);
             this.barraTitulo.Controls.Add(this.btnMaximizar);
             this.barraTitulo.Controls.Add(this.pictureBox1);
@@ -100,15 +104,28 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Location = new System.Drawing.Point(5, 0);
             this.barraTitulo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(860, 32);
+            this.barraTitulo.Size = new System.Drawing.Size(1007, 32);
             this.barraTitulo.TabIndex = 32;
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrar.Image = global::COVENTAF.Properties.Resources.close_login;
+            this.btnCerrar.Location = new System.Drawing.Point(970, 4);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(25, 24);
+            this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnCerrar.TabIndex = 144;
+            this.btnCerrar.TabStop = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnRestaurar
             // 
             this.btnRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRestaurar.Image = global::COVENTAF.Properties.Resources.Icono_Restaurar;
-            this.btnRestaurar.Location = new System.Drawing.Point(2981, 4);
+            this.btnRestaurar.Location = new System.Drawing.Point(3128, 4);
             this.btnRestaurar.Margin = new System.Windows.Forms.Padding(2);
             this.btnRestaurar.Name = "btnRestaurar";
             this.btnRestaurar.Size = new System.Drawing.Size(33, 25);
@@ -122,31 +139,19 @@ namespace COVENTAF.PuntoVenta
             this.btnCierre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCierre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCierre.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCierre.Location = new System.Drawing.Point(1792, 3);
+            this.btnCierre.Location = new System.Drawing.Point(1939, 3);
             this.btnCierre.Name = "btnCierre";
             this.btnCierre.Size = new System.Drawing.Size(25, 24);
             this.btnCierre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnCierre.TabIndex = 84;
             this.btnCierre.TabStop = false;
             // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrar.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCerrar.Location = new System.Drawing.Point(3021, 4);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(25, 24);
-            this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnCerrar.TabIndex = 80;
-            this.btnCerrar.TabStop = false;
-            // 
             // btnMminizar
             // 
             this.btnMminizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMminizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMminizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMminizar.Location = new System.Drawing.Point(2942, 4);
+            this.btnMminizar.Location = new System.Drawing.Point(3089, 4);
             this.btnMminizar.Name = "btnMminizar";
             this.btnMminizar.Size = new System.Drawing.Size(33, 25);
             this.btnMminizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -158,7 +163,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMaximizar.Image = global::COVENTAF.Properties.Resources.Icono_Maximizar;
-            this.btnMaximizar.Location = new System.Drawing.Point(2981, 4);
+            this.btnMaximizar.Location = new System.Drawing.Point(3128, 4);
             this.btnMaximizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnMaximizar.Name = "btnMaximizar";
             this.btnMaximizar.Size = new System.Drawing.Size(33, 25);
@@ -171,7 +176,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.pictureBox1.Location = new System.Drawing.Point(4000, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(4147, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 24);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -195,7 +200,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(860, 32);
+            this.panel2.Location = new System.Drawing.Point(1007, 32);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(5, 579);
             this.panel2.TabIndex = 131;
@@ -215,12 +220,16 @@ namespace COVENTAF.PuntoVenta
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(5, 606);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(855, 5);
+            this.panel3.Size = new System.Drawing.Size(1002, 5);
             this.panel3.TabIndex = 187;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel5.Controls.Add(this.button2);
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.btnReInicioCobro);
+            this.panel5.Controls.Add(this.btnCredito);
             this.panel5.Controls.Add(this.pictureBox26);
             this.panel5.Controls.Add(this.label14);
             this.panel5.Controls.Add(this.label20);
@@ -228,7 +237,7 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(5, 32);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(855, 63);
+            this.panel5.Size = new System.Drawing.Size(1002, 83);
             this.panel5.TabIndex = 188;
             // 
             // pictureBox26
@@ -236,7 +245,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox26.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox26.Location = new System.Drawing.Point(2597, 3);
+            this.pictureBox26.Location = new System.Drawing.Point(2744, 3);
             this.pictureBox26.Name = "pictureBox26";
             this.pictureBox26.Size = new System.Drawing.Size(397, 55);
             this.pictureBox26.TabIndex = 143;
@@ -248,7 +257,7 @@ namespace COVENTAF.PuntoVenta
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label14.ForeColor = System.Drawing.Color.Gold;
-            this.label14.Location = new System.Drawing.Point(26, 3);
+            this.label14.Location = new System.Drawing.Point(874, 3);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(121, 30);
             this.label14.TabIndex = 140;
@@ -262,7 +271,7 @@ namespace COVENTAF.PuntoVenta
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label20.ForeColor = System.Drawing.Color.SeaShell;
-            this.label20.Location = new System.Drawing.Point(46, 32);
+            this.label20.Location = new System.Drawing.Point(852, 33);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(150, 23);
             this.label20.TabIndex = 141;
@@ -273,297 +282,337 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox11.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox11.Location = new System.Drawing.Point(3407, 2);
+            this.pictureBox11.Location = new System.Drawing.Point(3554, 2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(410, 55);
             this.pictureBox11.TabIndex = 142;
             this.pictureBox11.TabStop = false;
             // 
-            // label16
+            // grpDatosCliente
             // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Bahnschrift Condensed", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(12, 109);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(150, 33);
-            this.label16.TabIndex = 189;
-            this.label16.Text = "Forma de Pago:";
+            this.grpDatosCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.grpDatosCliente.ForeColor = System.Drawing.Color.Navy;
+            this.grpDatosCliente.Location = new System.Drawing.Point(19, 168);
+            this.grpDatosCliente.Name = "grpDatosCliente";
+            this.grpDatosCliente.Size = new System.Drawing.Size(729, 84);
+            this.grpDatosCliente.TabIndex = 189;
+            this.grpDatosCliente.TabStop = false;
             // 
-            // panel4
+            // txtCodigoCliente
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(82)))), ((int)(((byte)(82)))));
-            this.panel4.Controls.Add(this.txtEfectivo);
-            this.panel4.Controls.Add(this.btnEfectivo);
-            this.panel4.Location = new System.Drawing.Point(12, 165);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(344, 64);
-            this.panel4.TabIndex = 190;
+            this.txtCodigoCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(41)))), ((int)(((byte)(86)))));
+            this.txtCodigoCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCodigoCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigoCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCodigoCliente.ForeColor = System.Drawing.Color.White;
+            this.txtCodigoCliente.Location = new System.Drawing.Point(89, 349);
+            this.txtCodigoCliente.Name = "txtCodigoCliente";
+            this.txtCodigoCliente.Size = new System.Drawing.Size(126, 20);
+            this.txtCodigoCliente.TabIndex = 51;
             // 
-            // btnEfectivo
+            // txtNombreCliente
             // 
-            this.btnEfectivo.BackColor = System.Drawing.Color.Transparent;
-            this.btnEfectivo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEfectivo.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEfectivo.ForeColor = System.Drawing.Color.Yellow;
-            this.btnEfectivo.Image = ((System.Drawing.Image)(resources.GetObject("btnEfectivo.Image")));
-            this.btnEfectivo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEfectivo.Location = new System.Drawing.Point(2, 2);
-            this.btnEfectivo.Name = "btnEfectivo";
-            this.btnEfectivo.Size = new System.Drawing.Size(187, 59);
-            this.btnEfectivo.TabIndex = 151;
-            this.btnEfectivo.Text = "Efectivo - F1";
-            this.btnEfectivo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtNombreCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(41)))), ((int)(((byte)(86)))));
+            this.txtNombreCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNombreCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtNombreCliente.ForeColor = System.Drawing.Color.White;
+            this.txtNombreCliente.Location = new System.Drawing.Point(237, 349);
+            this.txtNombreCliente.Name = "txtNombreCliente";
+            this.txtNombreCliente.ReadOnly = true;
+            this.txtNombreCliente.Size = new System.Drawing.Size(303, 20);
+            this.txtNombreCliente.TabIndex = 51;
             // 
-            // txtEfectivo
+            // label5
             // 
-            this.txtEfectivo.Enabled = false;
-            this.txtEfectivo.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtEfectivo.Location = new System.Drawing.Point(214, 16);
-            this.txtEfectivo.Name = "txtEfectivo";
-            this.txtEfectivo.Size = new System.Drawing.Size(120, 33);
-            this.txtEfectivo.TabIndex = 156;
-            this.txtEfectivo.Text = "0.00";
-            this.txtEfectivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label5.Location = new System.Drawing.Point(86, 317);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(125, 18);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Codigo Cliente:";
             // 
-            // panel6
+            // txtDescuentoCliente
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(82)))), ((int)(((byte)(82)))));
-            this.panel6.Controls.Add(this.txtCheque);
-            this.panel6.Controls.Add(this.btnCheque);
-            this.panel6.Location = new System.Drawing.Point(11, 235);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(344, 64);
-            this.panel6.TabIndex = 191;
+            this.txtDescuentoCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(41)))), ((int)(((byte)(86)))));
+            this.txtDescuentoCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescuentoCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDescuentoCliente.ForeColor = System.Drawing.Color.White;
+            this.txtDescuentoCliente.Location = new System.Drawing.Point(677, 349);
+            this.txtDescuentoCliente.Name = "txtDescuentoCliente";
+            this.txtDescuentoCliente.ReadOnly = true;
+            this.txtDescuentoCliente.Size = new System.Drawing.Size(94, 20);
+            this.txtDescuentoCliente.TabIndex = 47;
             // 
-            // panel7
+            // pictureBox6
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(82)))), ((int)(((byte)(82)))));
-            this.panel7.Controls.Add(this.cboBodega);
-            this.panel7.Controls.Add(this.label6);
-            this.panel7.Controls.Add(this.txtTarjeta);
-            this.panel7.Controls.Add(this.btnTarjeta);
-            this.panel7.Location = new System.Drawing.Point(11, 306);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(574, 75);
-            this.panel7.TabIndex = 192;
+            this.pictureBox6.Image = global::COVENTAF.Properties.Resources.background_text;
+            this.pictureBox6.Location = new System.Drawing.Point(83, 344);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(138, 30);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 40;
+            this.pictureBox6.TabStop = false;
             // 
-            // panel8
+            // pictureBox8
             // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(82)))), ((int)(((byte)(82)))));
-            this.panel8.Controls.Add(this.txtCredito);
-            this.panel8.Controls.Add(this.btnCredito);
-            this.panel8.Location = new System.Drawing.Point(11, 387);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(344, 74);
-            this.panel8.TabIndex = 194;
+            this.pictureBox8.Image = global::COVENTAF.Properties.Resources.background_text;
+            this.pictureBox8.Location = new System.Drawing.Point(670, 344);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(109, 30);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 49;
+            this.pictureBox8.TabStop = false;
             // 
-            // panel10
+            // textBox3
             // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(82)))), ((int)(((byte)(82)))));
-            this.panel10.Controls.Add(this.txtGiftCard);
-            this.panel10.Controls.Add(this.btnGifCard);
-            this.panel10.Location = new System.Drawing.Point(8, 538);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(344, 64);
-            this.panel10.TabIndex = 196;
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(41)))), ((int)(((byte)(86)))));
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox3.ForeColor = System.Drawing.Color.White;
+            this.textBox3.Location = new System.Drawing.Point(98, 353);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(113, 20);
+            this.textBox3.TabIndex = 38;
             // 
-            // panel11
+            // label7
             // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(82)))), ((int)(((byte)(82)))));
-            this.panel11.Controls.Add(this.txtBono);
-            this.panel11.Controls.Add(this.btnBono);
-            this.panel11.Location = new System.Drawing.Point(8, 467);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(344, 64);
-            this.panel11.TabIndex = 195;
-            // 
-            // btnCheque
-            // 
-            this.btnCheque.BackColor = System.Drawing.Color.Transparent;
-            this.btnCheque.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCheque.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCheque.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCheque.Image = ((System.Drawing.Image)(resources.GetObject("btnCheque.Image")));
-            this.btnCheque.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnCheque.Location = new System.Drawing.Point(3, 0);
-            this.btnCheque.Name = "btnCheque";
-            this.btnCheque.Size = new System.Drawing.Size(187, 60);
-            this.btnCheque.TabIndex = 152;
-            this.btnCheque.Text = "Cheque - F2";
-            this.btnCheque.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtCheque
-            // 
-            this.txtCheque.Enabled = false;
-            this.txtCheque.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtCheque.Location = new System.Drawing.Point(215, 15);
-            this.txtCheque.Name = "txtCheque";
-            this.txtCheque.Size = new System.Drawing.Size(120, 33);
-            this.txtCheque.TabIndex = 161;
-            this.txtCheque.Text = "0.00";
-            this.txtCheque.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // btnTarjeta
-            // 
-            this.btnTarjeta.BackColor = System.Drawing.Color.Transparent;
-            this.btnTarjeta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTarjeta.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnTarjeta.ForeColor = System.Drawing.Color.Maroon;
-            this.btnTarjeta.Image = ((System.Drawing.Image)(resources.GetObject("btnTarjeta.Image")));
-            this.btnTarjeta.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnTarjeta.Location = new System.Drawing.Point(3, 5);
-            this.btnTarjeta.Name = "btnTarjeta";
-            this.btnTarjeta.Size = new System.Drawing.Size(187, 67);
-            this.btnTarjeta.TabIndex = 153;
-            this.btnTarjeta.Text = "Tarjeta - F3";
-            this.btnTarjeta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnCredito
-            // 
-            this.btnCredito.BackColor = System.Drawing.Color.Transparent;
-            this.btnCredito.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCredito.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnCredito.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCredito.Image = ((System.Drawing.Image)(resources.GetObject("btnCredito.Image")));
-            this.btnCredito.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnCredito.Location = new System.Drawing.Point(0, 5);
-            this.btnCredito.Name = "btnCredito";
-            this.btnCredito.Size = new System.Drawing.Size(191, 64);
-            this.btnCredito.TabIndex = 154;
-            this.btnCredito.Text = "Crédito - F4";
-            this.btnCredito.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtCredito
-            // 
-            this.txtCredito.Enabled = false;
-            this.txtCredito.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtCredito.Location = new System.Drawing.Point(221, 22);
-            this.txtCredito.Name = "txtCredito";
-            this.txtCredito.Size = new System.Drawing.Size(120, 33);
-            this.txtCredito.TabIndex = 165;
-            this.txtCredito.Text = "0.00";
-            this.txtCredito.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // btnBono
-            // 
-            this.btnBono.BackColor = System.Drawing.Color.Transparent;
-            this.btnBono.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBono.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnBono.ForeColor = System.Drawing.Color.Maroon;
-            this.btnBono.Image = ((System.Drawing.Image)(resources.GetObject("btnBono.Image")));
-            this.btnBono.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnBono.Location = new System.Drawing.Point(3, 0);
-            this.btnBono.Name = "btnBono";
-            this.btnBono.Size = new System.Drawing.Size(189, 63);
-            this.btnBono.TabIndex = 178;
-            this.btnBono.Text = "Bono - F5";
-            this.btnBono.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnGifCard
-            // 
-            this.btnGifCard.BackColor = System.Drawing.Color.Transparent;
-            this.btnGifCard.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGifCard.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnGifCard.ForeColor = System.Drawing.Color.Maroon;
-            this.btnGifCard.Image = ((System.Drawing.Image)(resources.GetObject("btnGifCard.Image")));
-            this.btnGifCard.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnGifCard.Location = new System.Drawing.Point(0, 2);
-            this.btnGifCard.Name = "btnGifCard";
-            this.btnGifCard.Size = new System.Drawing.Size(187, 60);
-            this.btnGifCard.TabIndex = 179;
-            this.btnGifCard.Text = "Gift Card - F6";
-            this.btnGifCard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtTarjeta
-            // 
-            this.txtTarjeta.Enabled = false;
-            this.txtTarjeta.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtTarjeta.Location = new System.Drawing.Point(215, 23);
-            this.txtTarjeta.Name = "txtTarjeta";
-            this.txtTarjeta.Size = new System.Drawing.Size(120, 33);
-            this.txtTarjeta.TabIndex = 177;
-            this.txtTarjeta.Text = "0.00";
-            this.txtTarjeta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtBono
-            // 
-            this.txtBono.Enabled = false;
-            this.txtBono.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtBono.Location = new System.Drawing.Point(221, 16);
-            this.txtBono.Name = "txtBono";
-            this.txtBono.Size = new System.Drawing.Size(120, 33);
-            this.txtBono.TabIndex = 179;
-            this.txtBono.Text = "0.00";
-            this.txtBono.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtGiftCard
-            // 
-            this.txtGiftCard.Enabled = false;
-            this.txtGiftCard.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtGiftCard.Location = new System.Drawing.Point(221, 19);
-            this.txtGiftCard.Name = "txtGiftCard";
-            this.txtGiftCard.Size = new System.Drawing.Size(120, 33);
-            this.txtGiftCard.TabIndex = 180;
-            this.txtGiftCard.Text = "0.00";
-            this.txtGiftCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // cboBodega
-            // 
-            this.cboBodega.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(74)))));
-            this.cboBodega.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBodega.Enabled = false;
-            this.cboBodega.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboBodega.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cboBodega.ForeColor = System.Drawing.Color.White;
-            this.cboBodega.FormattingEnabled = true;
-            this.cboBodega.Location = new System.Drawing.Point(365, 44);
-            this.cboBodega.Name = "cboBodega";
-            this.cboBodega.Size = new System.Drawing.Size(209, 28);
-            this.cboBodega.TabIndex = 179;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label7.Location = new System.Drawing.Point(675, 317);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(93, 20);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "Descuento:";
             // 
             // label6
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Enabled = false;
-            this.label6.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.Maroon;
-            this.label6.Location = new System.Drawing.Point(365, 5);
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label6.Location = new System.Drawing.Point(233, 317);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(166, 25);
-            this.label6.TabIndex = 178;
-            this.label6.Text = "Condicion de Pago:";
+            this.label6.Size = new System.Drawing.Size(151, 20);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Nombre del Cliente";
+            // 
+            // txtDisponibleCliente
+            // 
+            this.txtDisponibleCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(41)))), ((int)(((byte)(86)))));
+            this.txtDisponibleCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDisponibleCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDisponibleCliente.ForeColor = System.Drawing.Color.White;
+            this.txtDisponibleCliente.Location = new System.Drawing.Point(565, 349);
+            this.txtDisponibleCliente.Name = "txtDisponibleCliente";
+            this.txtDisponibleCliente.ReadOnly = true;
+            this.txtDisponibleCliente.Size = new System.Drawing.Size(82, 20);
+            this.txtDisponibleCliente.TabIndex = 44;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::COVENTAF.Properties.Resources.background_text;
+            this.pictureBox7.Location = new System.Drawing.Point(228, 344);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(319, 30);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 43;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = global::COVENTAF.Properties.Resources.background_text;
+            this.pictureBox9.Location = new System.Drawing.Point(555, 344);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(101, 30);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 46;
+            this.pictureBox9.TabStop = false;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(41)))), ((int)(((byte)(86)))));
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox4.ForeColor = System.Drawing.Color.White;
+            this.textBox4.Location = new System.Drawing.Point(242, 352);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(294, 20);
+            this.textBox4.TabIndex = 41;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label8.Location = new System.Drawing.Point(560, 317);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(88, 20);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "Disponible:";
+            // 
+            // btnEfectivo
+            // 
+            this.btnEfectivo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEfectivo.Image = ((System.Drawing.Image)(resources.GetObject("btnEfectivo.Image")));
+            this.btnEfectivo.Location = new System.Drawing.Point(857, 317);
+            this.btnEfectivo.Name = "btnEfectivo";
+            this.btnEfectivo.Size = new System.Drawing.Size(64, 64);
+            this.btnEfectivo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnEfectivo.TabIndex = 144;
+            this.btnEfectivo.TabStop = false;
+            // 
+            // btnCheque
+            // 
+            this.btnCheque.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCheque.Image = ((System.Drawing.Image)(resources.GetObject("btnCheque.Image")));
+            this.btnCheque.Location = new System.Drawing.Point(799, 188);
+            this.btnCheque.Name = "btnCheque";
+            this.btnCheque.Size = new System.Drawing.Size(64, 64);
+            this.btnCheque.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnCheque.TabIndex = 177;
+            this.btnCheque.TabStop = false;
+            // 
+            // btnTarjeta
+            // 
+            this.btnTarjeta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTarjeta.Image = ((System.Drawing.Image)(resources.GetObject("btnTarjeta.Image")));
+            this.btnTarjeta.Location = new System.Drawing.Point(776, 440);
+            this.btnTarjeta.Name = "btnTarjeta";
+            this.btnTarjeta.Size = new System.Drawing.Size(64, 64);
+            this.btnTarjeta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnTarjeta.TabIndex = 179;
+            this.btnTarjeta.TabStop = false;
+            // 
+            // btnCredito
+            // 
+            this.btnCredito.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCredito.Image = ((System.Drawing.Image)(resources.GetObject("btnCredito.Image")));
+            this.btnCredito.Location = new System.Drawing.Point(679, 20);
+            this.btnCredito.Name = "btnCredito";
+            this.btnCredito.Size = new System.Drawing.Size(64, 64);
+            this.btnCredito.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnCredito.TabIndex = 181;
+            this.btnCredito.TabStop = false;
+            // 
+            // lblChequeCordoba
+            // 
+            this.lblChequeCordoba.AutoSize = true;
+            this.lblChequeCordoba.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblChequeCordoba.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblChequeCordoba.ForeColor = System.Drawing.Color.White;
+            this.lblChequeCordoba.Location = new System.Drawing.Point(264, 487);
+            this.lblChequeCordoba.Name = "lblChequeCordoba";
+            this.lblChequeCordoba.Size = new System.Drawing.Size(78, 17);
+            this.lblChequeCordoba.TabIndex = 190;
+            this.lblChequeCordoba.Text = "Cheque - F2";
+            // 
+            // btnReInicioCobro
+            // 
+            this.btnReInicioCobro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnReInicioCobro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(52)))), ((int)(((byte)(95)))));
+            this.btnReInicioCobro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReInicioCobro.FlatAppearance.BorderSize = 0;
+            this.btnReInicioCobro.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnReInicioCobro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnReInicioCobro.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReInicioCobro.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnReInicioCobro.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnReInicioCobro.Image = global::COVENTAF.Properties.Resources.salario;
+            this.btnReInicioCobro.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnReInicioCobro.Location = new System.Drawing.Point(8, 10);
+            this.btnReInicioCobro.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReInicioCobro.Name = "btnReInicioCobro";
+            this.btnReInicioCobro.Size = new System.Drawing.Size(103, 63);
+            this.btnReInicioCobro.TabIndex = 192;
+            this.btnReInicioCobro.Text = "Efectivo -F1";
+            this.btnReInicioCobro.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnReInicioCobro.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(52)))), ((int)(((byte)(95)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button1.Image = global::COVENTAF.Properties.Resources.salario;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.Location = new System.Drawing.Point(116, 10);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(103, 63);
+            this.button1.TabIndex = 193;
+            this.button1.Text = "Cheque -F2";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(52)))), ((int)(((byte)(95)))));
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button2.Image = global::COVENTAF.Properties.Resources.salario;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.Location = new System.Drawing.Point(226, 10);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 63);
+            this.button2.TabIndex = 194;
+            this.button2.Text = "Cheque -F2";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // frmCobrarFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(99)))), ((int)(((byte)(139)))));
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(865, 611);
-            this.Controls.Add(this.panel10);
-            this.Controls.Add(this.panel11);
-            this.Controls.Add(this.panel8);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.label16);
+            this.ClientSize = new System.Drawing.Size(1012, 611);
+            this.Controls.Add(this.txtCodigoCliente);
+            this.Controls.Add(this.lblChequeCordoba);
+            this.Controls.Add(this.grpDatosCliente);
+            this.Controls.Add(this.txtNombreCliente);
+            this.Controls.Add(this.btnTarjeta);
             this.Controls.Add(this.panel5);
+            this.Controls.Add(this.btnCheque);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtDescuentoCliente);
+            this.Controls.Add(this.btnEfectivo);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.barraTitulo);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtDisponibleCliente);
+            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.pictureBox7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCobrarFactura";
             this.Text = "frmCobrarFactura";
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -571,18 +620,14 @@ namespace COVENTAF.PuntoVenta
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEfectivo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCheque)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTarjeta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCredito)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -593,7 +638,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Panel barraTitulo;
         private System.Windows.Forms.PictureBox btnRestaurar;
         private System.Windows.Forms.PictureBox btnCierre;
-        private System.Windows.Forms.PictureBox btnCerrar;
         private System.Windows.Forms.PictureBox btnMminizar;
         private System.Windows.Forms.PictureBox btnMaximizar;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -606,26 +650,29 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label btnEfectivo;
-        private System.Windows.Forms.TextBox txtEfectivo;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Label btnCheque;
-        private System.Windows.Forms.TextBox txtCheque;
-        private System.Windows.Forms.Label btnTarjeta;
-        private System.Windows.Forms.Label btnCredito;
-        private System.Windows.Forms.TextBox txtCredito;
-        private System.Windows.Forms.Label btnBono;
-        private System.Windows.Forms.Label btnGifCard;
-        private System.Windows.Forms.TextBox txtTarjeta;
-        private System.Windows.Forms.TextBox txtBono;
-        private System.Windows.Forms.TextBox txtGiftCard;
-        private System.Windows.Forms.ComboBox cboBodega;
+        private System.Windows.Forms.PictureBox btnCerrar;
+        private System.Windows.Forms.GroupBox grpDatosCliente;
+        private System.Windows.Forms.TextBox txtCodigoCliente;
+        private System.Windows.Forms.TextBox txtNombreCliente;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtDescuentoCliente;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtDisponibleCliente;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox btnEfectivo;
+        private System.Windows.Forms.PictureBox btnCheque;
+        private System.Windows.Forms.PictureBox btnTarjeta;
+        private System.Windows.Forms.PictureBox btnCredito;
+        private System.Windows.Forms.Label lblChequeCordoba;
+        private System.Windows.Forms.Button btnReInicioCobro;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
