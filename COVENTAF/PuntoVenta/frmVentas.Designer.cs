@@ -546,6 +546,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoBarra.Size = new System.Drawing.Size(213, 20);
             this.txtCodigoBarra.TabIndex = 85;
             this.toolTip1.SetToolTip(this.txtCodigoBarra, "Ubicar el cursor con F12");
+            this.txtCodigoBarra.Enter += new System.EventHandler(this.txtCodigoBarra_Enter);
             this.txtCodigoBarra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoBarra_KeyPress);
             // 
             // pictureBox13
@@ -864,7 +865,7 @@ namespace COVENTAF.PuntoVenta
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(1289, 723);
+            this.label16.Location = new System.Drawing.Point(1269, 718);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(40, 20);
             this.label16.TabIndex = 115;
@@ -976,9 +977,9 @@ namespace COVENTAF.PuntoVenta
             this.grpMetodoPago.Controls.Add(this.cboTipoTarjeta);
             this.grpMetodoPago.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.grpMetodoPago.ForeColor = System.Drawing.Color.White;
-            this.grpMetodoPago.Location = new System.Drawing.Point(1050, 392);
+            this.grpMetodoPago.Location = new System.Drawing.Point(888, 223);
             this.grpMetodoPago.Name = "grpMetodoPago";
-            this.grpMetodoPago.Size = new System.Drawing.Size(165, 137);
+            this.grpMetodoPago.Size = new System.Drawing.Size(327, 168);
             this.grpMetodoPago.TabIndex = 124;
             this.grpMetodoPago.TabStop = false;
             this.grpMetodoPago.Text = "Metodo de Pago";
@@ -989,7 +990,7 @@ namespace COVENTAF.PuntoVenta
             this.cboCondicionPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCondicionPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboCondicionPago.FormattingEnabled = true;
-            this.cboCondicionPago.Location = new System.Drawing.Point(15, 88);
+            this.cboCondicionPago.Location = new System.Drawing.Point(23, 91);
             this.cboCondicionPago.Name = "cboCondicionPago";
             this.cboCondicionPago.Size = new System.Drawing.Size(104, 28);
             this.cboCondicionPago.TabIndex = 90;
@@ -1012,7 +1013,7 @@ namespace COVENTAF.PuntoVenta
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(23, 114);
+            this.label19.Location = new System.Drawing.Point(23, 176);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(125, 20);
             this.label19.TabIndex = 39;
@@ -1023,18 +1024,17 @@ namespace COVENTAF.PuntoVenta
             this.cboFormaPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFormaPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboFormaPago.FormattingEnabled = true;
-            this.cboFormaPago.Location = new System.Drawing.Point(23, 33);
+            this.cboFormaPago.Location = new System.Drawing.Point(203, 91);
             this.cboFormaPago.Name = "cboFormaPago";
             this.cboFormaPago.Size = new System.Drawing.Size(117, 28);
             this.cboFormaPago.TabIndex = 89;
-            this.cboFormaPago.SelectedIndexChanged += new System.EventHandler(this.cboFormaPago_SelectedIndexChanged);
             // 
             // cboTipoTarjeta
             // 
             this.cboTipoTarjeta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTipoTarjeta.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboTipoTarjeta.FormattingEnabled = true;
-            this.cboTipoTarjeta.Location = new System.Drawing.Point(0, 59);
+            this.cboTipoTarjeta.Location = new System.Drawing.Point(34, 199);
             this.cboTipoTarjeta.Name = "cboTipoTarjeta";
             this.cboTipoTarjeta.Size = new System.Drawing.Size(140, 28);
             this.cboTipoTarjeta.TabIndex = 91;
@@ -1231,12 +1231,13 @@ namespace COVENTAF.PuntoVenta
             this.txtDescuentoGeneral.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDescuentoGeneral.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtDescuentoGeneral.ForeColor = System.Drawing.Color.White;
-            this.txtDescuentoGeneral.Location = new System.Drawing.Point(996, 695);
+            this.txtDescuentoGeneral.Location = new System.Drawing.Point(995, 695);
             this.txtDescuentoGeneral.Name = "txtDescuentoGeneral";
-            this.txtDescuentoGeneral.Size = new System.Drawing.Size(79, 20);
+            this.txtDescuentoGeneral.Size = new System.Drawing.Size(96, 20);
             this.txtDescuentoGeneral.TabIndex = 154;
             this.txtDescuentoGeneral.Text = "0.00%";
             this.txtDescuentoGeneral.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuentoGeneral_KeyPress);
+            this.txtDescuentoGeneral.Leave += new System.EventHandler(this.txtDescuentoGeneral_Leave);
             // 
             // pictureBox4
             // 
@@ -1244,7 +1245,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox4.Image = global::COVENTAF.Properties.Resources.background_text;
             this.pictureBox4.Location = new System.Drawing.Point(987, 690);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(118, 30);
+            this.pictureBox4.Size = new System.Drawing.Size(105, 30);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 155;
             this.pictureBox4.TabStop = false;

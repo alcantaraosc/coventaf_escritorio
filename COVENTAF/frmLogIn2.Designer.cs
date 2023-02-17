@@ -115,6 +115,7 @@ namespace COVENTAF
             this.txtPassword.Size = new System.Drawing.Size(349, 20);
             this.txtPassword.TabIndex = 10;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             // 
             // pictureBox3
             // 
@@ -137,6 +138,8 @@ namespace COVENTAF
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(349, 20);
             this.txtUser.TabIndex = 9;
+            this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter);
+            this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
             // 
             // label2
             // 

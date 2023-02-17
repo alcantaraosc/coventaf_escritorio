@@ -141,7 +141,7 @@ namespace COVENTAF.PuntoVenta
             //llenar los combox de la base de datos
             onLlenarCombox();
             //inicializar todas las variables de la facturacion
-            InicializarTodaslasVariable(listVarFactura);
+            _procesoFacturacion.InicializarTodaslasVariable(listVarFactura);
 
             //agregar una nueva fila
             AddNewRow(listDetFactura);
@@ -156,52 +156,14 @@ namespace COVENTAF.PuntoVenta
             dgvDetalleFactura.DataSource = null;
             dgvDetalleFactura.DataSource = listDetFactura;
 
-            configurarDataGridView();
+            _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);
+           
 
             this.btnCobrar.Enabled = false;
             this.txtDescuentoGeneral.Enabled = this.chkDescuentoGeneral.Checked;                       
         }
 
 
-        /// <summary>
-        /// inicializar todas las variables
-        /// </summary>
-        /// <param name="listVarFactura"></param>
-        void InicializarTodaslasVariable(varFacturacion listVarFactura)
-        {            
-            listVarFactura.inputActivo = "";
-            listVarFactura.IdActivo = "";
-            //indica si el descuento esta aplicado o no esta aplicado
-            listVarFactura.DescuentoActivo = true;           
-            listVarFactura.VisibleTipoTarjeta = "none";
-            listVarFactura.VisibleCondicionPago = "none";
-            //descuento que el cliente
-            listVarFactura.TipoDeCambio = 0.0000M;
-            listVarFactura.BodegaId = "";
-           
-            /**Totales */
-            listVarFactura.SubTotalDolar = 0.0000M;
-            listVarFactura.SubTotalCordoba = 0.0000M;
-            //descuento
-            listVarFactura.DescuentoPorLineaDolar = 0.0000M;
-            listVarFactura.DescuentoPorLineaCordoba = 0.0000M;
-            listVarFactura.DescuentoGeneralCordoba = 0.0000M;
-
-            //descuento General
-            listVarFactura.DescuentoGeneralDolar = 0.0000M;
-            listVarFactura.DescuentoGeneralCordoba= 0.0000M;
-
-            //subtotales 
-            listVarFactura.SubTotalDescuentoDolar = 0.0000M;
-            listVarFactura.SubTotalDescuentoCordoba = 0.0000M;
-            listVarFactura.IvaCordoba = 0.0000M;
-            listVarFactura.IvaDolar = 0.0000M;
-            listVarFactura.TotalDolar = 0.0000M;
-            listVarFactura.TotalCordobas = 0.0000M;
-            listVarFactura.TotalUnidades = 0.0000M;
-            //fecha de hoy
-            listVarFactura.FechaFactura = DateTime.Now;
-        }
 
 
         //agregar un registro en el arreglo
@@ -632,7 +594,7 @@ namespace COVENTAF.PuntoVenta
                 dgvDetalleFactura.DataSource = null;
                 dgvDetalleFactura.DataSource = listDetFactura;*/
                 LlenarGridviewDetalleFactura();
-                configurarDataGridView();
+                _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura); 
             }
             catch(Exception ex)
             {
@@ -843,7 +805,7 @@ namespace COVENTAF.PuntoVenta
 
                 LlenarGridviewDetalleFactura();
                 //configurar el grid
-                configurarDataGridView();
+                _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);
                 //guardar en base datos informacion del registro actual
                 guardarBaseDatosFacturaTemp(consecutivoLocalizado);
             }
@@ -865,9 +827,8 @@ namespace COVENTAF.PuntoVenta
             //comprobar si tiene registro la lista de detalle de factura
             if (listDetFactura.Count >0)
             {
-                // 'Mueve el cursor a dicha fila
-                ////dgvDetalleFactura.CurrentCell = dgvDetalleFactura[listVarFactura.ConsecutivoActualFactura, 2];
-                dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
+                // 'Mueve el cursor a dicha fila               
+                dgvDetalleFactura.CurrentCell = dgvDetalleFactura[4, consecutivoActualFactura];
                 //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
                 dgvDetalleFactura.Rows[consecutivoActualFactura].Selected = true;
             }
@@ -1061,8 +1022,7 @@ namespace COVENTAF.PuntoVenta
 
         //eliminar el articulo de la lista de detalle de factura
         private void onEliminarArticulo(string articuloId, int consecutivo)
-        {
-            listVarFactura.DesactivarBotonGuardar = true;
+        {           
             this.btnCobrar.Enabled = false;
 
             //asignar el numero consecutivo del articulo
@@ -1100,7 +1060,7 @@ namespace COVENTAF.PuntoVenta
             dgvDetalleFactura.DataSource = listDetFactura;*/
             //lenar el grid 
             LlenarGridviewDetalleFactura();
-            configurarDataGridView();
+            _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura); 
         }
 
         private void LimpiarTextBoxBusquedaArticulo()
@@ -1118,44 +1078,19 @@ namespace COVENTAF.PuntoVenta
             //si la columna es cantidad (4) o descuento(5)
             if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
             {
+                btnCobrar.Enabled = false;
+                //asignar el consucutivo para indicar en que posicion estas
                 consecutivoActualFactura = e.RowIndex;
                 validarCantidadGrid();
                 //calcular totales
                 onCalcularTotales();
             }
         }
-        void configurarDataGridView()
-        {
-            //this.dgvDetalleFactura.Columns["consecutivo"].Visible = false;            
-            //this.dgvDetalleFactura.Columns["inputArticuloDesactivado"].Visible = false;
-            //this.dgvDetalleFactura.Columns["moneda"].Visible = false;
-            //this.dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;   
-            //this.dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;            
-            //this.dgvDetalleFactura.Columns["descuentoInactivo"].Visible = false;            
-            //this.dgvDetalleFactura.Columns["descuentoGeneralCordoba"].Visible = false;
-            //this.dgvDetalleFactura.Columns["descuentoGeneralDolar"].Visible = false;            
-            //this.dgvDetalleFactura.Columns["inputActivoParaBusqueda"].Visible = false;
-            //this.dgvDetalleFactura.Columns["botonEliminarDesactivado"].Visible = false;
-            //this.dgvDetalleFactura.Columns["BodegaID"].Visible = false;
-            //this.dgvDetalleFactura.Columns["NombreBodega"].Visible = false;   
-            
-            this.dgvDetalleFactura.Columns["totalDolar"].HeaderText = "Total U$";
-            this.dgvDetalleFactura.Columns["descuentoPorLineaDolar"].HeaderText = "Descuento U$";
-            this.dgvDetalleFactura.Columns["precioDolar"].HeaderText = "Precio U$";
-            this.dgvDetalleFactura.Columns["codigoBarra"].HeaderText = "Codigo Barra";
-            this.dgvDetalleFactura.Columns["descripcion"].HeaderText = "Descripcion";
-            this.dgvDetalleFactura.Columns["cantidad"].HeaderText = "Cantidad";           
-            this.dgvDetalleFactura.Columns["cantidadExistencia"].HeaderText = "Existencia";
-            this.dgvDetalleFactura.Columns["precioCordobas"].HeaderText = "Precio C$";
-            this.dgvDetalleFactura.Columns["descuentoPorLineaCordoba"].HeaderText = "Descuento C$";
-            this.dgvDetalleFactura.Columns["subTotalCordobas"].HeaderText = "Sub Total C$";
-            this.dgvDetalleFactura.Columns["porCentajeDescuentoXArticulo"].HeaderText = "Descuento %";
-            this.dgvDetalleFactura.Columns["totalCordobas"].HeaderText = "Total C$";
-            
-        }
+
 
         private void dgvDetalleFactura_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnCobrar.Enabled = false;
             //obtener el consecutivo
             int index = e.RowIndex;
             int columna = e.ColumnIndex;
@@ -1258,8 +1193,7 @@ namespace COVENTAF.PuntoVenta
 
         //evento cuando cambiar el chech en HTML
         void onChange_CheckDescuentoGeneral()
-        {
-            listVarFactura.DesactivarBotonGuardar = true;
+        {            
             this.btnCobrar.Enabled = false;
             //desactivar el boton guardar           
             var descuentoGeneral = this.chkDescuentoGeneral.Checked;
@@ -1295,24 +1229,14 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private void cboFormaPago_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //esta variable es para cuando inicie el programa no iniciar
-            if (AccederEventoCombox)
-            {
-                onChange();
-            }
-        }
 
         //seleccionar la forma de pago
         void onChange()
         {
             //console.log(deviceValue);
-            string codigoValue = this.cboFormaPago.SelectedValue.ToString();
-            listVarFactura.DesactivarBotonGuardar = true;
+            string codigoValue = this.cboFormaPago.SelectedValue.ToString();            
             //desativar el boton guardar
             
-
             //comprobar si es tarjeta
             if (codigoValue == "0003")
             {
@@ -1325,25 +1249,20 @@ namespace COVENTAF.PuntoVenta
             else if (codigoValue == "0004")
             {
                 this.lblLabelTittulo.Text = "Condicion de Pago: ";
-                listVarFactura.VisibleCondicionPago = "";
-
+                
                 this.lblLabelTittulo.Visible = true;
                 this.cboTipoTarjeta.Visible = false;
                 this.cboCondicionPago.Visible = true;
             }
             else
             {
-                listVarFactura.VisibleCondicionPago = "none";
-
+                
                 this.lblLabelTittulo.Visible = false;
                 this.cboTipoTarjeta.Visible = false;
                 this.cboCondicionPago.Visible = false;
                 this.cboTipoTarjeta.Text = "ND";
             }
 
-            listVarFactura.DesactivarBotonValDes = !_procesoFacturacion.desactivarBotonVerificarDescuento(listVarFactura, listDetFactura, codigoValue);
-
-            if (codigoValue.Length > 0) listVarFactura.DesactivarBotonValDes = false;
 
         }
         #endregion
@@ -1941,39 +1860,24 @@ namespace COVENTAF.PuntoVenta
         {
             if (e.KeyChar == 13)
             {
-                var existeCaractePorcentaje = false;
-
-                string valorPorCentaje = ObtenerNuevoPorCentaje(this.txtDescuentoGeneral.Text, ref existeCaractePorcentaje);
-                this.txtDescuentoGeneral.Text = existeCaractePorcentaje ? this.txtDescuentoGeneral.Text : $"{this.txtDescuentoGeneral.Text} %";
-                decimal porCentajeDescuento = Convert.ToDecimal(valorPorCentaje);
-                listVarFactura.PorCentajeDescGeneral = porCentajeDescuento ;
-                onCalcularTotales();
-                this.txtDescuentoGeneral.Focus();                
+                AplicarDescuentoGeneralFactura();
+                this.txtDescuentoGeneral.Focus();
             }
         }
 
+        private void AplicarDescuentoGeneralFactura()
+        {
+            var existeCaractePorcentaje = false;
 
-        string ObtenerNuevoPorCentaje(string cadena, ref bool existeCaractePorcentaje)
-        {                       
-            String caracter = "";
-            string nuevaCadena = "";
-            for (int n = 0; n < cadena.Length; n++)
-            {
-                caracter = cadena.Substring(n, 1);
-                if (caracter == "%")
-                {
-                    existeCaractePorcentaje = true;
-                    break;
-                }
-                else
-                {
-                    nuevaCadena += caracter;
-                }
-            }
-
-            
-            return nuevaCadena;
+            string valorPorCentaje = _procesoFacturacion.ObtenerNuevoPorCentaje(this.txtDescuentoGeneral.Text, ref existeCaractePorcentaje);
+            this.txtDescuentoGeneral.Text = existeCaractePorcentaje ? this.txtDescuentoGeneral.Text : $"{this.txtDescuentoGeneral.Text} %";
+            decimal porCentajeDescuento = Convert.ToDecimal(valorPorCentaje);
+            listVarFactura.PorCentajeDescGeneral = porCentajeDescuento;
+            //realizar calculo
+            onCalcularTotales();            
         }
+
+
 
         private void cboBodega_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1988,7 +1892,7 @@ namespace COVENTAF.PuntoVenta
         private void btnLimpiarFactura_Click(object sender, EventArgs e)
         {
             //falta eliminar de la tabla facturando
-            InicializarTodaslasVariable(listVarFactura);
+            _procesoFacturacion.InicializarTodaslasVariable(listVarFactura);
             this.txtCodigoCliente.Enabled = true;
             this.txtCodigoCliente.Text = "";
             this.txtNombreCliente.Text = "";
@@ -2010,8 +1914,15 @@ namespace COVENTAF.PuntoVenta
             this.lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
-    
-   
+        private void txtCodigoBarra_Enter(object sender, EventArgs e)
+        {
+            this.btnCobrar.Enabled = false;
+        }
+
+        private void txtDescuentoGeneral_Leave(object sender, EventArgs e)
+        {
+            AplicarDescuentoGeneralFactura();
+        }
     }
 }
 

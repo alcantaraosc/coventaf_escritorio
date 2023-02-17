@@ -14,11 +14,7 @@ namespace Api.Model.ViewModels
 
         //indica si el descuento esta aplicado o no esta aplicado
         public bool DescuentoActivo { get; set; }
-       //indica si el descuento es del beneficio o descuento es de Linea
-        //public string DescBeneficioOrDescLinea { get; set; }
-        public string VisibleTipoTarjeta { get; set; }
-        public string VisibleCondicionPago { get; set; }
-        //descuento que el cliente
+  
         public decimal TipoDeCambio { get; set; }
         public string BodegaId { get; set; }        
         //mostrar los datos del cliente en el html
@@ -49,11 +45,7 @@ namespace Api.Model.ViewModels
         public DateTime FechaFactura { get; set; }
 
         public string TicketFormaPago { get; set; }
-
-        //desactivar y activar el check DSD(Descuento Sobre Descuento)
-        public bool CheckDisabledDSD { get; set; }
-        public bool DesactivarBotonValDes { get; set; }
-        public bool DesactivarBotonGuardar { get; set; }
+      
 
     }
 }

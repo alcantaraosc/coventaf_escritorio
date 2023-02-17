@@ -50,12 +50,14 @@ namespace COVENTAF
             {
                 frmLoad.Dispose();
                 MessageBox.Show("Ingrese el Usuario", "Sistema COVENTAF");
+                this.txtUser.Focus();
                 return;
             }
             else if (this.txtPassword.Text.Length == 0)
             {
                 frmLoad.Dispose();
                 MessageBox.Show("Ingrese el password", "Sistema COVENTAF");
+                this.txtPassword.Focus();
                 return;
             }
        
@@ -82,6 +84,24 @@ namespace COVENTAF
             }
         }
 
-     
+        private void txtUser_Enter(object sender, EventArgs e)
+        {
+            this.AcceptButton = null;            
+        }
+
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            //asignar el boton Iniciar login para que permita dar enter.
+            this.AcceptButton = this.btnLogIn;
+        }
+
+        private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //si presiona la tecla enter
+            if (e.KeyChar == 13 && this.txtUser.Text.Trim().Length >0)
+            {                
+                this.txtPassword.Focus();
+            }          
+        }
     }
 }

@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PuntoDeVenta\**" />
+    <EmbeddedResource Remove="PuntoDeVenta\**" />
+    <None Remove="PuntoDeVenta\**" />
+    <Page Remove="PuntoDeVenta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="devexpress.win.design" Version="21.2.3" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.2.1" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4" />
@@ -35,10 +42,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="PuntoDeVenta\" />
   </ItemGroup>
 
 </Project>

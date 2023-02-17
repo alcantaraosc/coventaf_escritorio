@@ -17,7 +17,7 @@ namespace COVENTAF.PuntoVenta
     public partial class frmMetodoPago : Form
     {
         //esta variable me indica si el cajero presiono la tecla guardar factura
-        public bool GuardarFactura = false;          
+        public bool GuardarFactura = false;
         public List<ViewMetodoPago> metodoPago;
 
         //public List<Vendedores> listaBodega = new List<Vendedores>();
@@ -34,9 +34,13 @@ namespace COVENTAF.PuntoVenta
         //esta variable lleva el control de la tecla que el cajero presiono. x ejemplo el cajero presiono F1 y luego F3, entonces si primero presion F1 y despues F3
         //el sistema tiene que saber que el usuario ahora quiere el metodo de pago F3, quizas porque se confundio, por lo tanto el sistema tiene que ser capaz de limpiar el textbox
         private string teclaPresionadaXCajero = "";
-        bool bandera=true;
-        private bool cobrasteCordobas =false;
+        bool bandera = true;
+        private bool cobrasteCordobas = false;
         private decimal montoFinalCobrarDolar;
+
+        private string codigoTipoPago = "";
+        private string tipoPago = "";
+        private char moneda = 'L';
 
         private int Index = -1;
 
@@ -49,10 +53,10 @@ namespace COVENTAF.PuntoVenta
         {
             InitializeComponent();
             metodoPago = new List<ViewMetodoPago>();
-           /* this._modelFactura = modelFactura;            
-            this._datoEncabezadoFact = datoEncabezadoFact;
-            this._facturaController = facturaController;
-            this._listDetFactura = listDetFactura;*/
+            /* this._modelFactura = modelFactura;            
+             this._datoEncabezadoFact = datoEncabezadoFact;
+             this._facturaController = facturaController;
+             this._listDetFactura = listDetFactura;*/
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -104,8 +108,8 @@ namespace COVENTAF.PuntoVenta
             this.Close();
 
         }
-        
- 
+
+
         private void frmMetodoPago_KeyDown(object sender, KeyEventArgs e)
         {
             //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
@@ -209,7 +213,7 @@ namespace COVENTAF.PuntoVenta
         void VerificarMontoDolar(decimal montoDolarCobrar)
         {
 
-            if (montoDolarCobrar ==  metodoPago[0].DiferenciaDolar)
+            if (montoDolarCobrar == metodoPago[0].DiferenciaDolar)
             {
                 //este es el monto con error
                 decimal montoConError = (montoDolarCobrar * tipoCambioOficial);
@@ -256,7 +260,7 @@ namespace COVENTAF.PuntoVenta
         void VerificarMonto(decimal montoDolarCobrar)
         {
             //var valorMontoDolar = Math.Round((metodoPago[0].MontoCordoba / tipoCambioOficial),2);
-            
+
             //comprobar si el cliente pago en cordoba y adema si el monto a pagar es el monto final en dolares
             if (cobrasteCordobas & montoDolarCobrar == montoFinalCobrarDolar)
             {
@@ -283,10 +287,10 @@ namespace COVENTAF.PuntoVenta
         }
 
         //esto hay q revisarlo.. q pasa si el cliente hay un pago con 2 tarjeta de cordobas y 2 tarjeta de dolares con diferente banco.. 
-        void AsginarMetodoPago(string formaPago ,string nombreMetodoPago, decimal monto, char moneda, bool TeclaPresionaXCajero, string tecla,  string condicionPago, string DescripcionCondicionPago="", string tipoTarjeta = null)
+        void AsginarMetodoPago(string formaPago, string nombreMetodoPago, decimal monto, char moneda, bool TeclaPresionaXCajero, string tecla, string condicionPago, string DescripcionCondicionPago = "", string tipoTarjeta = null)
         {
             decimal montoDolar = 0;
-            decimal montoCordoba = 0;           
+            decimal montoCordoba = 0;
 
             switch (moneda)
             {
@@ -308,7 +312,7 @@ namespace COVENTAF.PuntoVenta
 
                     monto = Math.Round(monto, 2);
                     //aqui tendria que ver q tipo de cambio usar
-                    VerificarMontoDolar(monto);                  
+                    VerificarMontoDolar(monto);
                     montoDolar = monto;
                     montoCordoba = monto * nuevoTipoCambioAproximado;
                     montoCordoba = Math.Round(montoCordoba, 2);
@@ -316,7 +320,7 @@ namespace COVENTAF.PuntoVenta
             }
 
             //obtener el indice si ya existe el metodo de pago
-            var datoMetPago = metodoPago.Where(mp =>  mp.Indice > 0 && mp.Pago != "-1" && mp.DescripcionTecla == tecla && mp.TipoTarjeta == tipoTarjeta).Select(mp => new { mp.Indice, mp.Pago }).FirstOrDefault();
+            var datoMetPago = metodoPago.Where(mp => mp.Indice > 0 && mp.Pago != "-1" && mp.DescripcionTecla == tecla && mp.TipoTarjeta == tipoTarjeta).Select(mp => new { mp.Indice, mp.Pago }).FirstOrDefault();
 
             if (datoMetPago is null)
             {
@@ -330,18 +334,18 @@ namespace COVENTAF.PuntoVenta
 
 
             metodoPago[Index].Indice = Index;
-            metodoPago[Index].Pago =(Index-1).ToString();
+            metodoPago[Index].Pago = (Index - 1).ToString();
             metodoPago[Index].FormaPago = formaPago;
             metodoPago[Index].DescripcionFormPago = nombreMetodoPago;
             metodoPago[Index].TipoTarjeta = tipoTarjeta;
             metodoPago[Index].CondicionPago = condicionPago;
             metodoPago[Index].DescripcionCondicionPago = DescripcionCondicionPago;
-            
+
             metodoPago[Index].MontoCordoba += montoCordoba;
             metodoPago[Index].Moneda = moneda;
             metodoPago[Index].MontoDolar += montoDolar;
             metodoPago[Index].MontoPagado = 0.000M;
-            metodoPago[Index].DiferenciaCordoba = 0.0000M;            
+            metodoPago[Index].DiferenciaCordoba = 0.0000M;
             metodoPago[Index].TeclaPresionaXCajero = TeclaPresionaXCajero;
             metodoPago[Index].DescripcionTecla = tecla;
 
@@ -363,17 +367,17 @@ namespace COVENTAF.PuntoVenta
                 this.txtPendientePagarCliente.Text = "0.00";
                 bloquearMetodoPago = true;
                 this.btnGuardarFactura.Enabled = bloquearMetodoPago;
-                
+
                 //llamar al metodo para asignar el vuelto en la clase q se lleva el control del metodo de pago
                 AsginarMetodoPagoDiferencial(diferencia);
             }
             else
             {
-                
+
                 var valorPendientePagar = GetMontoCobrar();
                 bloquearMetodoPago = (valorPendientePagar > 0 ? false : true);
                 this.btnGuardarFactura.Enabled = bloquearMetodoPago;
-                this.txtPendientePagarCliente.Text =$"C${valorPendientePagar.ToString("N2")}";
+                this.txtPendientePagarCliente.Text = $"C${valorPendientePagar.ToString("N2")}";
             }
         }
 
@@ -383,7 +387,7 @@ namespace COVENTAF.PuntoVenta
             //obtene el maximo indice
             Index = metodoPago.Max(mp => mp.Indice);
             //agregar una fila.
-            AddNuevaFilaMetodoPago();           
+            AddNuevaFilaMetodoPago();
             metodoPago[Index].Indice = Index;
             metodoPago[Index].Pago = "-1"; //Pago =-1 es el vuelto del cliente
             //si existe vuelto para el cliente entonce quiere decir que es efectivo 
@@ -394,7 +398,7 @@ namespace COVENTAF.PuntoVenta
             metodoPago[Index].DiferenciaCordoba = 0.0000M;
             metodoPago[Index].TeclaPresionaXCajero = false;
             metodoPago[Index].DescripcionTecla = "No Existe Tecla";
-                  
+
         }
 
 
@@ -414,16 +418,15 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        
+
 
 
         //boton reiniciar el cobro
-        private void btnReInicioCobro_Click(object sender, EventArgs e)               
+        private void btnReInicioCobro_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿ Estas seguro de Reiniciar el metodo de pago ?", "Sistema COVENTAF" ,MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("¿ Estas seguro de Reiniciar el metodo de pago ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                this.pnlTipoTarjeta.Visible = false;
-                this.pnlTipoCredito.Visible = false;
+
                 this.lblConvertidorDolares.Visible = false;
 
                 montoFinalCobrarDolar = 0;
@@ -482,11 +485,12 @@ namespace COVENTAF.PuntoVenta
 
         private void frmMetodoPago_Load(object sender, EventArgs e)
         {
+
             tipoCambioOficial = Math.Round(tipoCambioOficial, 4);
             nuevoTipoCambioAproximado = tipoCambioOficial;
 
             var montoTotalCobrar = Math.Round(TotalCobrar, 2);
-            
+
             lblTitulo.Text = $"Cobrar Factura. Tipo de Cambio: {tipoCambioOficial}";
             AddNuevaFilaMetodoPago();
             //inicializar los datos
@@ -521,11 +525,18 @@ namespace COVENTAF.PuntoVenta
             this.cboCondicionPago.DisplayMember = "Descripcion";
             this.cboCondicionPago.DataSource = this.listaCondicionPago;
 
+            this.cboFormaPago.ValueMember = "Forma_Pago";
+            this.cboFormaPago.DisplayMember = "Descripcion";
+            this.cboFormaPago.DataSource = listFormaPago;
+
+            //mostrar el primer metodo de pago efectivo
+            btnEfectivoCordoba_Click(null, null);
+
         }
 
-       
 
-   
+
+
 
         private void txtEfectivoCordoba_TextChanged(object sender, EventArgs e)
         {
@@ -537,14 +548,13 @@ namespace COVENTAF.PuntoVenta
                     decimal valor = this.txtEfectivoCordoba.Text.Trim().Length == 0 ? 0.00M : Convert.ToDecimal(this.txtEfectivoCordoba.Text);
                     //hacer la conversion al tipo de  cambio del dia
                     valor = valor / tipoCambioOficial;
-                   // this.txtEfectivoDolar.Text = $"U${valor.ToString("N2")}";
+                    // this.txtEfectivoDolar.Text = $"U${valor.ToString("N2")}";
                 }
             }
             catch
             {
 
             }
-
         }
 
         private void txtTarjetaCordoba_TextChanged(object sender, EventArgs e)
@@ -552,8 +562,6 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-         
-        
         private void txtEfectivoDolar_TextChanged(object sender, EventArgs e)
         {
             try
@@ -579,8 +587,9 @@ namespace COVENTAF.PuntoVenta
             //comprobar si no esta bloqueado el metodo de pago
             if (!bloquearMetodoPago)
             {
-                this.pnlTipoTarjeta.Visible = false;
-                this.pnlTipoCredito.Visible = false;
+                this.lblTituloMontoGeneral.Text = "Monto - Efectivo C$:";
+                this.lblTituloCombox.Visible = false;
+                this.lblTituloDocumento.Visible = false;
                 this.lblConvertidorDolares.Visible = false;
 
                 //poner visible el label F11 Tarjeta Dolar
@@ -595,6 +604,8 @@ namespace COVENTAF.PuntoVenta
                 txtEfectivoCordoba.SelectionStart = 0;
                 txtEfectivoCordoba.SelectionLength = this.txtEfectivoCordoba.Text.Length;
                 txtEfectivoCordoba.Focus();
+
+                ActivarfocusMontoGeneral();
             }
             else
             {
@@ -612,7 +623,7 @@ namespace COVENTAF.PuntoVenta
             //comprobar si no esta bloqueado el metodo de pago
             if (!bloquearMetodoPago)
             {
-
+                this.lblTituloMontoGeneral.Text = "Monto - Efectivo U$:";
                 //desactivar el texbox y mostrar la suma pagado por el cliente en caso que existen varios tipo de pago
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //indicar la ultima tecla ejecutado por el cajero
@@ -626,6 +637,8 @@ namespace COVENTAF.PuntoVenta
                 this.txtEfectivoDolar.SelectionStart = 0;
                 this.txtEfectivoDolar.SelectionLength = this.txtEfectivoDolar.Text.Length;
                 this.txtEfectivoDolar.Focus();
+
+                ActivarfocusMontoGeneral();
             }
             else
             {
@@ -638,14 +651,17 @@ namespace COVENTAF.PuntoVenta
             //comprobar si no esta bloqueado el metodo de pago
             if (!bloquearMetodoPago)
             {
-                this.pnlTipoTarjeta.Visible = false;
-                this.pnlTipoCredito.Visible = false;
+                this.lblTituloCombox.Text = "Entidad Financiera:";
+                this.lblTituloMontoGeneral.Text = "Monto Cheque C$:";
+                //  this.lblTituloCom
+                //this.pnlTipoTarjeta.Visible = false;
+                //this.pnlTipoCredito.Visible = false;
                 this.lblConvertidorDolares.Visible = false;
 
-              
+
                 //cambiar de estado solo si el cajero decidio cambiar el modo de pago
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-               
+
                 //poner visible el label F11 Tarjeta Dolar
                 SetCambiarEstadoVisibleLableF11Dolar("F11_CHD", true);
                 //indicar que el cajero presiono F2;
@@ -656,6 +672,8 @@ namespace COVENTAF.PuntoVenta
                 this.txtChequeCordoba.SelectionStart = 0;
                 this.txtChequeCordoba.SelectionLength = this.txtChequeCordoba.Text.Length;
                 this.txtChequeCordoba.Focus();
+
+                ActivarfocusMontoGeneral();
             }
             else
             {
@@ -672,7 +690,7 @@ namespace COVENTAF.PuntoVenta
             //comprobar si no esta bloqueado el metodo de pago
             if (!bloquearMetodoPago)
             {
-
+                this.lblTituloMontoGeneral.Text = "Monto Cheque U$:";
                 //desactivar el texbox y mostrar la suma pagado por el cliente en caso que existen varios tipo de pago
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //indicar la ultima tecla ejecutado por el cajero
@@ -686,6 +704,8 @@ namespace COVENTAF.PuntoVenta
                 this.txtChequeDolar.SelectionStart = 0;
                 this.txtChequeDolar.SelectionLength = this.txtChequeDolar.Text.Length;
                 this.txtChequeDolar.Focus();
+
+                ActivarfocusMontoGeneral();
             }
             else
             {
@@ -698,24 +718,27 @@ namespace COVENTAF.PuntoVenta
 
             if (!bloquearMetodoPago)
             {
-                this.pnlTipoTarjeta.Visible = true;
-                this.pnlTipoCredito.Visible = false;
-                this.lblConvertidorDolares.Visible = false;                
-              
+                this.lblTituloMontoGeneral.Text = "Monto en Tarjeta C$:";
+                //this.pnlTipoTarjeta.Visible = true;
+                //this.pnlTipoCredito.Visible = false;
+                this.lblConvertidorDolares.Visible = false;
+
                 //cambiar el estado de visible al label F11 Tarjeta Dolar
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                
+
                 //activo por defecto el evento F11 para Tarjeta para Dolares (F11 )
                 SetCambiarEstadoVisibleLableF11Dolar("F11_TD", true);
-               
+
                 //cambiar el estado e indicar que se presiono F3
-                teclaPresionadaXCajero = "F3";              
+                teclaPresionadaXCajero = "F3";
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
-        
+
                 //poner el foco en el textbox
                 this.txtTarjetaCordoba.SelectionStart = 0;
                 this.txtTarjetaCordoba.SelectionLength = this.txtTarjetaCordoba.Text.Length;
                 this.txtTarjetaCordoba.Focus();
+
+                ActivarfocusMontoGeneral();
             }
             else
             {
@@ -732,7 +755,7 @@ namespace COVENTAF.PuntoVenta
         {
             if (!bloquearMetodoPago)
             {
-
+                this.lblTituloMontoGeneral.Text = "Monto en Tarjeta U$:";
                 //desactivar el texbox y mostrar la suma pagado por el cliente en caso que existen varios tipo de pago
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //actualizar el estado. indicar la ultima tecla ejecutado por el cajero
@@ -741,10 +764,12 @@ namespace COVENTAF.PuntoVenta
                 //actualizar el estado del textbox ademas mostrar el monto a pagar en Cordobas y dolares
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
                 this.lblConvertidorDolares.Visible = true;
-                
+
                 this.txtTarjetaDolar.SelectionStart = 0;
                 this.txtTarjetaDolar.SelectionLength = this.txtTarjetaDolar.Text.Length;
                 this.txtTarjetaDolar.Focus();
+
+                ActivarfocusMontoGeneral();
             }
             else
             {
@@ -756,9 +781,9 @@ namespace COVENTAF.PuntoVenta
         {
             if (!bloquearMetodoPago)
             {
-
-                this.pnlTipoTarjeta.Visible = false;
-                this.pnlTipoCredito.Visible = true;
+                this.lblTituloMontoGeneral.Text = "Monto Credito C$:";
+                //this.pnlTipoTarjeta.Visible = false;
+                //this.pnlTipoCredito.Visible = true;
                 this.lblConvertidorDolares.Visible = false;
                 SetCambiarEstadoVisibleLableF11Dolar("", false);
 
@@ -766,11 +791,13 @@ namespace COVENTAF.PuntoVenta
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado e indicar que se presiono F3
                 teclaPresionadaXCajero = "F4";
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);                                         
+                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
 
                 this.txtCredito.SelectionStart = 0;
                 this.txtCredito.SelectionLength = this.txtCredito.Text.Length;
                 this.txtCredito.Focus();
+
+                ActivarfocusMontoGeneral();
 
             }
             else
@@ -789,9 +816,9 @@ namespace COVENTAF.PuntoVenta
         {
             if (!bloquearMetodoPago)
             {
-
-                this.pnlTipoTarjeta.Visible = false;
-                this.pnlTipoCredito.Visible = false;
+                this.lblTituloMontoGeneral.Text = "Monto del Bono C$:";
+                //this.pnlTipoTarjeta.Visible = false;
+                //this.pnlTipoCredito.Visible = false;
                 this.lblConvertidorDolares.Visible = false;
                 SetCambiarEstadoVisibleLableF11Dolar("", false);
 
@@ -800,11 +827,13 @@ namespace COVENTAF.PuntoVenta
                 //cambiar el estado e indicar que se presiono F5
                 teclaPresionadaXCajero = "F5";
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
-      
-      
+
+
                 this.txtBono.SelectionStart = 0;
                 this.txtBono.SelectionLength = this.txtBono.Text.Length;
                 this.txtBono.Focus();
+
+                ActivarfocusMontoGeneral();
 
             }
             else
@@ -822,8 +851,9 @@ namespace COVENTAF.PuntoVenta
         {
             if (!bloquearMetodoPago)
             {
-                this.pnlTipoTarjeta.Visible = false;
-                this.pnlTipoCredito.Visible = false;
+                this.lblTituloMontoGeneral.Text = "Monto Gift Card C$:";
+                //this.pnlTipoTarjeta.Visible = false;
+                //this.pnlTipoCredito.Visible = false;
                 this.lblConvertidorDolares.Visible = false;
 
                 //cambiar el estado de visible al label F11 Tarjeta Dolar
@@ -840,6 +870,8 @@ namespace COVENTAF.PuntoVenta
                 this.txtGiftCardCordoba.SelectionStart = 0;
                 this.txtGiftCardCordoba.SelectionLength = this.txtGiftCardCordoba.Text.Length;
                 this.txtGiftCardCordoba.Focus();
+
+                ActivarfocusMontoGeneral();
             }
             else
             {
@@ -856,7 +888,7 @@ namespace COVENTAF.PuntoVenta
         {
             if (!bloquearMetodoPago)
             {
-
+                this.lblTituloMontoGeneral.Text = "Monto Gift Card U$:";
                 //desactivar el texbox y mostrar la suma pagado por el cliente en caso que existen varios tipo de pago
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //actualizar el estado. indicar la ultima tecla ejecutado por el cajero
@@ -865,10 +897,12 @@ namespace COVENTAF.PuntoVenta
                 //actualizar el estado del textbox ademas mostrar el monto a pagar en Cordobas y dolares
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
                 this.lblConvertidorDolares.Visible = true;
-                
+
                 this.txtGiftCardDolar.SelectionStart = 0;
                 this.txtGiftCardDolar.SelectionLength = this.txtGiftCardDolar.Text.Length;
                 this.txtGiftCardDolar.Focus();
+
+                ActivarfocusMontoGeneral();
             }
             else
             {
@@ -885,8 +919,8 @@ namespace COVENTAF.PuntoVenta
         #region eventos de los textBox KEYPRRESS
 
         //txtEfectivoCordoba_KeyPress
-        private void txtEfectivoCordoba_KeyPress(object sender, KeyPressEventArgs e)       
-        {           
+        private void txtEfectivoCordoba_KeyPress(object sender, KeyPressEventArgs e)
+        {
             Services.Utilidades.UnPunto(e, this.txtEfectivoCordoba.Text.Trim(), ref bandera);
 
             if (e.KeyChar == 13 && this.txtEfectivoCordoba.Text.Trim().Length > 0)
@@ -896,7 +930,7 @@ namespace COVENTAF.PuntoVenta
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 this.txtEfectivoCordoba.Enabled = false;
                 teclaPresionadaXCajero = "";
-                this.btnGuardarFactura.Focus();               
+                this.btnGuardarFactura.Focus();
             }
 
         }
@@ -907,9 +941,9 @@ namespace COVENTAF.PuntoVenta
             Services.Utilidades.UnPunto(e, this.txtEfectivoDolar.Text.Trim(), ref bandera);
             if (e.KeyChar == 13)
             {
-           
+
                 //asignar el metodo de pago
-                AsginarMetodoPago("0001", "Efectivo (Dolar)", Convert.ToDecimal(this.txtEfectivoDolar.Text), 'D', true,  "F11_ED", null );
+                AsginarMetodoPago("0001", "Efectivo (Dolar)", Convert.ToDecimal(this.txtEfectivoDolar.Text), 'D', true, "F11_ED", null);
 
                 //desactivar el texbox y mostrar la suma pagado por el cliente en caso que existen varios tipo de pago
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
@@ -967,10 +1001,10 @@ namespace COVENTAF.PuntoVenta
 
             if (e.KeyChar == 13 && txtTarjetaCordoba.Text.Trim().Length > 0)
             {
-               
+
                 //llamar el metodo asignar pago
-                AsginarMetodoPago("0003","Tarjeta", Convert.ToDecimal(this.txtTarjetaCordoba.Text), 'L', true, "F3", null,"", this.cboTipoTarjeta.SelectedValue.ToString());
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);              
+                AsginarMetodoPago("0003", "Tarjeta", Convert.ToDecimal(this.txtTarjetaCordoba.Text), 'L', true, "F3", null, "", this.cboTipoTarjeta.SelectedValue.ToString());
+                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado
                 teclaPresionadaXCajero = "";
             }
@@ -994,7 +1028,7 @@ namespace COVENTAF.PuntoVenta
                 teclaPresionadaXCajero = "";
                 this.lblConvertidorDolares.Visible = false;
             }
-           
+
         }
 
         private void txtCredito_KeyPress(object sender, KeyPressEventArgs e)
@@ -1076,17 +1110,17 @@ namespace COVENTAF.PuntoVenta
             switch (labelName)
             {
                 case "F11_ED":
-                    this.lblEfectivoDolar.Visible = visible;                   
+                    this.lblEfectivoDolar.Visible = visible;
                     break;
                 case "F11_CHD":
-                    this.lblChequeDolar.Visible = visible;                    
+                    this.lblChequeDolar.Visible = visible;
                     break;
                 case "F11_TD":
-                    this.lblTarjetaDolar.Visible = visible;                    
+                    this.lblTarjetaDolar.Visible = visible;
                     break;
 
                 case "F11_GCD":
-                    this.lblGiftCardDolar.Visible = visible;                    
+                    this.lblGiftCardDolar.Visible = visible;
                     break;
             }
         }
@@ -1107,44 +1141,69 @@ namespace COVENTAF.PuntoVenta
             this.txtEfectivoCordoba.Enabled = false;
             this.txtEfectivoDolar.Enabled = false;
             this.txtChequeCordoba.Enabled = false;
-            this.txtChequeDolar.Enabled = false;            
+            this.txtChequeDolar.Enabled = false;
             this.txtTarjetaCordoba.Enabled = false;
             this.txtTarjetaDolar.Enabled = false;
             this.txtCredito.Enabled = false;
             this.txtBono.Enabled = false;
             this.txtGiftCardCordoba.Enabled = false;
             this.txtGiftCardDolar.Enabled = false;
+            this.lblTituloCombox.Visible = false;
+            this.lblTituloDocumento.Visible = false;
+            this.txtDocumento.Visible = false;
 
-
+            this.cboCondicionPago.Visible = false;
+            this.cboTipoTarjeta.Visible = false;
+            this.cboEntidadFinanciera.Visible = false;
             //
             switch (textBoxName)
             {
+                //F1= Efectivo Cordoba
                 case "F1":
-                    //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pagp                       
+                    valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pago                   
                     this.txtEfectivoCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
                     //this.txtEfectivoDolar.Text =$"U${(valorMonto / tipoCambio).ToString("N2")}";
                     this.txtEfectivoCordoba.Enabled = enable;
+                    codigoTipoPago = "0001";
+                    tipoPago = "Efectivo";
+                    moneda = 'L';
                     break;
 
+                //F11=Efectivo Dolar
                 case "F11_ED":
                     //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Math.Round( (valorMonto / tipoCambioOficial), 2);
-
+                    montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
                     this.txtEfectivoDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
-
                     this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
                     //this.txtEfectivoCordoba.Text = $"C${ valorMonto.ToString("N2")}";
                     this.txtEfectivoDolar.Enabled = enable;
+                    valorMonto = valorMonto / tipoCambioOficial;
+                    codigoTipoPago = "0001";
+                    tipoPago = "Efectivo (Dolar)";
+                    moneda = 'D';
                     break;
 
-
+                //F2=Efectivo Cordoba
                 case "F2":
+                    valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
                     //obtener el monto a pagar o el monto pagado por el cliente                
                     this.txtChequeCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
                     this.txtChequeCordoba.Enabled = enable;
+                    this.lblTituloCombox.Text = "Entidad Financiera:";
+                    this.lblTituloCombox.Visible = true;
+                    this.cboEntidadFinanciera.Visible = true;
+                    this.lblTituloDocumento.Text = "Numero de cheque:";
+                    this.lblTituloDocumento.Visible = true;
+                    this.txtDocumento.Visible = true;
+                    codigoTipoPago = "0002";
+                    tipoPago = "Cheque";
+                    moneda = 'L';
+
                     break;
 
+                //F11  = cheque Dolar
                 case "F11_CHD":
                     //obtener el monto a pagar o el monto pagado por el cliente
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
@@ -1152,6 +1211,17 @@ namespace COVENTAF.PuntoVenta
                     this.txtChequeDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${ (valorMonto / tipoCambioOficial).ToString("N2")}");
                     this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
                     this.txtChequeDolar.Enabled = enable;
+                    valorMonto = valorMonto / tipoCambioOficial;
+                    this.lblTituloCombox.Text = "Entidad Financiera:";
+                    this.lblTituloCombox.Visible = true;
+                    this.cboEntidadFinanciera.Visible = true;
+                    this.lblTituloDocumento.Text = "Numero de cheque:";
+                    this.lblTituloDocumento.Visible = true;
+                    this.txtDocumento.Visible = true;
+
+                    codigoTipoPago = "0002";
+                    tipoPago = "Cheque (Dolar)";
+                    moneda = 'D';
                     break;
 
                 //F3=Tarjeta Cordoba
@@ -1161,6 +1231,18 @@ namespace COVENTAF.PuntoVenta
                     this.txtTarjetaCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     //this.txtTarjetaDolar.Text = $"U${(valorMonto / tipoCambio).ToString("N2")}";
                     this.txtTarjetaCordoba.Enabled = enable;
+
+                    this.lblTituloCombox.Text = "Tipo de Tarjeta:";
+                    this.lblTituloCombox.Visible = true;
+                    this.cboTipoTarjeta.Visible = true;
+                    this.lblTituloDocumento.Text = "Numero de Tarjeta:";
+                    this.lblTituloDocumento.Visible = true;
+                    this.txtDocumento.Visible = true;
+
+                    codigoTipoPago = "0003";
+                    tipoPago = "Tarjeta";
+                    moneda = 'L';
+
                     break;
 
                 //F11_TD=Telca F11 Tarjeta Dolar
@@ -1171,33 +1253,75 @@ namespace COVENTAF.PuntoVenta
                     this.txtTarjetaDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
                     this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
                     this.txtTarjetaDolar.Enabled = enable;
+                    valorMonto = valorMonto / tipoCambioOficial;
+
+                    this.lblTituloCombox.Text = "Tipo de Tarjeta:";
+                    this.lblTituloCombox.Visible = true;
+                    this.cboTipoTarjeta.Visible = true;
+                    this.lblTituloDocumento.Text = "Numero de Tarjeta:";
+                    this.lblTituloDocumento.Visible = true;
+                    this.txtDocumento.Visible = true;
+
+                    codigoTipoPago = "0003";
+                    tipoPago = "Tarjeta (Dolar)";
+                    moneda = 'D';
+
                     break;
 
-                //F4 =Credito
+                //F4 =Credito cordoba
                 case "F4":
 
                     //obtener el monto a pagar o el monto pagado por el cliente
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
                     this.txtCredito.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     this.txtCredito.Enabled = enable;
+
+                    this.lblTituloCombox.Text = "Condicion de pago:";
+                    this.lblTituloCombox.Visible = true;
+                    this.cboTipoTarjeta.Visible = true;
+                    this.lblTituloDocumento.Text = "No. de documento:";
+                    this.lblTituloDocumento.Visible = true;
+                    this.txtDocumento.Visible = true;
+
+                    codigoTipoPago = "0004";
+                    tipoPago = "Credito";
+                    moneda = 'L';
+
                     break;
 
-                //F5=Bono
+                //F5=Bono cordoba
                 case "F5":
                     //obtener el monto a pagar o el monto pagado por el cliente
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
                     this.txtBono.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     this.txtBono.Enabled = enable;
+
+                    this.lblTituloDocumento.Text = "No. de documento:";
+                    this.lblTituloDocumento.Visible = true;
+                    this.txtDocumento.Visible = true;
+
+                    codigoTipoPago = "0006";
+                    tipoPago = "Bono";
+                    moneda = 'L';
                     break;
 
                 //F6=GiftCard Cordobas
                 case "F6":
-
+                    valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
                     //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pagp                       
                     this.txtGiftCardCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
                     this.txtGiftCardCordoba.Enabled = enable;
+
+                    this.lblTituloDocumento.Text = "Numero de Tarjeta:";
+                    this.lblTituloDocumento.Visible = true;
+                    this.txtDocumento.Visible = true;
+
+                    codigoTipoPago = "FP01";
+                    tipoPago = "GiftCard";
+                    moneda = 'L';
+
                     break;
-            
+
                 //F11_GCD= GiftCard Dolar
                 case "F11_GCD":
 
@@ -1205,11 +1329,24 @@ namespace COVENTAF.PuntoVenta
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
                     montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
                     this.txtGiftCardDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
-                    this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";             
-                    this.txtGiftCardDolar.Enabled = enable;                    
+                    this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+                    this.txtGiftCardDolar.Enabled = enable;
+                    valorMonto = valorMonto / tipoCambioOficial;
+
+                    this.lblTituloDocumento.Text = "Numero de Tarjeta:";
+                    this.lblTituloDocumento.Visible = true;
+                    this.txtDocumento.Visible = true;
+
+                    codigoTipoPago = "FP01";
+                    tipoPago = "GiftCard (Dolar)";
+                    moneda = 'D';
+
                     break;
             }
-        } 
+
+            this.txtMontoGeneral.Text = valorMonto.ToString("N2");
+
+        }
 
         /// <summary>
         /// 
@@ -1218,36 +1355,36 @@ namespace COVENTAF.PuntoVenta
         /// <param name="retornarMonto"> le indico si retorna el monto en corodobas(L=Local) o _Dolares (D=Dolares). Por defecto es en Cordoba. </param>
         /// <returns></returns>
 
-        decimal GetMontoMontoPorMetodoPagoX(string nombreTeclaEjecutada )
-        {           
+        decimal GetMontoMontoPorMetodoPagoX(string nombreTeclaEjecutada)
+        {
             decimal montoPagado = 0;
             //sumar el monto pagado por el cliente solo que se mayor q cero y sea de la tecla presiona F1, F2, F3
             montoPagado = metodoPago.Where(mp => mp.Indice > 0 && mp.DescripcionTecla == nombreTeclaEjecutada).Sum(x => x.MontoCordoba);
-                            
+
             return montoPagado;
         }
 
 
-        decimal ObtenerNuevoTipoCambioExcto(decimal montoExacto, decimal montoConError, decimal montoDolares )
+        decimal ObtenerNuevoTipoCambioExcto(decimal montoExacto, decimal montoConError, decimal montoDolares)
         {
             montoExacto = Math.Round(montoExacto, 2);
 
             decimal nuevoTipoCambio = tipoCambioOficial;
             //si el monto con error es mayor entonces hay que ir restando el tipo de cambio
-         
+
             decimal nuevoMonto = 0;
             bool continuarCiclo = true;
             bool sumarTipoCambio = (montoConError < montoExacto ? true : false);
-                       
+
             while (continuarCiclo)
             {
 
-                nuevoTipoCambio = sumarTipoCambio ? nuevoTipoCambio + 0.0001M :   nuevoTipoCambio - 0.0001M;
+                nuevoTipoCambio = sumarTipoCambio ? nuevoTipoCambio + 0.0001M : nuevoTipoCambio - 0.0001M;
                 //nuevoTipoCambio = Math.Round(tipoCambio, 4);
                 nuevoMonto = montoDolares * nuevoTipoCambio;
                 var nuevoMontoConDosDecimal = Math.Round(nuevoMonto, 2);
                 if (montoExacto == nuevoMontoConDosDecimal)
-                {                    
+                {
                     continuarCiclo = false;
                     break;
                 }
@@ -1259,8 +1396,8 @@ namespace COVENTAF.PuntoVenta
                 else
                 {
                     sumarTipoCambio = false;
-                }                              
-                
+                }
+
             }
 
 
@@ -1273,7 +1410,7 @@ namespace COVENTAF.PuntoVenta
             {
                 if (this.txtTarjetaDolar.Enabled)
                 {
-                   
+
                     //obtener el valor del textbox, ademas valida por si el textbox esta vacio
                     decimal valor = this.txtTarjetaDolar.Text.Trim().Length == 0 ? 0.00M : Convert.ToDecimal(this.txtTarjetaDolar.Text);
                     if (Convert.ToDecimal(this.txtTarjetaDolar.Text) == metodoPago[0].DiferenciaDolar)
@@ -1287,7 +1424,6 @@ namespace COVENTAF.PuntoVenta
                         this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${(valor * tipoCambioOficial).ToString("N2")}";
                     }
 
-
                 }
             }
             catch
@@ -1295,14 +1431,14 @@ namespace COVENTAF.PuntoVenta
 
             }
         }
-         
 
-    
+
+
 
         /** evento ***/
         private void txtEfectivoCordoba_Enter(object sender, EventArgs e)
         {
-            bandera = true;           
+            bandera = true;
         }
 
         private void txtEfectivoDolar_Enter(object sender, EventArgs e)
@@ -1350,7 +1486,6 @@ namespace COVENTAF.PuntoVenta
             bandera = true;
         }
 
-        
 
         private void btnGuardarFactura_Click(object sender, EventArgs e)
         {
@@ -1367,5 +1502,189 @@ namespace COVENTAF.PuntoVenta
             Detalleform.ShowDialog();
             Detalleform.Dispose();
         }
+
+
+        private void ActivarfocusMontoGeneral()
+        {
+            txtMontoGeneral.SelectionStart = 0;
+            txtMontoGeneral.SelectionLength = this.txtMontoGeneral.Text.Length;
+            txtMontoGeneral.Focus();
+        }
+
+        private void CursorUbicadoTextBox(string textBox)
+        {
+            bool result = false;
+            switch (teclaPresionadaXCajero)
+            {
+                //F1= Efectivo Cordoba
+                case "F1":
+
+
+                    break;
+
+                //F11=Efectivo Dolar
+                case "F11_ED":
+                    result = true;
+                    //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    //montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
+                    //this.txtEfectivoDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
+                    //this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+                    ////this.txtEfectivoCordoba.Text = $"C${ valorMonto.ToString("N2")}";
+                    //this.txtEfectivoDolar.Enabled = enable;
+                    //valorMonto = valorMonto / tipoCambioOficial;
+                    break;
+
+                //F2=Efectivo Cordoba
+                case "F2":
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    ////obtener el monto a pagar o el monto pagado por el cliente                
+                    //this.txtChequeCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
+                    //this.txtChequeCordoba.Enabled = enable;
+                    break;
+
+                //F11  = cheque Dolar
+                case "F11_CHD":
+                    result = true;
+                    //obtener el monto a pagar o el monto pagado por el cliente
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    //montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
+                    //this.txtChequeDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${ (valorMonto / tipoCambioOficial).ToString("N2")}");
+                    //this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+                    //this.txtChequeDolar.Enabled = enable;
+                    //valorMonto = valorMonto / tipoCambioOficial;
+                    break;
+
+                //F3=Tarjeta Cordoba
+                case "F3":
+                    result = true;
+                    ////obtener el monto a pagar o el monto pagado por el cliente
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    //this.txtTarjetaCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+                    ////this.txtTarjetaDolar.Text = $"U${(valorMonto / tipoCambio).ToString("N2")}";
+                    //this.txtTarjetaCordoba.Enabled = enable;
+                    break;
+
+                //F11_TD=Telca F11 Tarjeta Dolar
+                case "F11_TD":
+                    result = true;
+                    //obtener el monto a pagar o el monto pagado por el cliente
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    //montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
+                    //this.txtTarjetaDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
+                    //this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+                    //this.txtTarjetaDolar.Enabled = enable;
+                    //valorMonto = valorMonto / tipoCambioOficial;
+                    break;
+
+                //F4 =Credito cordoba
+                case "F4":
+                    result = true;
+                    ////obtener el monto a pagar o el monto pagado por el cliente
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    //this.txtCredito.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+                    //this.txtCredito.Enabled = enable;
+                    break;
+
+                //F5=Bono cordoba
+                case "F5":
+                    result = true;
+                    //obtener el monto a pagar o el monto pagado por el cliente
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    //this.txtBono.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+                    //this.txtBono.Enabled = enable;
+                    break;
+
+                //F6=GiftCard Cordobas
+                case "F6":
+                    result = true;
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    ////revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pagp                       
+                    //this.txtGiftCardCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
+                    //this.txtGiftCardCordoba.Enabled = enable;
+                    break;
+
+                //F11_GCD= GiftCard Dolar
+                case "F11_GCD":
+
+                    //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
+                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    //montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
+                    //this.txtGiftCardDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
+                    //this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+                    //this.txtGiftCardDolar.Enabled = enable;
+                    //valorMonto = valorMonto / tipoCambioOficial;
+                    break;
+            }
+
+        }
+
+        private void txtMontoGeneral_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                //F11_ED =Efectivo Dolar ||F11_CHD = cheque Dolar, F11_TD=Tarjeta Dolar. F11_GCD= GiftCard Dolar
+                if (teclaPresionadaXCajero == "F11_ED" || teclaPresionadaXCajero == "F11_CHD" || teclaPresionadaXCajero == "F11_TD" || teclaPresionadaXCajero == "F11_GCD")
+                {
+
+                    //obtener el valor del textbox, ademas valida por si el textbox esta vacio
+                    decimal valor = this.txtMontoGeneral.Text.Trim().Length == 0 ? 0.00M : Convert.ToDecimal(this.txtMontoGeneral.Text);
+                    if (Convert.ToDecimal(valor) == metodoPago[0].DiferenciaDolar)
+                    {
+                        //hacer la conversion al tipo de  cambio del dia             
+                        this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${metodoPago[0].DiferenciaCordoba.ToString("N2")}";
+                    }
+                    else
+                    {
+                        //hacer la conversion al tipo de  cambio del dia             
+                        this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${(valor * tipoCambioOficial).ToString("N2")}";
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void txtMontoGeneral_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Services.Utilidades.UnPunto(e, this.txtMontoGeneral.Text.Trim(), ref bandera);
+        }
+
+        private void txtMontoGeneral_Leave(object sender, EventArgs e)
+        {
+            bandera = true;
+        }
+
+        private void txtDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (e.KeyChar == 13 && this.txtDocumento.Text.Trim().Length > 0)
+            {
+                if (teclaPresionadaXCajero == "F2" || teclaPresionadaXCajero == "F11_CHD" || teclaPresionadaXCajero == "F3" || teclaPresionadaXCajero == "F11_ED" ||
+                    teclaPresionadaXCajero == "F11_CHD" || teclaPresionadaXCajero == "F11_TD" || teclaPresionadaXCajero == "F4" || teclaPresionadaXCajero == "F5" ||
+                    teclaPresionadaXCajero == "F6" || teclaPresionadaXCajero == "F11_GCD")
+                {
+
+                    //llamar el metodo asignar pago
+                    AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtChequeCordoba.Text), moneda, true, teclaPresionadaXCajero, null);
+                    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+                    this.txtEfectivoCordoba.Enabled = false;
+                    teclaPresionadaXCajero = "";
+                }
+            }
+        }
     }
 }
+
+
+
+
+
+       
+
+
+
+

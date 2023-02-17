@@ -13,10 +13,7 @@ namespace COVENTAF.Services
 {
     public class ProcesoFacturacion
     {
-        public ProcesoFacturacion()
-        {
-
-        }
+      
 
         //desactivar el intercambio de descuento de linea del producto
         private void desactivarIntercambioDescuentoLinea(varFacturacion listVarFactura, List<DetalleFactura> detalleFact)
@@ -315,6 +312,44 @@ namespace COVENTAF.Services
         }*/
 
 
+        /// <summary>
+        /// inicializar todas las variables
+        /// </summary>
+        /// <param name="listVarFactura"></param>
+        public void InicializarTodaslasVariable(varFacturacion listVarFactura)
+        {
+            listVarFactura.inputActivo = "";
+            listVarFactura.IdActivo = "";
+            //indica si el descuento esta aplicado o no esta aplicado
+            listVarFactura.DescuentoActivo = true;
+            //descuento que el cliente
+            listVarFactura.TipoDeCambio = 0.0000M;
+            listVarFactura.BodegaId = "";
+
+            /**Totales */
+            listVarFactura.SubTotalDolar = 0.0000M;
+            listVarFactura.SubTotalCordoba = 0.0000M;
+            //descuento
+            listVarFactura.DescuentoPorLineaDolar = 0.0000M;
+            listVarFactura.DescuentoPorLineaCordoba = 0.0000M;
+            listVarFactura.DescuentoGeneralCordoba = 0.0000M;
+
+            //descuento General
+            listVarFactura.DescuentoGeneralDolar = 0.0000M;
+            listVarFactura.DescuentoGeneralCordoba = 0.0000M;
+
+            //subtotales 
+            listVarFactura.SubTotalDescuentoDolar = 0.0000M;
+            listVarFactura.SubTotalDescuentoCordoba = 0.0000M;
+            listVarFactura.IvaCordoba = 0.0000M;
+            listVarFactura.IvaDolar = 0.0000M;
+            listVarFactura.TotalDolar = 0.0000M;
+            listVarFactura.TotalCordobas = 0.0000M;
+            listVarFactura.TotalUnidades = 0.0000M;
+            //fecha de hoy
+            listVarFactura.FechaFactura = DateTime.Now;
+        }
+
         public bool desactivarBotonVerificarDescuento(varFacturacion listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago)
         {
             //verifico que existe el cliente y si existe almenos un codigo de barra
@@ -417,29 +452,83 @@ namespace COVENTAF.Services
         }*/
 
         //this.cboFormaPago.Text, this.cboTipoTarjeta.Text, this.cboCondicionPago.Text
-      /*  public string getNombreFormaPago(string forma_Pago,  string tipo_Tarjeta, string condicion_Pago)
+        /*  public string getNombreFormaPago(string forma_Pago,  string tipo_Tarjeta, string condicion_Pago)
+          {
+              var description = forma_Pago;
+
+              //verificar si es tarjeta
+              if (forma_Pago == "TARJETA")
+              {
+                  //agregar el tipo de tarjeta
+                  description = description + " " + tipo_Tarjeta;
+              }
+              //verificar si es credito
+              else if (description == "CREDITO")
+              {
+                  //agregar la condicion de pago
+                  description = description + " " + condicion_Pago;
+              }
+              else
+              {
+                  description = forma_Pago;
+              }
+
+              return description;
+          }*/
+
+        public void configurarDataGridView(DataGridView dgvDetalleFactura)
         {
-            var description = forma_Pago;
-            
-            //verificar si es tarjeta
-            if (forma_Pago == "TARJETA")
+            //this.dgvDetalleFactura.Columns["consecutivo"].Visible = false;            
+            //this.dgvDetalleFactura.Columns["inputArticuloDesactivado"].Visible = false;
+            //this.dgvDetalleFactura.Columns["moneda"].Visible = false;
+            //this.dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;   
+            //this.dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;            
+            //this.dgvDetalleFactura.Columns["descuentoInactivo"].Visible = false;            
+            //this.dgvDetalleFactura.Columns["descuentoGeneralCordoba"].Visible = false;
+            //this.dgvDetalleFactura.Columns["descuentoGeneralDolar"].Visible = false;            
+            //this.dgvDetalleFactura.Columns["inputActivoParaBusqueda"].Visible = false;
+            //this.dgvDetalleFactura.Columns["botonEliminarDesactivado"].Visible = false;
+            //this.dgvDetalleFactura.Columns["BodegaID"].Visible = false;
+            //this.dgvDetalleFactura.Columns["NombreBodega"].Visible = false;   
+
+            dgvDetalleFactura.Columns["totalDolar"].HeaderText = "Total U$";
+            dgvDetalleFactura.Columns["descuentoPorLineaDolar"].HeaderText = "Descuento U$";
+            dgvDetalleFactura.Columns["precioDolar"].HeaderText = "Precio U$";
+            dgvDetalleFactura.Columns["codigoBarra"].HeaderText = "Codigo Barra";
+            dgvDetalleFactura.Columns["descripcion"].HeaderText = "Descripcion";
+            dgvDetalleFactura.Columns["cantidad"].HeaderText = "Cantidad";
+            dgvDetalleFactura.Columns["cantidadExistencia"].HeaderText = "Existencia";
+            dgvDetalleFactura.Columns["precioCordobas"].HeaderText = "Precio C$";
+            dgvDetalleFactura.Columns["descuentoPorLineaCordoba"].HeaderText = "Descuento C$";
+            dgvDetalleFactura.Columns["subTotalCordobas"].HeaderText = "Sub Total C$";
+            dgvDetalleFactura.Columns["porCentajeDescuentoXArticulo"].HeaderText = "Descuento %";
+            dgvDetalleFactura.Columns["totalCordobas"].HeaderText = "Total C$";
+
+        }
+
+
+        public string ObtenerNuevoPorCentaje(string cadena, ref bool existeCaractePorcentaje)
+        {
+            string caracter = "";
+            string nuevaCadena = "";
+            for (int n = 0; n < cadena.Length; n++)
             {
-                //agregar el tipo de tarjeta
-                description = description + " " + tipo_Tarjeta;
-            }
-            //verificar si es credito
-            else if (description == "CREDITO")
-            {
-                //agregar la condicion de pago
-                description = description + " " + condicion_Pago;
-            }
-            else
-            {
-                description = forma_Pago;
+                caracter = cadena.Substring(n, 1);
+                if (caracter == "%")
+                {
+                    existeCaractePorcentaje = true;
+                    break;
+                }
+                else
+                {
+                    nuevaCadena += caracter;
+                }
             }
 
-            return description;
-        }*/
+
+            return nuevaCadena;
+        }
+
 
 
         private PrintDocument doc = new PrintDocument();
@@ -449,7 +538,7 @@ namespace COVENTAF.Services
 
         private List<DetalleFactura> _listDetFactura;
         private  Encabezado _encabezadoFact;
-        private string noFactura;
+       
 
         public void ImprimirTicketFactura(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact)
         {
