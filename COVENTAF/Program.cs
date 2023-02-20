@@ -45,7 +45,7 @@ namespace COVENTAF
            // var services = new ServiceCollection();
            // ConfigureServices(services);
 
-            Application.Run(new frmMetodoPago());
+            Application.Run(new frmLogIn2());
 
            /* using (ServiceProvider serviceProvider = services.BuildServiceProvider())
             {

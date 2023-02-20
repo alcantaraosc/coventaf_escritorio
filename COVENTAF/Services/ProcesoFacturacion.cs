@@ -748,6 +748,28 @@ namespace COVENTAF.Services
             }
 
         }
+
+
+        private List<string> ObtenerDatosRegistro(string dato, int longitudMax)
+        {
+            string nuevoDato = "";
+            List<string> nuevaLista = new List<string>();
+            for(int row=0; row < dato.Length; row ++)
+            {
+                if (nuevoDato.Length == longitudMax)
+                {
+                    nuevaLista.Add(nuevoDato);
+                }
+                else
+                {
+                    nuevoDato = nuevoDato + dato[row];
+                }
+            }
+
+            return nuevaLista;        
+        }
+
+
         
     }
 }

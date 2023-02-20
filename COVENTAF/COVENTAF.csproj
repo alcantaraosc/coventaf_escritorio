@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="devexpress.win.design" Version="21.2.3" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.2.1" />
     <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4" />
     <PackageReference Include="MaterialSkin.2.RTL" Version="2.3.1.1" />

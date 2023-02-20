@@ -263,6 +263,16 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap moreOption {
+            get {
+                object obj = ResourceManager.GetObject("moreOption", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap price_check_48 {
             get {
                 object obj = ResourceManager.GetObject("price_check_48", resourceCulture);

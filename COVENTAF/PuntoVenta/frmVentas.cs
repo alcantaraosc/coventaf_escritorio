@@ -1424,8 +1424,7 @@ namespace COVENTAF.PuntoVenta
             foreach (var mMetodoPago in metodoPago)
             {
                 //aqui incluye el vuelto del cliente
-                if (mMetodoPago.Indice > 0)
-                {
+               
                     var datosPagosPos_ = new Pago_Pos();
                     datosPagosPos_.Documento = _modelFactura.Factura.Factura;
 
@@ -1443,14 +1442,14 @@ namespace COVENTAF.PuntoVenta
                         //forma de pago para mostrar al momento de imprimir la Ticket
                         listVarFactura.TicketFormaPago += $"{mMetodoPago.DescripcionFormPago} {mMetodoPago.TipoTarjeta} {mMetodoPago.DescripcionCondicionPago}  ";
                     }
-                   
 
-                    //REVISAR
-                    datosPagosPos_.Entidad_Financiera = null;
+
+                //REVISAR
+                datosPagosPos_.Entidad_Financiera = mMetodoPago.EntidadFinanciera;
                     datosPagosPos_.Tipo_Tarjeta = mMetodoPago.TipoTarjeta;
                     
                     datosPagosPos_.Forma_Pago = mMetodoPago.FormaPago;
-                    datosPagosPos_.Numero = null;
+                datosPagosPos_.Numero = mMetodoPago.Numero;
                     datosPagosPos_.Monto_Local = mMetodoPago.Moneda == 'L' ? mMetodoPago.MontoCordoba : 0.0000M;
                     datosPagosPos_.Monto_Dolar = mMetodoPago.Moneda == 'D' ? mMetodoPago.MontoDolar : 0.0000M;
                     datosPagosPos_.Autorizacion = null;
@@ -1489,7 +1488,7 @@ namespace COVENTAF.PuntoVenta
 
                     //agregar nuevo registro a la clase FacturaLinea.
                     _modelFactura.PagoPos.Add(datosPagosPos_);
-                }
+                
             }
 
             //asingar la tarjeta de credito por el metodo de pago que selecciono el cliente
