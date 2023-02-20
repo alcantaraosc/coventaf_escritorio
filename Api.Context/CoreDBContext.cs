@@ -76,6 +76,7 @@ namespace Api.Context
             modelBuilder.Entity<Denominacion>().ToTable("DENOMINACION", schema: "TIENDA");
             modelBuilder.Entity<Membresia>().ToTable("MEMBRESIA", schema: "ERPADMIN");
             modelBuilder.Entity<Cierre_Det_Pago>().ToTable("CIERRE_DET_PAGO", schema: "TIENDA");
+            modelBuilder.Entity<Entidad_Financieras>().ToTable("ENTIDAD_FINANCIERA", schema: "TIENDA");
 
 
 
@@ -118,9 +119,10 @@ namespace Api.Context
             modelBuilder.Entity<Denominacion>().HasKey(dm => new { dm.Tipo, dm.Denom_Monto });
             modelBuilder.Entity<Membresia>().HasKey(m => new { m.Grupo, m.Usuario });
             modelBuilder.Entity<Cierre_Det_Pago>().HasKey(cdp => new { cdp.Num_Cierre, cdp.Cajero, cdp.Caja,cdp.Tipo_Pago });
+            modelBuilder.Entity<Entidad_Financieras>().HasKey(ef => ef.Entidad_Financiera);
 
             //vista            
-            modelBuilder.Entity<ViewArticulo>().ToView("ViewArticulo", schema: "dbo");
+            //modelBuilder.Entity<ViewArticulo>().ToView("ViewArticulo", schema: "dbo");
             modelBuilder.Entity<ViewFactura>().ToView("ViewFactura", schema: "dbo");
             modelBuilder.Entity<ViewUsuarios>().ToView("ViewUsuarios", schema: "dbo");            
             modelBuilder.Entity<ViewCajaDisponible>().ToView("ViewCajaDisponible", schema: "dbo");
@@ -528,7 +530,7 @@ namespace Api.Context
         //public virtual DbSet<ENC_MOV_APLICADO> ENC_MOV_APLICADO { get; set; }
         //public virtual DbSet<ENC_MOV_NOAPLICADO> ENC_MOV_NOAPLICADO { get; set; }
         //public virtual DbSet<ENC_TABLA_UDF> ENC_TABLA_UDF { get; set; }
-        //public virtual DbSet<ENTIDAD_FINANCIERA> ENTIDAD_FINANCIERA { get; set; }
+        public virtual DbSet<Entidad_Financieras> Entidad_Financieras { get; set; }
         //public virtual DbSet<EQUIPO> EQUIPO { get; set; }
         //public virtual DbSet<EQUIPO_EQUIVALENTE> EQUIPO_EQUIVALENTE { get; set; }
         //public virtual DbSet<EQUIPO_PARENTESCO> EQUIPO_PARENTESCO { get; set; }
@@ -1035,7 +1037,7 @@ namespace Api.Context
 
 
         //vista
-        public virtual DbSet<ViewArticulo> ViewArticulo { get; set; }
+        //public virtual DbSet<ViewArticulo> ViewArticulo { get; set; }
         public virtual DbSet<ViewFactura> ViewFactura { get; set; }
         public virtual DbSet<ViewUsuarios> ViewUsuarios { get; set; }        
         public virtual DbSet<ViewCajaDisponible> ViewCajaDisponible { get; set; }

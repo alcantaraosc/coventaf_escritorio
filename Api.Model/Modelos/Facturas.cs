@@ -62,6 +62,7 @@ namespace Api.Model.Modelos
         [StringLength(10)]    
         public string Asiento_Documento { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Descuento_Volumen { get; set; }
 
         [Required]
@@ -91,36 +92,46 @@ namespace Api.Model.Modelos
         public string Tipo_Original { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Comision_Cobrador { get; set; }
 
         [StringLength(20)]
         public string Tarjeta_Credito { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Volumen { get; set; }      
         
         [StringLength(10)]
         public string Numero_Autoriza { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Peso { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Cobrado { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Impuesto1 { get; set; }
         [Required]
         public DateTime Fecha { get; set; }
         [Required]
         public DateTime Fecha_Entrega { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Impuesto2 { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Porc_Descuento2 { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Flete { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Seguro { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Documentacio { get; set; }
 
         [Required]
@@ -131,14 +142,18 @@ namespace Api.Model.Modelos
         [StringLength(1)]
         public string Tipo_Descuento2 { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         //Monto  del descuento General
         public decimal Monto_Descuento1 { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Descuento2 { get; set; }
         [Required]
         //PorCentaje Descuento General
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Porc_Descuento1 { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Factura { get; set; }
         [Required]
         public DateTime Fecha_Pedido { get; set; }
@@ -146,8 +161,10 @@ namespace Api.Model.Modelos
 
         public DateTime? Fecha_Orden { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Mercaderia { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Comision_Vendedor { get; set; }
 
         [StringLength(30)]
@@ -155,10 +172,12 @@ namespace Api.Model.Modelos
         [Required]
         public DateTime Fecha_Hora { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Unidades { get; set; }
         [Required]
         public short Numero_Paginas { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Tipo_Cambio { get; set; }
 
         [Required]
@@ -274,16 +293,16 @@ namespace Api.Model.Modelos
 
         [StringLength(3)]
         public string Tipo_Doc_Cxc { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Monto_Anticipo { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Total_Peso_Neto { get; set; }
         [Required]
         public DateTime Fecha_Rige { get; set; }
 
         [StringLength(20)]
         public string Contrato { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Porc_Intcte { get; set; }
 
         [Required]
@@ -312,9 +331,9 @@ namespace Api.Model.Modelos
 
         [StringLength(12)]
         public string Division_Geografica2 { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Base_Impuesto1 { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Base_Impuesto2 { get; set; }
 
         [StringLength(150)]
@@ -336,24 +355,24 @@ namespace Api.Model.Modelos
         public string Genera_Doc_Fe { get; set; }        
         [StringLength(4)]
         public string Tasa_Impositiva { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Tasa_Impositiva_Porc { get; set; }
 
         [StringLength(4)]
         public string Tasa_Cree1 { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Tasa_Cree1_Porc { get; set; }
 
         [StringLength(4)]
         public string Tasa_Cree2 { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Tasa_Cree2_Porc { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Tasa_Gan_Ocasional_Porc { get; set; }
 
         [StringLength(10)]
         public string Contrato_Ac { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Ajuste_Redondeo { get; set; }
 
         [StringLength(3)]
@@ -446,9 +465,9 @@ namespace Api.Model.Modelos
 
         [StringLength(10)]
         public string Actividad_Comercial { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Monto_Otro_Cargo { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Monto_Total_Iva_Devuelto { get; set; }
 
         [StringLength(2)]
@@ -528,7 +547,7 @@ namespace Api.Model.Modelos
 
         [StringLength(4)]
         public string Act_Detrac { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Porc_Detrac { get; set; }
               
 

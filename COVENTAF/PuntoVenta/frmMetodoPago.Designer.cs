@@ -861,6 +861,7 @@ namespace COVENTAF.PuntoVenta
             this.tbpPagosPrincipal.Size = new System.Drawing.Size(952, 340);
             this.tbpPagosPrincipal.TabIndex = 0;
             this.tbpPagosPrincipal.Text = "Pagos Principales";
+            
             // 
             // lblOtros
             // 

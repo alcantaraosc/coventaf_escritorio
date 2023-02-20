@@ -28,9 +28,9 @@ namespace Api.Service.DataService
         /// <param name="codigoBarra"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<ViewArticulo> ObtenerArticuloPorIdAsync( ResponseModel responseModel, string codigoBarra, string bodegaID, string nivelPrecio)
+        public async Task<ViewModelArticulo> ObtenerArticuloPorIdAsync( ResponseModel responseModel, string codigoBarra, string bodegaID, string nivelPrecio)
         {
-            var Articulo = new ViewArticulo ();
+            var Articulo = new ViewModelArticulo ();
    
             try
             {
@@ -60,6 +60,8 @@ namespace Api.Service.DataService
                         Articulo.Existencia = Convert.ToDecimal(dr["EXISTENCIA"]);
                         Articulo.Moneda = Convert.ToChar(dr["MONEDA"]);
                         Articulo.Descuento = Convert.ToDecimal(dr["DESCUENTO"]);
+                        Articulo.Cost_Prom_Dol = Convert.ToDecimal(dr["COSTO_PROM_DOL"]);
+                        Articulo.Costo_Prom_Loc = Convert.ToDecimal(dr["COSTO_PROM_LOC"]);                        
                     }
                 }
 

@@ -74,12 +74,12 @@ namespace Controladores
                  listarCombox.tipoDeCambio = (moneda_Hist is null ? 0.0000M : moneda_Hist.Monto);                
                 //obtener la lista de bodegas que estan activas
                 listarCombox.bodega = await _serviceBodega.ListarBodegasAsync(User.TiendaID, responseModel);
-                listarCombox.FormaPagos = (List<Forma_Pagos>)await _serviceFormaPago.ListarFormaDePago(responseModel);
+               // listarCombox.FormaPagos = (List<Forma_Pagos>)await _serviceFormaPago.ListarFormaDePago(responseModel);
                 responseModel = null;
                 responseModel = new ResponseModel();
                 listarCombox.NoFactura = await _serviceFactura.ObtenerNoFactura(responseModel, User.Usuario, User.Caja, User.ConsecCierreCT);
-                listarCombox.TipoTarjeta = await _serviceFactura.ListarTipoTarjeta(responseModel);
-                listarCombox.CondicionPago = await _serviceFactura.ListarCondicionPago(responseModel);
+              //  listarCombox.TipoTarjeta = await _serviceFactura.ListarTipoTarjeta(responseModel);
+               // listarCombox.CondicionPago = await _serviceFactura.ListarCondicionPago(responseModel);
                 listarCombox.Exito = 1;
                 listarCombox.Mensaje = "Consulta Exitosa";
 

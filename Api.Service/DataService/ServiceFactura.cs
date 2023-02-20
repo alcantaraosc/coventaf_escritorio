@@ -216,76 +216,78 @@ namespace Api.Service.DataService
         /// <param name="model"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<int> InsertOrUpdateFactura(ViewModelFacturacion model, ResponseModel responseModel )
+        public async Task<int> InsertOrUpdateFactura(ViewModelFacturacion model, ResponseModel responseModel)
         {
-           
             var utilidad = new Utilidades();
             //Facturas facturas = new Facturas();
             ////List<FACTURA_LINEA> facturaLinea = new List<FACTURA_LINEA>();
             //facturas = model.Factura;
             //facturaLinea = model.FacturaLinea;
-           
 
             int result = 0;
-            //utilizar transacciones
-            using var transaction = await _db.Database.BeginTransactionAsync();
+
+            using CoreDBContext _db = new CoreDBContext();
             {
-                try
-                {                    
-                    //generar el Guid
-                    model.Factura.RowPointer = utilidad.GenerarGuid();
-                    
-                    //agregar la factura
-                    _db.Add<Facturas>(model.Factura);
-                    //guardar los cambios en la tabla Factura
-                    await _db.SaveChangesAsync();
-
-                    for (int row = 0; row < model.FacturaLinea.Count; ++row)
-                    {                        
-                        //instanciar la clase FACTURA_LINEA
-                        var facturaLinea = new Factura_Linea();
-                        //agregar la primera fila a la clase facturaLinea
-                        facturaLinea = model.FacturaLinea.ElementAt<Factura_Linea>(row);
-                       
-                        //generar el Guid
-                        facturaLinea.RowPointer = utilidad.GenerarGuid();
-                        //insertar en la base de datos el p
-                        _db.Add<Factura_Linea>(facturaLinea);
-                        await _db.SaveChangesAsync();                      
-                    }
-
-                    for(int row =0; row < model.PagoPos.Count; row ++)
-                    {                        
-                        //instanciar la clase Pago_Pos
-                        var pagoPos = new Pago_Pos();
-                        //agregar la primera fila a la clase Pago_Pos
-                        pagoPos = model.PagoPos.ElementAt<Pago_Pos>(row);
-                        //asignar el numero de facturas.                        
-                        //generar el Guid
-                        pagoPos.RowPointer = utilidad.GenerarGuid();
-                        //insertar en la base de datos el p
-                        _db.Add<Pago_Pos>(pagoPos);
-                        await _db.SaveChangesAsync();
-                    }
-
-                    //consultar la factura de la tabla temporal
-                   // var listFactTemp = await _db.FacturaTemporal.Where(x => x.Factura == model.Factura.Factura).ToListAsync();
-                    //eliminar la factura de la tabla temporal
-                   // _db.FacturaTemporal.RemoveRange(listFactTemp);
-                    await _db.SaveChangesAsync();
-                    
-
-                    await transaction.CommitAsync();
-                    result = 1;                   
-                }
-                catch(Exception ex)
+                //utilizar transacciones
+                using var transaction = await _db.Database.BeginTransactionAsync();
                 {
-                    await transaction.RollbackAsync();
-                    throw new Exception(ex.Message);
-                }          
-            }
+                    try
+                    {
+                        //generar el Guid
+                        model.Factura.RowPointer = utilidad.GenerarGuid();
 
-            
+                        //agregar la factura
+                        _db.Add<Facturas>(model.Factura);
+                        //guardar los cambios en la tabla Factura
+                        await _db.SaveChangesAsync();
+
+                        for (int row = 0; row < model.FacturaLinea.Count; ++row)
+                        {
+                            //instanciar la clase FACTURA_LINEA
+                            var facturaLinea = new Factura_Linea();
+                            //agregar la primera fila a la clase facturaLinea
+                            facturaLinea = model.FacturaLinea.ElementAt<Factura_Linea>(row);
+
+                            //generar el Guid
+                            facturaLinea.RowPointer = utilidad.GenerarGuid();
+                            //insertar en la base de datos el p
+                            _db.Add<Factura_Linea>(facturaLinea);
+                            await _db.SaveChangesAsync();
+                        }
+
+                        for (int row = 0; row < model.PagoPos.Count; row++)
+                        {
+                            //instanciar la clase Pago_Pos
+                            var pagoPos = new Pago_Pos();
+                            //agregar la primera fila a la clase Pago_Pos
+                            pagoPos = model.PagoPos.ElementAt<Pago_Pos>(row);
+                            //asignar el numero de facturas.                        
+                            //generar el Guid
+                            pagoPos.RowPointer = utilidad.GenerarGuid();
+                            //insertar en la base de datos el p
+                            _db.Add<Pago_Pos>(pagoPos);
+                            await _db.SaveChangesAsync();
+                        }
+
+                        //consultar la factura de la tabla temporal
+                        // var listFactTemp = await _db.FacturaTemporal.Where(x => x.Factura == model.Factura.Factura).ToListAsync();
+                        //eliminar la factura de la tabla temporal
+                        // _db.FacturaTemporal.RemoveRange(listFactTemp);
+                        await _db.SaveChangesAsync();
+
+
+                        await transaction.CommitAsync();
+                        result = 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        await transaction.RollbackAsync();
+                        throw new Exception(ex.InnerException.Message);
+                    }
+                }
+            }
+        
+       
             if (result > 0)
             {
                 responseModel.Mensaje = "La factura se ha guardado exitosamente";                

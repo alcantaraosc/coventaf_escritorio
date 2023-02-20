@@ -98,12 +98,6 @@ namespace COVENTAF.PuntoVenta
             this.label18 = new System.Windows.Forms.Label();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
-            this.grpMetodoPago = new System.Windows.Forms.GroupBox();
-            this.cboCondicionPago = new System.Windows.Forms.ComboBox();
-            this.lblLabelTittulo = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cboFormaPago = new System.Windows.Forms.ComboBox();
-            this.cboTipoTarjeta = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -147,7 +141,6 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
-            this.grpMetodoPago.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -967,79 +960,6 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox24.TabIndex = 123;
             this.pictureBox24.TabStop = false;
             // 
-            // grpMetodoPago
-            // 
-            this.grpMetodoPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpMetodoPago.Controls.Add(this.cboCondicionPago);
-            this.grpMetodoPago.Controls.Add(this.lblLabelTittulo);
-            this.grpMetodoPago.Controls.Add(this.label19);
-            this.grpMetodoPago.Controls.Add(this.cboFormaPago);
-            this.grpMetodoPago.Controls.Add(this.cboTipoTarjeta);
-            this.grpMetodoPago.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.grpMetodoPago.ForeColor = System.Drawing.Color.White;
-            this.grpMetodoPago.Location = new System.Drawing.Point(888, 223);
-            this.grpMetodoPago.Name = "grpMetodoPago";
-            this.grpMetodoPago.Size = new System.Drawing.Size(327, 168);
-            this.grpMetodoPago.TabIndex = 124;
-            this.grpMetodoPago.TabStop = false;
-            this.grpMetodoPago.Text = "Metodo de Pago";
-            this.grpMetodoPago.Visible = false;
-            // 
-            // cboCondicionPago
-            // 
-            this.cboCondicionPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCondicionPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cboCondicionPago.FormattingEnabled = true;
-            this.cboCondicionPago.Location = new System.Drawing.Point(23, 91);
-            this.cboCondicionPago.Name = "cboCondicionPago";
-            this.cboCondicionPago.Size = new System.Drawing.Size(104, 28);
-            this.cboCondicionPago.TabIndex = 90;
-            this.cboCondicionPago.Visible = false;
-            // 
-            // lblLabelTittulo
-            // 
-            this.lblLabelTittulo.AutoSize = true;
-            this.lblLabelTittulo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLabelTittulo.ForeColor = System.Drawing.Color.White;
-            this.lblLabelTittulo.Location = new System.Drawing.Point(0, 33);
-            this.lblLabelTittulo.Name = "lblLabelTittulo";
-            this.lblLabelTittulo.Size = new System.Drawing.Size(156, 20);
-            this.lblLabelTittulo.TabIndex = 92;
-            this.lblLabelTittulo.Text = "Condicion de Pago:";
-            this.lblLabelTittulo.Visible = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(23, 176);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(125, 20);
-            this.label19.TabIndex = 39;
-            this.label19.Text = "Forma de Pago:";
-            // 
-            // cboFormaPago
-            // 
-            this.cboFormaPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboFormaPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cboFormaPago.FormattingEnabled = true;
-            this.cboFormaPago.Location = new System.Drawing.Point(203, 91);
-            this.cboFormaPago.Name = "cboFormaPago";
-            this.cboFormaPago.Size = new System.Drawing.Size(117, 28);
-            this.cboFormaPago.TabIndex = 89;
-            // 
-            // cboTipoTarjeta
-            // 
-            this.cboTipoTarjeta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoTarjeta.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cboTipoTarjeta.FormattingEnabled = true;
-            this.cboTipoTarjeta.Location = new System.Drawing.Point(34, 199);
-            this.cboTipoTarjeta.Name = "cboTipoTarjeta";
-            this.cboTipoTarjeta.Size = new System.Drawing.Size(140, 28);
-            this.cboTipoTarjeta.TabIndex = 91;
-            this.cboTipoTarjeta.Visible = false;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
@@ -1316,7 +1236,6 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCobrar);
-            this.Controls.Add(this.grpMetodoPago);
             this.Controls.Add(this.txtObservaciones);
             this.Controls.Add(this.pictureBox24);
             this.Controls.Add(this.label18);
@@ -1394,8 +1313,6 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
-            this.grpMetodoPago.ResumeLayout(false);
-            this.grpMetodoPago.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
@@ -1471,12 +1388,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.PictureBox pictureBox24;
-        private System.Windows.Forms.GroupBox grpMetodoPago;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ComboBox cboTipoTarjeta;
-        private System.Windows.Forms.ComboBox cboCondicionPago;
-        private System.Windows.Forms.ComboBox cboFormaPago;
-        private System.Windows.Forms.Label lblLabelTittulo;
         private System.Windows.Forms.PictureBox btnRestaurar;
         private System.Windows.Forms.PictureBox btnCerrar;
         private System.Windows.Forms.PictureBox btnMminizar;

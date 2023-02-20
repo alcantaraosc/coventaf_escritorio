@@ -620,7 +620,7 @@ namespace COVENTAF.Services
                 posX += 50;
                 e.Graphics.DrawString("Precio", fuente, Brushes.Black, posX, posY);
                 // posY += 15;
-                posX += 70;
+                posX += 50;
                 e.Graphics.DrawString("Desc", fuente, Brushes.Black, posX, posY);
                 //posY += 15;
                 posX += 40;
@@ -650,7 +650,7 @@ namespace COVENTAF.Services
                     e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.descuentoPorLineaCordoba).ToString("N2") , fuenteRegular, Brushes.Black, posX, posY);
                    
                     posX += 50;
-                    e.Graphics.DrawString(detalleFactura.subTotalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.totalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                     
                     //salto a la siguiente linea
                     posY += 15;
@@ -770,6 +770,216 @@ namespace COVENTAF.Services
         }
 
 
-        
+        string _observaciones = "";
+
+        public void ImprimirTicketFacturaDemo(List<DetalleFactura> listDetFactura, string Observaciones)
+        {
+            this._listDetFactura = new List<DetalleFactura>();
+            _listDetFactura = listDetFactura;
+            _observaciones = Observaciones;
+
+            //this._encabezadoFact = new Encabezado();
+            //this._encabezadoFact = encabezadoFact;
+
+
+            doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
+
+            doc.PrintPage += new PrintPageEventHandler(ImprimirTicketDemo);
+            // Set the zoom to 25 percent.
+            //this.PrintPreviewControl1.Zoom = 0.25;            
+            //vista.Controls.Add(this.PrintPreviewControl1);
+
+            vista.Document = doc;
+            //doc.Print();
+            vista.ShowDialog();
+        }
+
+        public void ImprimirTicketDemo(object sender, PrintPageEventArgs e)
+        {
+            int posX, posY;
+            Font fuente = new Font("consola", 8, FontStyle.Bold);
+            Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
+            Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
+
+            var direccion = "Km 6 Carretera Norte, 700 Mts al norte";
+            var direccion2 = "Puente a Desnivel";
+            var telefono = "Tel:(505)22493187 Fax: 22493184";
+
+
+            try
+            {
+                posX = 2;
+                posY = 0;
+                posY += 20;
+                e.Graphics.DrawString("EJERCITO DE NICARAGUA ", fuente, Brushes.Black, posX + 53, posY);
+                posY += 15;
+                e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 45, posY);
+                posY += 15;
+                e.Graphics.DrawString(direccion, fuente, Brushes.Black, posX + 35, posY);
+                posY += 15;
+                e.Graphics.DrawString(direccion2, fuente, Brushes.Black, posX + 80, posY);
+                posY += 15;
+                e.Graphics.DrawString("Managua, Nicaragua", fuente, Brushes.Black, posX + 80, posY);
+                posY += 15;
+                e.Graphics.DrawString(telefono, fuente, Brushes.Black, posX + 40, posY);
+                posY += 15;
+                e.Graphics.DrawString("N° RUC: J1330000001272", fuente, Brushes.Black, posX + 55, posY);
+
+                //factura
+                posY += 24;
+                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.noFactura, fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString("Codigo Cliente: " + _encabezadoFact.codigoCliente, fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString("Cliente: " + _encabezadoFact.cliente, fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString("Fecha: " + _encabezadoFact.fecha, fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString("Bodega: " + _encabezadoFact.bodega, fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString("Caja: " + _encabezadoFact.caja, fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N4"), fuenteRegular, Brushes.Black, posX, posY);
+                posY += 18;
+                e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
+                posY += 10;
+                e.Graphics.DrawString("Codigo", fuente, Brushes.Black, posX, posY);
+                //posY += 15;
+                posX += 60;
+                e.Graphics.DrawString("Cant", fuente, Brushes.Black, posX, posY);
+                //posY += 15;
+                posX += 50;
+                e.Graphics.DrawString("Precio", fuente, Brushes.Black, posX, posY);
+                // posY += 15;
+                posX += 50;
+                e.Graphics.DrawString("Desc", fuente, Brushes.Black, posX, posY);
+                //posY += 15;
+                posX += 40;
+                e.Graphics.DrawString("Monto", fuente, Brushes.Black, posX, posY);
+                posY += 10;
+                //reiniciar la posicionX
+                posX = 2;
+                e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
+
+
+
+                //e.Graphics.DrawString("8721160000939", fuenteRegular, Brushes.Black, posX, posY);
+                //_listDetFactura
+
+                foreach (var detalleFactura in _listDetFactura)
+                {
+                    posY += 10;
+                    e.Graphics.DrawString(detalleFactura.articuloId, fuenteRegular, Brushes.Black, posX, posY);
+
+                    posX += 60;
+                    e.Graphics.DrawString(detalleFactura.cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    posX += 45;
+                    e.Graphics.DrawString(detalleFactura.precioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    posX += 60;
+                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.descuentoPorLineaCordoba).ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    posX += 50;
+                    e.Graphics.DrawString(detalleFactura.totalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    //salto a la siguiente linea
+                    posY += 15;
+                    posX = 2;
+                    e.Graphics.DrawString(detalleFactura.descripcion, fuenteRegular_7, Brushes.Black, posX, posY);
+
+                    posY += 7;
+                }
+
+                posY += 5;
+                e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
+
+                posY += 15;
+                posX = 2;
+                posX += 140;
+                e.Graphics.DrawString("Sub Total:", fuente, Brushes.Black, posX, posY);
+
+
+                posX += 65;
+                e.Graphics.DrawString("C$ " + _encabezadoFact.subTotalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 15;
+                posX = 2;
+                posX += 140;
+                e.Graphics.DrawString("Descuento:", fuente, Brushes.Black, posX, posY);
+
+                posX += 65;
+                e.Graphics.DrawString("C$ " + _encabezadoFact.descuentoCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 15;
+                posX = 2;
+                posX += 140;
+                e.Graphics.DrawString("IVA:", fuente, Brushes.Black, posX, posY);
+
+                posX += 65;
+                e.Graphics.DrawString("C$ " + _encabezadoFact.ivaCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 15;
+                posX = 2;
+                posX += 140;
+                e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
+
+                posX += 65;
+                e.Graphics.DrawString("C$ " + _encabezadoFact.totalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+
+                posY += 15;
+                posX = 2;
+                posX += 140;
+                e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
+
+                posX += 65;
+                e.Graphics.DrawString("U$ " + _encabezadoFact.totalDolar.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                /************************************************************************************/
+
+                posY += 20;
+                //reiniciar en la posicion X
+                posX = 2;
+                e.Graphics.DrawString("Forma de Pago: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 18;
+                e.Graphics.DrawString("Observaciones: " + _observaciones, fuenteRegular, Brushes.Black, posX, posY);
+
+                for (var fila = 0; fila < _observaciones.Length; fila++)
+                {
+
+                }
+
+                posY += 18;
+                e.Graphics.DrawString("Atendido Por: " + _encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 40;
+                e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 40;
+                e.Graphics.DrawString("RECIBIDO: ", fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 40;
+                posX = 30;
+                e.Graphics.DrawString("NO SE ACEPTAN CAMBIOS DESPUES DE", fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString("48 HORAS. *APLICAN RESTRICCIONES*", fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 25;
+                posX += 23;
+                e.Graphics.DrawString("GRACIAS POR SU COMPRA", fuenteRegular, Brushes.Black, posX, posY);
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+
+
     }
 }

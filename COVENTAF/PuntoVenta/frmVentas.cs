@@ -37,9 +37,8 @@ namespace COVENTAF.PuntoVenta
         //campos del grid
         public List<DetalleFactura> listDetFactura = new List<DetalleFactura>();
         public List<Bodegas> listaBodega = new List<Bodegas>();
-        public List<Forma_Pagos> listFormaPago = new List<Forma_Pagos>();
-        public List<Tipo_Tarjeta_Pos> listaTipoTarjeta = new List<Tipo_Tarjeta_Pos>();
-        public List<Condicion_Pagos> listaCondicionPago = new List<Condicion_Pagos>();
+             
+        
         public Clientes datosCliente = new Clientes();
 
         private int consecutivoActualFactura;
@@ -196,6 +195,8 @@ namespace COVENTAF.PuntoVenta
                 MontoDescGeneralCordoba = 0.0000M,
                 totalDolar = 0.00M,
                 totalCordobas = 0.00M,
+                Cost_Prom_Dol =0.0000M,
+                Cost_Prom_Loc =0.0000M,
                 inputActivoParaBusqueda = true,
                 botonEliminarDesactivado = true
             };
@@ -225,33 +226,13 @@ namespace COVENTAF.PuntoVenta
                     this.lblTipoCambio.Text =$"Tipo Cambio: {responseModel.tipoDeCambio.ToString("N4")}";
                     //asignar la lista de bodega
                     this.listaBodega = responseModel.bodega;
-                    //asignar la forma de pago
-                    this.listFormaPago = responseModel.FormaPagos;
-                    //asignar el tipo de tarjeta
-                    this.listaTipoTarjeta = responseModel.TipoTarjeta;
-                    //asignar las condiciones de pagos
-                    this.listaCondicionPago = responseModel.CondicionPago;
-
+             
 
                     //llenar el combox de la bodega
                     this.cboBodega.ValueMember = "Bodega";
                     this.cboBodega.DisplayMember = "Nombre";
                     this.cboBodega.DataSource = listaBodega;
-
-                    //llenar el combox forma de pago
-                    this.cboFormaPago.ValueMember = "Forma_Pago";
-                    this.cboFormaPago.DisplayMember = "Descripcion";
-                    this.cboFormaPago.DataSource = listFormaPago;
-
-                    //llenar el combox tipo de tarjeta
-                    this.cboTipoTarjeta.ValueMember = "Tipo_Tarjeta";
-                    this.cboTipoTarjeta.DisplayMember = "Tipo_Tarjeta";
-                    this.cboTipoTarjeta.DataSource = listaTipoTarjeta;
-
-                    //llenar el combox condicion de pago
-                    this.cboCondicionPago.ValueMember = "Condicion_Pago";
-                    this.cboCondicionPago.DisplayMember = "Descripcion";
-                    this.cboCondicionPago.DataSource = this.listaCondicionPago;
+               
                     //asignar la bodega por defecto
                     this.cboBodega.SelectedValue = User.BodegaID;
                     AccederEventoCombox = true;
@@ -335,9 +316,9 @@ namespace COVENTAF.PuntoVenta
                 if (responseModel.Exito == 1)
                 {
 
-                    ViewArticulo articulo = new ViewArticulo();
+                    ViewModelArticulo articulo = new ViewModelArticulo();
                     //obtener los datos de la vista del articulo
-                    articulo = responseModel.Data as ViewArticulo;
+                    articulo = responseModel.Data as ViewModelArticulo;
                     this.txtDescripcionArticulo.Text = articulo.Descripcion;
 
                     //comprobar si hay en existencia
@@ -617,7 +598,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         //agregar el articulo al detalle de la factura
-        private void onAgregarArticuloDetalleFactura(ViewArticulo articulo)
+        private void onAgregarArticuloDetalleFactura(ViewModelArticulo articulo)
         {
             //comprobar si existe el articulo
             if (onExisteArticuloDetFactura(listDetFactura, articulo.CodigoBarra, articulo.BodegaID) == "NO_EXIST_ARTICULO")
@@ -625,7 +606,6 @@ namespace COVENTAF.PuntoVenta
                 //crear una nueva fila en el datagrid
                 AddNewRow(listDetFactura);
                 consecutivoActualFactura = dgvDetalleFactura.RowCount;
-
 
                 //cantidad del articulo
                 decimal cantidad = Convert.ToDecimal(listDetFactura[consecutivoActualFactura].cantidad);
@@ -687,6 +667,8 @@ namespace COVENTAF.PuntoVenta
                 listDetFactura[consecutivoActualFactura].BodegaID = articulo.BodegaID;
                 //nombre de bodega
                 listDetFactura[consecutivoActualFactura].NombreBodega = articulo.NombreBodega;
+                listDetFactura[consecutivoActualFactura].Cost_Prom_Dol = articulo.Cost_Prom_Dol;
+                listDetFactura[consecutivoActualFactura].Cost_Prom_Loc = articulo.Costo_Prom_Loc;
 
                 /*
                 listDetFactura[consecutivoActualFactura].subTotalDolar = subTotalDolar;
@@ -704,7 +686,6 @@ namespace COVENTAF.PuntoVenta
                 //comprobar si no existe el input unico para el proximo articulo
                 //if (!onExisteInputUnicoParaProximaArticulo(listDetFactura))
                 //{
-
 
                 //var inputCodigoBarra = document.getElementById(idActivo) as HTMLInputElement;
                 //accedo al atributo para deshabilitar y desactivo el input de codigo de barra          
@@ -728,12 +709,10 @@ namespace COVENTAF.PuntoVenta
 
                 LimpiarTextBoxBusquedaArticulo();
 
-
                 //}
             }
             else
             {
-
                 /*
                 //limpiar el textbox del grid
                 dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[3].Value = "";
@@ -1219,52 +1198,12 @@ namespace COVENTAF.PuntoVenta
             onCalcularTotales();
         }
 
-    
-
-
         void onClickValidarDescuento()
         {
             onCalcularTotales();
             this.btnCobrar.Enabled = true;
         }
 
-
-
-        //seleccionar la forma de pago
-        void onChange()
-        {
-            //console.log(deviceValue);
-            string codigoValue = this.cboFormaPago.SelectedValue.ToString();            
-            //desativar el boton guardar
-            
-            //comprobar si es tarjeta
-            if (codigoValue == "0003")
-            {
-                this.lblLabelTittulo.Text = "Tipo de Tarjeta: ";
-                this.lblLabelTittulo.Visible = true;
-                this.cboTipoTarjeta.Visible = true;
-                this.cboCondicionPago.Visible = false;
-            }
-            //comprobar si es tarjeta
-            else if (codigoValue == "0004")
-            {
-                this.lblLabelTittulo.Text = "Condicion de Pago: ";
-                
-                this.lblLabelTittulo.Visible = true;
-                this.cboTipoTarjeta.Visible = false;
-                this.cboCondicionPago.Visible = true;
-            }
-            else
-            {
-                
-                this.lblLabelTittulo.Visible = false;
-                this.cboTipoTarjeta.Visible = false;
-                this.cboCondicionPago.Visible = false;
-                this.cboTipoTarjeta.Text = "ND";
-            }
-
-
-        }
         #endregion
 
      
@@ -1328,16 +1267,11 @@ namespace COVENTAF.PuntoVenta
             bool GuardarFactura = false;
 
             List<ViewMetodoPago> metodoPago;
-                      
-
             //llamar la ventana de metodo de pago.
             var frmCobrarFactura = new frmMetodoPago();
             frmCobrarFactura.TotalCobrar = Math.Round(listVarFactura.TotalCordobas, 2);
-            frmCobrarFactura.listaTipoTarjeta = listaTipoTarjeta;
-            frmCobrarFactura.listaCondicionPago = listaCondicionPago;
-            frmCobrarFactura.listFormaPago = listFormaPago;
             frmCobrarFactura.tipoCambioOficial = listVarFactura.TipoDeCambio;
-       
+
             frmCobrarFactura.ShowDialog();
             //obtener informacion si el cajero cancelo o dio guardar factura
             GuardarFactura = frmCobrarFactura.GuardarFactura;
@@ -1354,8 +1288,7 @@ namespace COVENTAF.PuntoVenta
                 //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
                 RecopilarDatosMetodoPago(metodoPago);
                 GuardarDatosFacturaBaseDatos();
-            }
-            
+            }            
         }
 
         private async void GuardarDatosFacturaBaseDatos()
@@ -1370,12 +1303,12 @@ namespace COVENTAF.PuntoVenta
                 tipoCambio = listVarFactura.TipoDeCambio,
                 codigoCliente = this.txtCodigoCliente.Text,
                 cliente = listVarFactura.NombreCliente,
-                subTotalDolar = listVarFactura.SubTotalDolar,
-                descuentoDolar = listVarFactura.DescuentoGeneralDolar,
-                ivaDolar = listVarFactura.IvaDolar,
+                //subTotalDolar = listVarFactura.SubTotalDolar,
+                //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
+                //ivaDolar = listVarFactura.IvaDolar,
                 totalDolar = listVarFactura.TotalDolar,
                 subTotalCordoba = listVarFactura.SubTotalCordoba,
-                descuentoCordoba = listVarFactura.DescuentoPorLineaCordoba,
+                descuentoCordoba = listVarFactura.DescuentoGeneralCordoba,
                 ivaCordoba = listVarFactura.IvaCordoba,
                 totalCordoba = listVarFactura.TotalCordobas,
                 atentidoPor = User.NombreUsuario,
@@ -1424,71 +1357,66 @@ namespace COVENTAF.PuntoVenta
             foreach (var mMetodoPago in metodoPago)
             {
                 //aqui incluye el vuelto del cliente
-               
-                    var datosPagosPos_ = new Pago_Pos();
-                    datosPagosPos_.Documento = _modelFactura.Factura.Factura;
+                var datosPagosPos_ = new Pago_Pos();
+                datosPagosPos_.Documento = _modelFactura.Factura.Factura;
 
-                    //consecutivo ej.: 0,1,2
-                    datosPagosPos_.Pago = mMetodoPago.Pago;
-                    datosPagosPos_.Caja = User.Caja;
-                    //F=factura
-                    datosPagosPos_.Tipo = "F";
-                    //30 dias 
-                    datosPagosPos_.Condicion_Pago = mMetodoPago.CondicionPago;
+                //consecutivo ej.: 0,1,2
+                datosPagosPos_.Pago = mMetodoPago.Pago;
+                datosPagosPos_.Caja = User.Caja;
+                //F=factura
+                datosPagosPos_.Tipo = "F";
+                //30 dias 
+                datosPagosPos_.Condicion_Pago = mMetodoPago.CondicionPago;
 
-                    //no tomar los valores cuando pago es un vuelto (-1)
-                    if (datosPagosPos_.Pago != "-1")
-                    {
-                        //forma de pago para mostrar al momento de imprimir la Ticket
-                        listVarFactura.TicketFormaPago += $"{mMetodoPago.DescripcionFormPago} {mMetodoPago.TipoTarjeta} {mMetodoPago.DescripcionCondicionPago}  ";
-                    }
-
+                //no tomar los valores cuando pago es un vuelto (-1)
+                if (datosPagosPos_.Pago != "-1")
+                {
+                    //forma de pago para mostrar al momento de imprimir la Ticket
+                    listVarFactura.TicketFormaPago += $"{mMetodoPago.DescripcionFormPago} {mMetodoPago.TipoTarjeta} {mMetodoPago.DescripcionCondicionPago}  ";
+                }
 
                 //REVISAR
                 datosPagosPos_.Entidad_Financiera = mMetodoPago.EntidadFinanciera;
-                    datosPagosPos_.Tipo_Tarjeta = mMetodoPago.TipoTarjeta;
-                    
-                    datosPagosPos_.Forma_Pago = mMetodoPago.FormaPago;
+                datosPagosPos_.Tipo_Tarjeta = mMetodoPago.TipoTarjeta;
+
+                datosPagosPos_.Forma_Pago = mMetodoPago.FormaPago;
                 datosPagosPos_.Numero = mMetodoPago.Numero;
-                    datosPagosPos_.Monto_Local = mMetodoPago.Moneda == 'L' ? mMetodoPago.MontoCordoba : 0.0000M;
-                    datosPagosPos_.Monto_Dolar = mMetodoPago.Moneda == 'D' ? mMetodoPago.MontoDolar : 0.0000M;
-                    datosPagosPos_.Autorizacion = null;
-                    datosPagosPos_.Cobro = null;
-                        datosPagosPos_.Cliente_Liquidador = null;
-                    //revisar
-                    datosPagosPos_.Tipo_Cobro = "T";
-                    datosPagosPos_.NoteExistsFlag = 0;
-                    datosPagosPos_.RecordDate = DateTime.Now;
-                    // datosPagosPos_.RowPointer = 098D98DA-038F-4E06-B8E4-B48843DEEC1A
-                    datosPagosPos_.CreatedBy = User.Usuario;
-                    datosPagosPos_.UpdatedBy = User.Usuario;
-                    datosPagosPos_.CreateDate = DateTime.Now;
-                                      
+                datosPagosPos_.Monto_Local = mMetodoPago.Moneda == 'L' ? mMetodoPago.MontoCordoba : 0.0000M;
+                datosPagosPos_.Monto_Dolar = mMetodoPago.Moneda == 'D' ? mMetodoPago.MontoDolar : 0.0000M;
+                datosPagosPos_.Autorizacion = null;
+                datosPagosPos_.Cobro = null;
+                datosPagosPos_.Cliente_Liquidador = null;
+                //revisar
+                datosPagosPos_.Tipo_Cobro = "T";
+                datosPagosPos_.NoteExistsFlag = 0;
+                datosPagosPos_.RecordDate = DateTime.Now;
+                // datosPagosPos_.RowPointer = 098D98DA-038F-4E06-B8E4-B48843DEEC1A
+                datosPagosPos_.CreatedBy = User.Usuario;
+                datosPagosPos_.UpdatedBy = User.Usuario;
+                datosPagosPos_.CreateDate = DateTime.Now;
 
-                    //seleccionaste tarjeta
-                    if (datosPagosPos_.Forma_Pago == "0003")
-                    {
-                        //banpro, credomatic
-                        TarjetaCredito = datosPagosPos_.Tipo_Tarjeta;
-                        
-                    }
+                //seleccionaste tarjeta
+                if (datosPagosPos_.Forma_Pago == "0003")
+                {
+                    //banpro, credomatic
+                    TarjetaCredito = datosPagosPos_.Tipo_Tarjeta;
+                }
 
-                    //credito
-                    if (datosPagosPos_.Forma_Pago == "0004")
-                    {
-                        Condicion_Pago = datosPagosPos_.Condicion_Pago;
-                    }
+                //credito
+                if (datosPagosPos_.Forma_Pago == "0004")
+                {
+                    Condicion_Pago = datosPagosPos_.Condicion_Pago;
+                }
 
-                    //comprobar si la moneda es Dolar
-                    if (mMetodoPago.Moneda == 'D')
-                    {
-                        datosPagosPos_.Monto_Local = mMetodoPago.MontoCordoba;
-                        datosPagosPos_.Monto_Dolar = mMetodoPago.MontoDolar;
-                    }
+                //comprobar si la moneda es Dolar
+                if (mMetodoPago.Moneda == 'D')
+                {
+                    datosPagosPos_.Monto_Local = mMetodoPago.MontoCordoba;
+                    datosPagosPos_.Monto_Dolar = mMetodoPago.MontoDolar;
+                }
 
-                    //agregar nuevo registro a la clase FacturaLinea.
-                    _modelFactura.PagoPos.Add(datosPagosPos_);
-                
+                //agregar nuevo registro a la clase FacturaLinea.
+                _modelFactura.PagoPos.Add(datosPagosPos_);                
             }
 
             //asingar la tarjeta de credito por el metodo de pago que selecciono el cliente
@@ -1496,7 +1424,6 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Condicion_Pago = Condicion_Pago;
         }
               
-
 
         private void RecolectarDatosFactura()
         {
@@ -1704,7 +1631,6 @@ namespace COVENTAF.PuntoVenta
             {
                 if (detFactura.articuloId != "")
                 {
-
                     var datosModel_ = new Factura_Linea()
                     {
                         Factura = listVarFactura.NoFactura,
@@ -1713,7 +1639,7 @@ namespace COVENTAF.PuntoVenta
                         Bodega = detFactura.BodegaID,
                         //preguntarajuan
                         //ya revise en softland y no hay informacion [COSTO_PROM_DOL] * cantidad
-                        Costo_Total_Dolar = 0.00M,
+                        Costo_Total_Dolar = detFactura.Cost_Prom_Dol * detFactura.cantidad, // 0.00M,
                         //pedido?=string
                         Articulo = detFactura.articuloId,
                         //localizacion?:string
@@ -1729,7 +1655,7 @@ namespace COVENTAF.PuntoVenta
                         //este es el descuento general (el famoso 5% q le dan a los militares)
                         Desc_Tot_General = detFactura.MontoDescGeneralCordoba,
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total = 0.000M,
+                        Costo_Total = detFactura.Cost_Prom_Loc * detFactura.cantidad,                  
                         //aqui ya tiene restado el descuento. precio_total_x_linea. ya lo verifique con softland
                         Precio_Total = detFactura.totalCordobas,
                         Descripcion = detFactura.descripcion,
@@ -1740,7 +1666,7 @@ namespace COVENTAF.PuntoVenta
                         Cantidad_Aceptada = 0.00000000M,
                         Cant_No_Entregada = 0.00000000M,
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Local = 0.00M,
+                        Costo_Total_Local = detFactura.Cost_Prom_Loc * detFactura.cantidad,
                         Pedido_Linea = 0,
                         Multiplicador_Ev = 1,
                         /*serie_Cadena?=number
@@ -1762,11 +1688,11 @@ namespace COVENTAF.PuntoVenta
                         Centro_Costo?=string
                         Cuenta_Contable?=string*/
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Comp = 0,
+                        Costo_Total_Comp = detFactura.Cost_Prom_Loc * detFactura.cantidad,
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Comp_Local = 0,
+                        Costo_Total_Comp_Local = detFactura.Cost_Prom_Loc * detFactura.cantidad,
                         //revisar [COSTO_PROM_DOL] * cantidad
-                        Costo_Total_Comp_Dolar = 0,
+                        Costo_Total_Comp_Dolar = detFactura.Cost_Prom_Dol * detFactura.cantidad,
                         Costo_Estim_Comp_Local = 0.00000000M,
                         Costo_Estim_Comp_Dolar = 0.00000000M,
                         Cant_Dev_Proceso = 0.00000000M,
@@ -1859,8 +1785,15 @@ namespace COVENTAF.PuntoVenta
         {
             if (e.KeyChar == 13)
             {
-                AplicarDescuentoGeneralFactura();
-                this.txtDescuentoGeneral.Focus();
+                if (txtDescuentoGeneral.Text.Trim().Length >0)
+                {
+                    AplicarDescuentoGeneralFactura();
+                    this.txtDescuentoGeneral.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Debes de ingresar el descuento", "Sistema COVENTAF");
+                }        
             }
         }
 
@@ -1888,8 +1821,15 @@ namespace COVENTAF.PuntoVenta
             GuardarDatosFacturaBaseDatos();
         }
 
-        private void btnLimpiarFactura_Click(object sender, EventArgs e)
+        private async void btnLimpiarFactura_Click(object sender, EventArgs e)
         {
+            ResponseModel responseModel = new ResponseModel();
+            responseModel = await _facturaController.CancelarNoFacturaBloqueada(listVarFactura.NoFactura);
+            facturaGuardada = true;
+            this.Close();
+
+            /*
+
             //falta eliminar de la tabla facturando
             _procesoFacturacion.InicializarTodaslasVariable(listVarFactura);
             this.txtCodigoCliente.Enabled = true;
@@ -1910,7 +1850,7 @@ namespace COVENTAF.PuntoVenta
             this.btnValidarDescuento.Enabled = true;
             this.btnCobrar.Enabled = false;
             this.txtCodigoCliente.Focus();
-            this.lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            this.lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");*/
         }
 
         private void txtCodigoBarra_Enter(object sender, EventArgs e)
@@ -1920,6 +1860,11 @@ namespace COVENTAF.PuntoVenta
 
         private void txtDescuentoGeneral_Leave(object sender, EventArgs e)
         {
+            if (this.txtDescuentoGeneral.Text.Trim().Length ==0)
+            {
+                this.txtDescuentoGeneral.Text = "0";
+            }
+
             AplicarDescuentoGeneralFactura();
         }
     }

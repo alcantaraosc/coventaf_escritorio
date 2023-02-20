@@ -34,8 +34,10 @@ namespace Api.Model.Modelos
         [Column(TypeName = "varchar(80)")]
         public string Numero { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Local { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Dolar { get; set; }
         [Column(TypeName = "varchar(80)")]
         public string Autorizacion { get; set; }

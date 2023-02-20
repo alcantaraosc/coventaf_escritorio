@@ -19,109 +19,137 @@ namespace Api.Model.Modelos
 
         //[Key]
         //[Column(Order = 0)]
-        [StringLength(50)]
+        
+        [Column(TypeName = "varchar(50)")]
         public string Factura { get; set; }
         //[Key]
-        //[Column(Order = 1)]
-        [StringLength(1)]
+        //[Column(Order = 1)]        
+        [Column(TypeName = "varchar(1)")]
         public string Tipo_Documento { get; set; }
         public short Linea { get; set; }
-        [Required]
-        [StringLength(4)]
+        [Required]        
+        [Column(TypeName = "varchar(4)")]
         public string Bodega { get; set; }
         [Required]
-        public decimal Costo_Total_Dolar { get; set; }
-        [StringLength(50)]
+        [Column(TypeName = "decimal(28, 8)")]
+        public decimal Costo_Total_Dolar { get; set; }        
+        [Column(TypeName = "varchar(50)")]
         public string Pedido { get; set; }
-        [Required]
-        [StringLength(20)]        
-        public string Articulo { get; set; }
-        [StringLength(8)]
-        public string Localizacion { get; set; }
-        [StringLength(15)]
+        [Required]       
+        [Column(TypeName = "varchar(20)")]
+        public string Articulo { get; set; }        
+        [Column(TypeName = "varchar(8)")]
+        public string Localizacion { get; set; }        
+        [Column(TypeName = "varchar(15)")]
         public string Lote { get; set; }
-        [Required]
-        [StringLength(1)]
+        [Required]       
+        [Column(TypeName = "varchar(1)")]
         public string Anulada { get; set; }
         [Required]
         public DateTime Fecha_Factura { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Cantidad { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Precio_Unitario { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Impuesto1 { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Total_Impuesto2 { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Desc_Tot_Linea { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Desc_Tot_General { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Total { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Precio_Total { get; set; }
                 
         [Column(TypeName = "text")]
-        public string Descripcion { get; set; }
-        [StringLength(100)]
+        public string Descripcion { get; set; }        
+        [Column(TypeName = "varchar(100)")]
         public string Comentario { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Cantidad_Devuelt { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Descuento_Volumen { get; set; }
-        [Required]
-        [StringLength(1)]
+        [Required]        
+        [Column(TypeName = "varchar(1)")]
         public string Tipo_Linea { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Cantidad_Aceptada { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Cant_No_Entregada { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Total_Local { get; set; }
         public short? Pedido_Linea { get; set; }
         [Required]
         public short Multiplicador_Ev { get; set; }
         public int? Serie_Cadena { get; set; }
         public int? Serie_Cad_No_Acept { get; set; }
-        public int? Serie_Cad_Aceptada { get; set; }
-        [StringLength(50)]
+        public int? Serie_Cad_Aceptada { get; set; }        
+        [Column(TypeName = "varchar(50)")]
         public string Documento_Origen { get; set; }
-        public short? Linea_Origen { get; set; }
-        [StringLength(1)]
-        public string Tipo_Origen { get; set; }
-        [StringLength(6)]
+        public short? Linea_Origen { get; set; }        
+        [Column(TypeName = "varchar(1)")]
+        public string Tipo_Origen { get; set; }        
+        [Column(TypeName = "varchar(6)")]
         public string Unidad_Distribucio { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Cant_Despachada { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Estim_Local { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Estim_Dolar { get; set; }
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Cant_Anul_Pordespa { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Retencion { get; set; }
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Base_Impuesto1 { get; set; }
-        public decimal? Base_Impuesto2 { get; set; }
-        [StringLength(25)]
-        public string Proyecto { get; set; }
-        [StringLength(25)]
-        public string Fase { get; set; }
-        [StringLength(25)]
-        public string Centro_Costo { get; set; }
-        [StringLength(25)]
+        [Column(TypeName = "decimal(28, 8)")]
+        public decimal? Base_Impuesto2 { get; set; }        
+        [Column(TypeName = "varchar(25)")]
+        public string Proyecto { get; set; }        
+        [Column(TypeName = "varchar(25)")]
+        public string Fase { get; set; }        
+        [Column(TypeName = "varchar(25)")]
+        public string Centro_Costo { get; set; }        
+        [Column(TypeName = "varchar(25)")]
         public string Cuenta_Contable { get; set; }       
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Total_Comp { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Total_Comp_Local { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Total_Comp_Dolar { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Estim_Comp_Local { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Costo_Estim_Comp_Dolar { get; set; }
         [Required]
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Cant_Dev_Proceso { get; set; }
         [Required]
         public byte NoteExistsFlag { get; set; }
@@ -137,31 +165,35 @@ namespace Api.Model.Modelos
         public string UpdatedBy { get; set; }
         [Required]
         public DateTime CreateDate { get; set; }
-
-        [StringLength(4)]
-        public string Tipo_Impuesto1 { get; set; }
-        [StringLength(2)]
-        public string Tipo_Tarifa1 { get; set; }
-        [StringLength(4)]
-        public string Tipo_Impuesto2 { get; set; }
-        [StringLength(2)]
+        
+        [Column(TypeName = "varchar(4)")]
+        public string Tipo_Impuesto1 { get; set; }        
+        [Column(TypeName = "varchar(2)")]
+        public string Tipo_Tarifa1 { get; set; }        
+        [Column(TypeName = "varchar(4)")]
+        public string Tipo_Impuesto2 { get; set; }        
+        [Column(TypeName = "varchar(2)")]
         public string Tipo_Tarifa2 { get; set; }
+        [Column(TypeName = "decimal(28, 8)")]        
         public decimal? Porc_Exoneracion { get; set; }
-        public decimal? Monto_Exoneracion { get; set; }
-        [StringLength(1)]
-        public string Es_Otro_Cargo { get; set; }
-        [StringLength(1)]
-        public string Es_Canasta_Basica { get; set; }
-        [StringLength(1)]
+        [Column(TypeName = "decimal(28, 8)")]
+        public decimal? Monto_Exoneracion { get; set; }        
+        [Column(TypeName = "varchar(1)")]
+        public string Es_Otro_Cargo { get; set; }        
+        [Column(TypeName = "varchar(1)")]
+        public string Es_Canasta_Basica { get; set; }        
+        [Column(TypeName = "varchar(1)")]
         public string Es_Servicio_Medico { get; set; }
+        [Column(TypeName = "decimal(28, 8)")]        
         public decimal? Monto_Devuelto_Iva { get; set; }
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal? Porc_Exoneracion2 { get; set; }
-        public decimal? Monto_Exoneracion2 { get; set; }
-        [StringLength(2)]
+        [Column(TypeName = "decimal(28, 8)")]
+        public decimal? Monto_Exoneracion2 { get; set; }        
+        [Column(TypeName = "varchar(2)")]
         public string Tipo_Descuento_Linea { get; set; }
-
+        [Column(TypeName = "decimal(28, 8)")]
         public decimal Porc_Desc_Linea { get; set; }
-
 
         //public virtual ARTICULOS ARTICULOS { get; set; }
         //public virtual BODEGAS BODEGAS { get; set; }

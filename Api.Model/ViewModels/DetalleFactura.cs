@@ -34,12 +34,14 @@ namespace Api.Model.ViewModels
         
         public decimal MontoDescGeneralCordoba { get; set; }
         public decimal MontoDescGeneralDolar { get; set; }
-
-        public decimal totalDolar { get; set; }
-       
+        public decimal totalDolar { get; set; }       
         public decimal totalCordobas { get; set; }
-        //con esta propiedad controlo si ya tengo en la lista  { get; set; }
-        //el unico input para buscar el proximo articulo { get; set; }
+
+        public decimal Cost_Prom_Dol { get; set; }
+        public decimal Cost_Prom_Loc { get; set; }       
+
+       //con esta propiedad controlo si ya tengo en la lista  { get; set; }
+       //el unico input para buscar el proximo articulo { get; set; }
        public bool inputActivoParaBusqueda { get; set; }
         public bool botonEliminarDesactivado { get; set; }
 

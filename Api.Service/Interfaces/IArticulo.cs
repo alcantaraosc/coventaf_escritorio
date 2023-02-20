@@ -11,6 +11,6 @@ namespace Api.Service.Interfaces
 {
     public interface IArticulo
     {
-        public Task<ViewArticulo> ObtenerArticuloPorIdAsync(ResponseModel responseModel, string codigoBarra, string bodegaID);
+        public Task<ViewModelArticulo> ObtenerArticuloPorIdAsync(ResponseModel responseModel, string codigoBarra, string bodegaID);
     }
 }

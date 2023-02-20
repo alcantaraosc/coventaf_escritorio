@@ -25,7 +25,7 @@ namespace Controladores
         public async Task<ResponseModel> ObtenerArticuloPorIdAsync(string codigoBarra, string bodegaID, string NivelPrecio)
         {
             var responseModel = new ResponseModel();
-            responseModel.Data = new ViewArticulo();
+            responseModel.Data = new ViewModelArticulo();
             try
             {
                 //llamar al metodo ObtenerArticuloPorIdAsync para obtener el registro del articulo

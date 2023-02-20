@@ -18,5 +18,6 @@ namespace Api.Model.ViewModels
         public List<Forma_Pagos> FormaPagos { get; set; }
         public List<Tipo_Tarjeta_Pos> TipoTarjeta { get; set; }
         public List<Condicion_Pagos> CondicionPago { get; set; }
+        public List<Entidad_Financieras> EntidadFinanciera { get; set; }
     }
 }

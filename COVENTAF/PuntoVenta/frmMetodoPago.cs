@@ -1,5 +1,6 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
+using Api.Service.DataService;
 using Controladores;
 using COVENTAF.Services;
 using System;
@@ -19,11 +20,7 @@ namespace COVENTAF.PuntoVenta
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool GuardarFactura = false;
         public List<ViewMetodoPago> metodoPago;
-
-        //public List<Vendedores> listaBodega = new List<Vendedores>();
-        public List<Forma_Pagos> listFormaPago = new List<Forma_Pagos>();
-        public List<Tipo_Tarjeta_Pos> listaTipoTarjeta = new List<Tipo_Tarjeta_Pos>();
-        public List<Condicion_Pagos> listaCondicionPago = new List<Condicion_Pagos>();
+              
 
 
         public decimal TotalCobrar = 1695.58M;
@@ -318,7 +315,7 @@ namespace COVENTAF.PuntoVenta
         /// <param name="DescripcionCondicionPago">Descripcion del credito</param>
         void AsginarMetodoPago(string formaPago, string nombreMetodoPago, decimal monto, char moneda, bool TeclaPresionaXCajero,
             string tecla, string entidadFinanciera = null, string tipoTarjeta = null, 
-            string codigoCondicionPago = null, string DescripcionCondicionPago = null, string NoDocumento =null)
+            string codigoCondicionPago = null, string DescripcionCondicionPago = null, string noDocumento =null)
         {
             decimal montoDolar = 0;
             decimal montoCordoba = 0;
@@ -390,9 +387,10 @@ namespace COVENTAF.PuntoVenta
 
             /****************************************** informacion para el usuario *************************************************************/
             metodoPago[Index].TipoPago = nombreMetodoPago;
-            metodoPago[Index].Monto = metodoPago[Index].MontoCordoba;
+            metodoPago[Index].Monto = Math.Round(metodoPago[Index].MontoCordoba, 2);
             //aqui falta oscar
-            metodoPago[Index].Detalle = "Detalle";
+            metodoPago[Index].Detalle = new ServicesMetodoPago().ObtenerDetallePago(formaPago, nombreMetodoPago, metodoPago[Index].MontoDolar, tipoCambioOficial, noDocumento, 
+                entidadFinanciera, tipoTarjeta, DescripcionCondicionPago );
             /************************************************************************************************************************************/
 
             ///// realizar los calculos
@@ -450,6 +448,7 @@ namespace COVENTAF.PuntoVenta
             metodoPago[Index].DescripcionTecla = "No Existe Tecla";
         }
 
+    
 
         decimal GetMontoCobrar()
         {
@@ -465,8 +464,6 @@ namespace COVENTAF.PuntoVenta
                 return montoPagado;
             }
         }
-
-
 
 
         //boton reiniciar el cobro
@@ -537,9 +534,10 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-
         private void frmMetodoPago_Load(object sender, EventArgs e)
         {
+
+            ListarCombox();
 
             tipoCambioOficial = Math.Round(tipoCambioOficial, 4);
             nuevoTipoCambioAproximado = tipoCambioOficial;
@@ -569,24 +567,77 @@ namespace COVENTAF.PuntoVenta
             }*/
 
 
-            //llenar el combox tipo de tarjeta
-            this.cboTipoTarjeta.ValueMember = "Tipo_Tarjeta";
-            this.cboTipoTarjeta.DisplayMember = "Tipo_Tarjeta";
-            this.cboTipoTarjeta.DataSource = listaTipoTarjeta;
-
-            //llenar el combox condicion de pago
-            this.cboCondicionPago.ValueMember = "Condicion_Pago";
-            this.cboCondicionPago.DisplayMember = "Descripcion";
-            this.cboCondicionPago.DataSource = this.listaCondicionPago;
-
-            this.cboFormaPago.ValueMember = "Forma_Pago";
-            this.cboFormaPago.DisplayMember = "Descripcion";
-            this.cboFormaPago.DataSource = listFormaPago;
+  
 
         }
 
+        //private void LlenarCombox()
+        //{
+
+        //    try
+        //    {
+
+        //    }
+        //    catch()
+        //    {
+
+        //    }
+
+        //    //ListarDrownList responseModel = new ListarDrownList();
+        //    //try
+        //    //{
+        //    //    responseModel = await _facturaController.llenarComboxFacturaAsync();
+
+        //    //    if (responseModel.Exito == 1)
+
+        //    //        listarCombox.TipoTarjeta = await _serviceFactura.ListarTipoTarjeta(responseModel);
+        //    //listarCombox.CondicionPago = await _serviceFactura.ListarCondicionPago(responseModel);
+        //}
 
 
+        public async void ListarCombox()
+        {
+            ListarDrownList listarDrownListModel = new ListarDrownList();
+          
+            try
+            {
+                listarDrownListModel = await new ServiceFormaPago().llenarComboxMetodoPagoAsync();
+
+                if (listarDrownListModel.Exito == 1)
+                {
+                 
+                    //llenar el combox forma de pago
+                    this.cboFormaPago.ValueMember = "Forma_Pago";
+                    this.cboFormaPago.DisplayMember = "Descripcion";
+                    this.cboFormaPago.DataSource = listarDrownListModel.FormaPagos;
+
+                    //llenar el combox tipo de tarjeta
+                    this.cboTipoTarjeta.ValueMember = "Tipo_Tarjeta";
+                    this.cboTipoTarjeta.DisplayMember = "Tipo_Tarjeta";
+                    this.cboTipoTarjeta.DataSource = listarDrownListModel.TipoTarjeta;
+
+                    //llenar el combox condicion de pago
+                    this.cboCondicionPago.ValueMember = "Condicion_Pago";
+                    this.cboCondicionPago.DisplayMember = "Descripcion";
+                    this.cboCondicionPago.DataSource = listarDrownListModel.CondicionPago;
+
+                    //llenar el combox condicion de pago
+                    this.cboEntidadFinanciera.ValueMember = "Entidad_Financiera";
+                    this.cboEntidadFinanciera.DisplayMember = "Descripcion";
+                    this.cboEntidadFinanciera.DataSource = listarDrownListModel.EntidadFinanciera;
+                                                       
+                }
+                else
+                {
+                    MessageBox.Show(listarDrownListModel.Mensaje, "Sistema COVENTAF");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+        }
 
 
         private void txtEfectivoCordoba_TextChanged(object sender, EventArgs e)
@@ -1028,7 +1079,7 @@ namespace COVENTAF.PuntoVenta
             if (e.KeyChar == 13 && this.txtEfectivoCordoba.Text.Trim().Length > 0)
             {
                 //llamar el metodo asignar pago
-                AsginarMetodoPago("0001", "Efectivo", Convert.ToDecimal(this.txtEfectivoCordoba.Text), 'L', true, "F1", null);
+                AsginarMetodoPago("0001", "EFECTIVO", Convert.ToDecimal(this.txtEfectivoCordoba.Text), 'L', true, "F1", null);
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 this.txtEfectivoCordoba.Enabled = false;
                 teclaPresionadaXCajero = "";
@@ -1045,7 +1096,7 @@ namespace COVENTAF.PuntoVenta
             {
 
                 //asignar el metodo de pago
-                AsginarMetodoPago("0001", "Efectivo (Dolar)", Convert.ToDecimal(this.txtEfectivoDolar.Text), 'D', true, "F11_ED", null);
+                AsginarMetodoPago("0001", "EFECTIVO (DOLAR)", Convert.ToDecimal(this.txtEfectivoDolar.Text), 'D', true, "F11_ED", null);
 
                 //desactivar el texbox y mostrar la suma pagado por el cliente en caso que existen varios tipo de pago
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
@@ -1066,7 +1117,7 @@ namespace COVENTAF.PuntoVenta
                 //if ( this.txtEfectivoCordoba.Text =="0.00")
                 //{
                 //llamar el metodo asignar pago
-                AsginarMetodoPago("0002", "Cheque", Convert.ToDecimal(this.txtChequeCordoba.Text), 'L', true, "F2", this.cboEntidadFinanciera.Text, null, null, null, this.txtDocumento.Text);
+                AsginarMetodoPago("0002", "CHEQUE", Convert.ToDecimal(this.txtChequeCordoba.Text), 'L', true, "F2", this.cboEntidadFinanciera.SelectedValue.ToString(), null, null, null, this.txtDocumento.Text);
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 this.txtEfectivoCordoba.Enabled = false;
                 teclaPresionadaXCajero = "";
@@ -1085,7 +1136,7 @@ namespace COVENTAF.PuntoVenta
             if (e.KeyChar == 13)
             {
                 //asignar el metodo de pago
-                AsginarMetodoPago("0002", "Cheque (Dolar)", Convert.ToDecimal(this.txtChequeDolar.Text), 'D', true, "F11_ED", this.cboEntidadFinanciera.Text, null, null, null, this.txtDocumento.Text);
+                AsginarMetodoPago("0002", "CHEQUE (DOLAR)", Convert.ToDecimal(this.txtChequeDolar.Text), 'D', true, "F11_ED", this.cboEntidadFinanciera.SelectedValue.ToString(), null, null, null, this.txtDocumento.Text);
 
                 //desactivar el texbox y mostrar la suma pagado por el cliente en caso que existen varios tipo de pago
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
@@ -1105,7 +1156,7 @@ namespace COVENTAF.PuntoVenta
             {
 
                 //llamar el metodo asignar pago
-                AsginarMetodoPago("0003", "Tarjeta", Convert.ToDecimal(this.txtTarjetaCordoba.Text), 'L', true, "F3", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);                  
+                AsginarMetodoPago("0003", "TARJETA", Convert.ToDecimal(this.txtTarjetaCordoba.Text), 'L', true, "F3", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);                  
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado
                 teclaPresionadaXCajero = "";
@@ -1123,7 +1174,7 @@ namespace COVENTAF.PuntoVenta
                 //oscar esta es la correcta
                 //AsginarMetodoPago("Tarjeta (Dolar)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", this.cboTipoTarjeta.SelectedValue.ToString());
                 //aqui falta el parametro el tipo de tarjeta
-                AsginarMetodoPago("0003", "Tarjeta (Dolar)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);
+                AsginarMetodoPago("0003", "TARJETA (DOLAR)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);
                 //cambiar el estado
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado
@@ -1140,7 +1191,7 @@ namespace COVENTAF.PuntoVenta
             if (e.KeyChar == 13 && this.txtCredito.Text.Length > 0 && !char.IsDigit(e.KeyChar))
             {
                 //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("0004", "Credito", Convert.ToDecimal(this.txtCredito.Text), 'L', true, teclaPresionadaXCajero, null, null, this.cboCondicionPago.SelectedValue.ToString(), this.cboCondicionPago.Text, this.txtDocumento.Text);
+                AsginarMetodoPago("0004", "CREDITO", Convert.ToDecimal(this.txtCredito.Text), 'L', true, teclaPresionadaXCajero, null, null, this.cboCondicionPago.SelectedValue.ToString(), this.cboCondicionPago.Text, this.txtDocumento.Text);
                 //cambiar el estado
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado
@@ -1155,7 +1206,7 @@ namespace COVENTAF.PuntoVenta
             if (e.KeyChar == 13 && this.txtBono.Text.Length > 0 && !char.IsDigit(e.KeyChar))
             {
                 //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("0006", "Bono", Convert.ToDecimal(this.txtBono.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
+                AsginarMetodoPago("0006", "BONO", Convert.ToDecimal(this.txtBono.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
                 //cambiar el estado
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado
@@ -1170,7 +1221,7 @@ namespace COVENTAF.PuntoVenta
             if (e.KeyChar == 13 && this.txtGiftCardCordoba.Text.Length > 0 && !char.IsDigit(e.KeyChar))
             {
                 //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("FP01", "GiftCard", Convert.ToDecimal(this.txtGiftCardCordoba.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
+                AsginarMetodoPago("FP01", "GIFTCARD", Convert.ToDecimal(this.txtGiftCardCordoba.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
                 //cambiar el estado
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado
@@ -1185,7 +1236,7 @@ namespace COVENTAF.PuntoVenta
             if (e.KeyChar == 13 && this.txtGiftCardDolar.Text.Length > 0 && !char.IsDigit(e.KeyChar))
             {
                 //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("FP01", "GiftCard (Dolar)", Convert.ToDecimal(this.txtGiftCardDolar.Text), 'D', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
+                AsginarMetodoPago("FP01", "GIFTCARD (DOLAR)", Convert.ToDecimal(this.txtGiftCardDolar.Text), 'D', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
                 //cambiar el estado
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado
@@ -1268,7 +1319,7 @@ namespace COVENTAF.PuntoVenta
                     //this.txtEfectivoDolar.Text =$"U${(valorMonto / tipoCambio).ToString("N2")}";
                     this.txtEfectivoCordoba.Enabled = enable;
                     codigoTipoPago = "0001";
-                    tipoPago = "Efectivo";
+                    tipoPago = "EFECTIVO";
                     moneda = 'L';
                     break;
 
@@ -1283,7 +1334,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtEfectivoDolar.Enabled = enable;
                     valorMonto = valorMonto / tipoCambioOficial;
                     codigoTipoPago = "0001";
-                    tipoPago = "Efectivo (Dolar)";
+                    tipoPago = "EFECTIVO (DOLAR)";
                     moneda = 'D';
                     break;
 
@@ -1300,7 +1351,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
                     codigoTipoPago = "0002";
-                    tipoPago = "Cheque";
+                    tipoPago = "CHEQUE";
                     moneda = 'L';
 
                     break;
@@ -1322,7 +1373,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtDocumento.Visible = enable;
 
                     codigoTipoPago = "0002";
-                    tipoPago = "Cheque (Dolar)";
+                    tipoPago = "CHEQUE (DOLAR)";
                     moneda = 'D';
                     break;
 
@@ -1342,7 +1393,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtDocumento.Visible = enable;
 
                     codigoTipoPago = "0003";
-                    tipoPago = "Tarjeta";
+                    tipoPago = "TARJETA";
                     moneda = 'L';
 
                     break;
@@ -1365,7 +1416,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtDocumento.Visible = enable;
 
                     codigoTipoPago = "0003";
-                    tipoPago = "Tarjeta (Dolar)";
+                    tipoPago = "TARJETA (DOLAR)";
                     moneda = 'D';
 
                     break;
@@ -1386,7 +1437,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtDocumento.Visible = enable;
 
                     codigoTipoPago = "0004";
-                    tipoPago = "Credito";
+                    tipoPago = "CREDITO";
                     moneda = 'L';
 
                     break;
@@ -1403,7 +1454,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtDocumento.Visible = enable;
 
                     codigoTipoPago = "0006";
-                    tipoPago = "Bono";
+                    tipoPago = "BONO";
                     moneda = 'L';
                     break;
 
@@ -1419,7 +1470,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtDocumento.Visible = enable;
 
                     codigoTipoPago = "FP01";
-                    tipoPago = "GiftCard";
+                    tipoPago = "GIFTCARD";
                     moneda = 'L';
 
                     break;
@@ -1440,13 +1491,15 @@ namespace COVENTAF.PuntoVenta
                     this.txtDocumento.Visible = enable;
 
                     codigoTipoPago = "FP01";
-                    tipoPago = "GiftCard (Dolar)";
+                    tipoPago = "GIFTCARD (DOLAR)";
                     moneda = 'D';
 
                     break;
                 
                 case "F10":
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    this.lblTituloDocumento.Text = "No. documento:";
+                    this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
                     this.cboFormaPago.Enabled = enable;
                     moneda = 'L';
@@ -1777,7 +1830,7 @@ namespace COVENTAF.PuntoVenta
                 if (teclaPresionadaXCajero == "F2" || teclaPresionadaXCajero == "F11_CHD")
                 {
                     //llamar el metodo asignar pago
-                    AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, this.cboEntidadFinanciera.Text, null, null, null, this.txtDocumento.Text);
+                    AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, this.cboEntidadFinanciera.SelectedValue.ToString(), null, null, null, this.txtDocumento.Text);
                     setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                     teclaPresionadaXCajero = "";
                 }
@@ -1844,8 +1897,8 @@ namespace COVENTAF.PuntoVenta
                     break;
 
                 case "0005":                    
-                    MessageBox.Show("Use la pestaña Devolucion", "Sistema COVENTAF");
-                    //selecciona otro metodo de pago
+                    MessageBox.Show("Use la pestaña Devoluciones", "Sistema COVENTAF");
+                    //por defecto el sistema selecciona otro metodo de pago
                     this.cboFormaPago.SelectedValue = "0001";
                     break;
 
@@ -1864,5 +1917,7 @@ namespace COVENTAF.PuntoVenta
             }
         
         }
+
+       
     }
 }
