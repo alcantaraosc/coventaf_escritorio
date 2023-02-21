@@ -143,13 +143,13 @@ namespace Api.Model.Modelos
         public string Tipo_Descuento2 { get; set; }
         [Required]
         [Column(TypeName = "decimal(28, 8)")]
-        //Monto  del descuento General
+        //investigando en softland: Monto  del descuento General
         public decimal Monto_Descuento1 { get; set; }
         [Required]
         [Column(TypeName = "decimal(28, 8)")]
         public decimal Monto_Descuento2 { get; set; }
         [Required]
-        //PorCentaje Descuento General
+        //investigando en softland: PorCentaje Descuento General
         [Column(TypeName = "decimal(28, 8)")]
         public decimal Porc_Descuento1 { get; set; }
         [Required]

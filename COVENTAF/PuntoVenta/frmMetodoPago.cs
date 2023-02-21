@@ -20,7 +20,8 @@ namespace COVENTAF.PuntoVenta
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool GuardarFactura = false;
         public List<ViewMetodoPago> metodoPago;
-              
+        public List<DetalleRetenciones> detalleRetenciones;
+
 
 
         public decimal TotalCobrar = 1695.58M;
@@ -60,6 +61,7 @@ namespace COVENTAF.PuntoVenta
              this._datoEncabezadoFact = datoEncabezadoFact;
              this._facturaController = facturaController;
              this._listDetFactura = listDetFactura;*/
+            detalleRetenciones = new List<DetalleRetenciones>();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -1918,6 +1920,15 @@ namespace COVENTAF.PuntoVenta
         
         }
 
-       
+        private void btnRetenciones_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frmRetenciones(detalleRetenciones))
+            {
+                frm.montoTotal = TotalCobrar;
+                frm.ShowDialog();
+                        
+               
+    }
+        }
     }
 }

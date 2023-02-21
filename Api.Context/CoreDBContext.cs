@@ -77,6 +77,7 @@ namespace Api.Context
             modelBuilder.Entity<Membresia>().ToTable("MEMBRESIA", schema: "ERPADMIN");
             modelBuilder.Entity<Cierre_Det_Pago>().ToTable("CIERRE_DET_PAGO", schema: "TIENDA");
             modelBuilder.Entity<Entidad_Financieras>().ToTable("ENTIDAD_FINANCIERA", schema: "TIENDA");
+            modelBuilder.Entity<Retenciones>().ToTable("RETENCIONES", schema: "TIENDA");
 
 
 
@@ -120,6 +121,7 @@ namespace Api.Context
             modelBuilder.Entity<Membresia>().HasKey(m => new { m.Grupo, m.Usuario });
             modelBuilder.Entity<Cierre_Det_Pago>().HasKey(cdp => new { cdp.Num_Cierre, cdp.Cajero, cdp.Caja,cdp.Tipo_Pago });
             modelBuilder.Entity<Entidad_Financieras>().HasKey(ef => ef.Entidad_Financiera);
+            modelBuilder.Entity<Retenciones>().HasKey(r => r.Codigo_Retencion);
 
             //vista            
             //modelBuilder.Entity<ViewArticulo>().ToView("ViewArticulo", schema: "dbo");
@@ -811,7 +813,7 @@ namespace Api.Context
         //public virtual DbSet<RESPON_SEGUIMIENTO> RESPON_SEGUIMIENTO { get; set; }
         //public virtual DbSet<RESPONSABILIDAD_FISCAL> RESPONSABILIDAD_FISCAL { get; set; }
         //public virtual DbSet<RESPONSABLE> RESPONSABLE { get; set; }
-        //public virtual DbSet<RETENCIONES> RETENCIONES { get; set; }
+        public virtual DbSet<Retenciones> Retenciones { get; set; }
         //public virtual DbSet<RETENCIONES_DOC_CC> RETENCIONES_DOC_CC { get; set; }
         //public virtual DbSet<ROL_EQ_PREVENT> ROL_EQ_PREVENT { get; set; }
         //public virtual DbSet<RUBRO> RUBRO { get; set; }

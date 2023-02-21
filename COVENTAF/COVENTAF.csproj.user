@@ -31,6 +31,9 @@
     <Compile Update="PuntoVenta\frmAperturaCaja.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PuntoVenta\frmAutorizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="PuntoVenta\frmCierreCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -47,6 +50,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="PuntoVenta\frmPuntoVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PuntoVenta\frmRetenciones.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="PuntoVenta\frmVentas.cs">

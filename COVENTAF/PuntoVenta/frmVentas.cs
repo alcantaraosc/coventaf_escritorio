@@ -1322,7 +1322,6 @@ namespace COVENTAF.PuntoVenta
             var responseModel = new ResponseModel();
             responseModel = await _facturaController.GuardarFacturaAsync(_modelFactura);
 
-
             //comprobar si el servidor respondio con exito (1)
             if (responseModel.Exito == 1)
             {

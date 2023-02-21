@@ -37,7 +37,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "consulta no encontrada";
+                    responseModel.Mensaje = "Consulta no encontrada";
                 }                        
             }
             catch (Exception ex)
@@ -184,10 +184,30 @@ namespace Api.Service.DataService
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(ex.InnerException.Message);
             }
 
             return listaEntidadFinanciera;
+        }
+    
+        public async Task<List<Retenciones>> ListarRetenciones()
+        {
+            var listarRetenciones = new List<Retenciones>();
+
+            try
+            {
+                using (var _db = new CoreDBContext())
+                {
+                    listarRetenciones = await _db.Retenciones.Where(r=>r.Estado == "A").ToListAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.Message);
+            }
+
+            return listarRetenciones;
         }
     }
 }

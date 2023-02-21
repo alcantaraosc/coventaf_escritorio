@@ -290,8 +290,12 @@ namespace Api.Service.DataService
        
             if (result > 0)
             {
-                responseModel.Mensaje = "La factura se ha guardado exitosamente";                
-                responseModel.Exito = 1;
+               if ( await RegistrarAuditoriaInventario(model.Factura.Factura) >0)
+                {
+                    responseModel.Mensaje = "La factura se ha guardado exitosamente";
+                    responseModel.Exito = 1;
+                }
+
             }
             else
             {
@@ -302,7 +306,33 @@ namespace Api.Service.DataService
             return result;
         }
 
-        
+
+        public async Task<int> RegistrarAuditoriaInventario(string factura)
+        {
+            int result = 0;
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand("SP_GenerarTransaccionInventario", cn);
+                    cmd.CommandTimeout = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Factura", factura);                    
+
+                    result = await cmd.ExecuteNonQueryAsync();
+                }
+
+            }
+            catch (Exception ex)
+            {                
+                throw new Exception(ex.InnerException.Message);
+            }
+
+            return result;
+        }
         
         
         public async Task<int> EliminarFacturaTemporal(ResponseModel responseModel, string noFactura, string articulo)
