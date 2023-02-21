@@ -301,6 +301,10 @@ namespace Api.Service.DataService
 
             return result;
         }
+
+        
+        
+        
         public async Task<int> EliminarFacturaTemporal(ResponseModel responseModel, string noFactura, string articulo)
         {
           
