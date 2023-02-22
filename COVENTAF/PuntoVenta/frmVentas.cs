@@ -1866,6 +1866,11 @@ namespace COVENTAF.PuntoVenta
 
             AplicarDescuentoGeneralFactura();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _procesoFacturacion.ImprimirTicketFacturaDemo(listDetFactura, txtObservaciones.Text);
+        }
     }
 }
 

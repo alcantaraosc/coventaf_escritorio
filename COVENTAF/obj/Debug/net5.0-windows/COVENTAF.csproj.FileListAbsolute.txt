@@ -434,3 +434,5 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-wind
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.genruntimeconfig.cache
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmAutorizacion.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmRetenciones.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmAutorizacion.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmRetenciones.resources

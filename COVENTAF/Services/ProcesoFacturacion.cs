@@ -827,19 +827,19 @@ namespace COVENTAF.Services
 
                 //factura
                 posY += 24;
-                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.noFactura, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("N° Factura: " , fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Codigo Cliente: " + _encabezadoFact.codigoCliente, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Codigo Cliente: " , fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Cliente: " + _encabezadoFact.cliente, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Cliente: ", fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Fecha: " + _encabezadoFact.fecha, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Fecha: " , fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Bodega: " + _encabezadoFact.bodega, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Bodega: " , fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Caja: " + _encabezadoFact.caja, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Caja: " , fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N4"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Tipo Cambio: " , fuenteRegular, Brushes.Black, posX, posY);
                 posY += 18;
                 e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
                 posY += 10;
@@ -901,7 +901,7 @@ namespace COVENTAF.Services
 
 
                 posX += 65;
-                e.Graphics.DrawString("C$ " + _encabezadoFact.subTotalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ " , fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 15;
                 posX = 2;
@@ -909,7 +909,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("Descuento:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
-                e.Graphics.DrawString("C$ " + _encabezadoFact.descuentoCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ "  , fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 15;
                 posX = 2;
@@ -917,7 +917,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("IVA:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
-                e.Graphics.DrawString("C$ " + _encabezadoFact.ivaCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ "  , fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 15;
                 posX = 2;
@@ -925,7 +925,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
-                e.Graphics.DrawString("C$ " + _encabezadoFact.totalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ " , fuenteRegular, Brushes.Black, posX, posY);
 
 
                 posY += 15;
@@ -934,25 +934,36 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
-                e.Graphics.DrawString("U$ " + _encabezadoFact.totalDolar.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("U$ " , fuenteRegular, Brushes.Black, posX, posY);
 
                 /************************************************************************************/
 
                 posY += 20;
                 //reiniciar en la posicion X
                 posX = 2;
-                e.Graphics.DrawString("Forma de Pago: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Forma de Pago: " , fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 18;
-                e.Graphics.DrawString("Observaciones: " + _observaciones, fuenteRegular, Brushes.Black, posX, posY);
+                string[] newObservacion = _observaciones.Split("\r\n");
 
-                for (var fila = 0; fila < _observaciones.Length; fila++)
+                e.Graphics.DrawString("Observaciones: ", fuenteRegular, Brushes.Black, posX, posY);
+
+                if (newObservacion.Length >=2)
                 {
-
+                    for (var fila = 0; fila < newObservacion.Length; fila++)
+                    {
+                        posY += 15;
+                        e.Graphics.DrawString(newObservacion[fila], fuenteRegular, Brushes.Black, posX+10, posY);
+                    }
                 }
+                else
+                {
+                    e.Graphics.DrawString(_observaciones, fuenteRegular, Brushes.Black, posX, posY);
+                }
+         
 
                 posY += 18;
-                e.Graphics.DrawString("Atendido Por: " + _encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Atendido Por: " , fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 40;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);

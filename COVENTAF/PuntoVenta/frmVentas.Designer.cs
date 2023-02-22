@@ -115,6 +115,7 @@ namespace COVENTAF.PuntoVenta
             this.btnGuardarFactura = new System.Windows.Forms.Button();
             this.btnLimpiarFactura = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -604,7 +605,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDetalleFactura.RowTemplate.Height = 25;
             this.dgvDetalleFactura.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleFactura.Size = new System.Drawing.Size(1480, 380);
+            this.dgvDetalleFactura.Size = new System.Drawing.Size(1480, 390);
             this.dgvDetalleFactura.TabIndex = 94;
             this.dgvDetalleFactura.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellClick);
             this.dgvDetalleFactura.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellEndEdit);
@@ -930,7 +931,7 @@ namespace COVENTAF.PuntoVenta
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(53, 698);
+            this.label18.Location = new System.Drawing.Point(19, 683);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(149, 20);
             this.label18.TabIndex = 121;
@@ -943,19 +944,19 @@ namespace COVENTAF.PuntoVenta
             this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtObservaciones.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtObservaciones.ForeColor = System.Drawing.Color.White;
-            this.txtObservaciones.Location = new System.Drawing.Point(250, 691);
+            this.txtObservaciones.Location = new System.Drawing.Point(191, 691);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(357, 114);
+            this.txtObservaciones.Size = new System.Drawing.Size(329, 114);
             this.txtObservaciones.TabIndex = 122;
             // 
             // pictureBox24
             // 
             this.pictureBox24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox24.Image = global::COVENTAF.Properties.Resources.background_text;
-            this.pictureBox24.Location = new System.Drawing.Point(237, 683);
+            this.pictureBox24.Location = new System.Drawing.Point(182, 683);
             this.pictureBox24.Name = "pictureBox24";
-            this.pictureBox24.Size = new System.Drawing.Size(379, 131);
+            this.pictureBox24.Size = new System.Drawing.Size(349, 131);
             this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox24.TabIndex = 123;
             this.pictureBox24.TabStop = false;
@@ -1218,12 +1219,36 @@ namespace COVENTAF.PuntoVenta
             this.btnLimpiarFactura.UseVisualStyleBackColor = false;
             this.btnLimpiarFactura.Click += new System.EventHandler(this.btnLimpiarFactura_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.button1.Image = global::COVENTAF.Properties.Resources.quitar_del_carrito;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.button1.Location = new System.Drawing.Point(879, 207);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 41);
+            this.button1.TabIndex = 195;
+            this.button1.Text = "Imprim";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(52)))), ((int)(((byte)(95)))));
             this.ClientSize = new System.Drawing.Size(1499, 825);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnLimpiarFactura);
             this.Controls.Add(this.btnGuardarFactura);
             this.Controls.Add(this.txtDescuentoGeneral);
@@ -1409,5 +1434,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnGuardarFactura;
         private System.Windows.Forms.Button btnLimpiarFactura;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button1;
     }
 }
