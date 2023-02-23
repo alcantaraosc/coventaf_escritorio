@@ -337,6 +337,8 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.pdb
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.genruntimeconfig.cache
 D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmFactura.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmAutorizacion.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmRetenciones.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\bin\Debug\net5.0-windows\COVENTAF.exe
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\bin\Debug\net5.0-windows\COVENTAF.deps.json
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\bin\Debug\net5.0-windows\COVENTAF.runtimeconfig.json
@@ -413,12 +415,14 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-wind
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.loading.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.Properties.Resources.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmAperturaCaja.resources
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmAutorizacion.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmCierreCaja.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmCobrarFactura.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmDetallePago.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmFactura.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmMetodoPago.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmPuntoVenta.resources
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmRetenciones.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmVentas.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.Security.frmUsuario.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.VistaPrevia.resources
@@ -432,7 +436,3 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-wind
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\ref\COVENTAF.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.pdb
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.genruntimeconfig.cache
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmAutorizacion.resources
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmRetenciones.resources
-D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmAutorizacion.resources
-D:\PROYECTOS\COVENTAF-DESK\coventaf_escritorio\COVENTAF\obj\Debug\net5.0-windows\COVENTAF.PuntoVenta.frmRetenciones.resources

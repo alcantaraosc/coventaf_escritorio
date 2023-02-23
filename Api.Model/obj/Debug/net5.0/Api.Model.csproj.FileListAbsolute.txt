@@ -97,7 +97,6 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\bin\Debug\net5.0\Api
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\bin\Debug\net5.0\Api.Model.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\bin\Debug\net5.0\ref\Api.Model.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\bin\Debug\net5.0\Api.Model.pdb
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\Api.Model.csproj.AssemblyReference.cache
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\Api.Model.GeneratedMSBuildEditorConfig.editorconfig
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\Api.Model.AssemblyInfoInputs.cache
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\Api.Model.AssemblyInfo.cs
@@ -105,3 +104,4 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\Api
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\Api.Model.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\ref\Api.Model.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\Api.Model.pdb
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_escritorio\Api.Model\obj\Debug\net5.0\Api.Model.csproj.AssemblyReference.cache

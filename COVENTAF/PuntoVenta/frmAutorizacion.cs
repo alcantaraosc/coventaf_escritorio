@@ -16,5 +16,16 @@ namespace COVENTAF.PuntoVenta
         {
             InitializeComponent();
         }
+
+        private void frmAutorizacion_Load(object sender, EventArgs e)
+        {
+            this.txtUser.Text = "";
+            this.txtUser.Focus();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

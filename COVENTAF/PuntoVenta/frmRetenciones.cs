@@ -16,25 +16,30 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmRetenciones : Form
     {
+        public bool aplicarRetenciones=false;
+        public decimal totalRetenciones = 0.0000M;
+
         public decimal montoTotal = 0.0000M;
-        public List<DetalleRetenciones> _detalleRetenciones;
+        public List<DetalleRetenciones> _detalleRetenciones = new List<DetalleRetenciones>();
         private List<Retenciones> retenciones;
+               
 
         ServiceFormaPago _serviceRetenciones;
-        public frmRetenciones(List<DetalleRetenciones> detalleRetenciones)
+        public frmRetenciones()
         {
             InitializeComponent();
             _serviceRetenciones = new ServiceFormaPago();
-            this._detalleRetenciones = detalleRetenciones;
+           
         }
 
         private void frmRetenciones_Load(object sender, EventArgs e)
         {
             ListarRetenciones();
-            if (dgvDetalleRetenciones.Rows.Count >0)
+            if (_detalleRetenciones.Count >0)
             {
                 dgvDetalleRetenciones.DataSource = null;
                 dgvDetalleRetenciones.DataSource = _detalleRetenciones;
+                CalcularRetencion();
             }
 
                        
@@ -68,7 +73,7 @@ namespace COVENTAF.PuntoVenta
                     Descripcion = this.cboRetenciones.Text,
                     Monto =Math.Round( montoTotal * (_datos.Porcentaje / 100), 2),
                     Base = montoTotal,
-                    Referencia = "Ref -#", ///"Ref-#" + (detalleRetenciones.Count + 1).ToString(),
+                    Referencia = $"RET-#{_detalleRetenciones.Count + 1}", ///"Ref-#" + (detalleRetenciones.Count + 1).ToString(),
                     AutoRenedora = _datos.Es_AutoRetenedor == "S" ? true : false
                 };
 
@@ -76,13 +81,27 @@ namespace COVENTAF.PuntoVenta
 
                 this.dgvDetalleRetenciones.DataSource = null;
                 this.dgvDetalleRetenciones.DataSource = _detalleRetenciones;
+
+                CalcularRetencion();
             }
             else
             {
                 MessageBox.Show("Ya aplicaste la retencion seleccionada", "Sistema COVENTAF");
             }
 
+        }
 
+        private void CalcularRetencion()
+        {
+            //Reiniciar los valores
+            totalRetenciones = 0.00M;
+
+            foreach ( var item in _detalleRetenciones)
+            {
+                totalRetenciones += item.Monto;
+            }
+
+            this.lblTotalRetenciones.Text = $"Total de Retenciones: C$ {totalRetenciones.ToString("N2")}";
         }
 
         private bool existeRetencionenGrid(string codigoRetencion)
@@ -104,18 +123,31 @@ namespace COVENTAF.PuntoVenta
                 if (this.dgvDetalleRetenciones.RowCount > 0)
                 {
                     int NumeroFilaSeleccionada = dgvDetalleRetenciones.CurrentRow.Index;
-                    //if (MessageBox.Show("¿ Estas seguro de eliminar el articulo seleccionado ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    //{
-                        var articuloId = dgvDetalleRetenciones.Rows[NumeroFilaSeleccionada].Cells[0].Value.ToString();
+
+                    var articuloId = dgvDetalleRetenciones.Rows[NumeroFilaSeleccionada].Cells[0].Value.ToString();
                     //eliminar el registro de la lista.
-                    _detalleRetenciones.RemoveAt(NumeroFilaSeleccionada);                    
-                    //}
+                    _detalleRetenciones.RemoveAt(NumeroFilaSeleccionada);
+                    dgvDetalleRetenciones.DataSource = null;
+                    dgvDetalleRetenciones.DataSource = _detalleRetenciones;
+                    CalcularRetencion();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
+        }
+
+        private void BtnAceptar_Click(object sender, EventArgs e)
+        {
+            //var frmPedirAutorizacion = new frmAutorizacion();
+            //this.Hide();
+            //if (frmPedirAutorizacion.DialogResult == DialogResult.OK)
+            //{
+                aplicarRetenciones = true;
+            this.Close();
+            //}
+                
         }
     }
 }

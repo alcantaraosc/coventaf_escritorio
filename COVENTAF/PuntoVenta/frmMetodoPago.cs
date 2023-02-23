@@ -21,9 +21,7 @@ namespace COVENTAF.PuntoVenta
         public bool GuardarFactura = false;
         public List<ViewMetodoPago> metodoPago;
         public List<DetalleRetenciones> detalleRetenciones;
-
-
-
+        
         public decimal TotalCobrar = 1695.58M;
         public decimal tipoCambioOficial = 36.2924M;
         public decimal nuevoTipoCambioAproximado;
@@ -47,6 +45,8 @@ namespace COVENTAF.PuntoVenta
         private decimal montoPagadoDolar = 0.00M;
         private decimal diferenciaCordoba = 0.0000M;
         private decimal diferenciaDolar = 0.00M;
+        private decimal totalRetenciones = 0.00M;
+        private decimal TotalCobrarAux = 0.00M;
 
         /*private ViewModelFacturacion _modelFactura = new ViewModelFacturacion();
         private Encabezado _datoEncabezadoFact = new Encabezado();
@@ -70,7 +70,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        void InicializarMontos()
+        void EstablecerMontosInicio()
         {
             totalCobrarCordoba = TotalCobrar;
             totalCobrarDolar = Math.Round((TotalCobrar / tipoCambioOficial), 2);
@@ -78,19 +78,7 @@ namespace COVENTAF.PuntoVenta
             montoPagadoDolar = 0.00M;
             diferenciaCordoba = TotalCobrar - montoPagadoCordoba;
             diferenciaDolar = totalCobrarDolar - montoPagadoDolar;
-
-            /*
-            metodoPago[0].Pago = "-2"; //PagoID=-2 es el total a Cobrar
-            metodoPago[0].FormaPago = "-2";
-            metodoPago[0].DescripcionFormPago = "Total a Cobrar";
-            metodoPago[0].MontoCordoba = TotalCobrar;
-            metodoPago[0].Moneda = 'L'; //L=Local (C$)
-            metodoPago[0].MontoDolar = Math.Round((TotalCobrar / tipoCambioOficial), 2);
-            metodoPago[0].MontoPagado = 0.0000M;
-            metodoPago[0].DiferenciaCordoba = metodoPago[0].MontoCordoba;
-            metodoPago[0].DiferenciaDolar = metodoPago[0].MontoDolar;
-            metodoPago[0].TeclaPresionaXCajero = false;
-            metodoPago[0].DescripcionTecla = "No Existe Tecla";*/
+                 
 
             this.lblTotalPagar.Text = $"C${TotalCobrar.ToString("N2")} = U${(TotalCobrar / tipoCambioOficial).ToString("N2")}";
             this.txtPendientePagarCliente.Text = TotalCobrar.ToString("N2");
@@ -471,7 +459,7 @@ namespace COVENTAF.PuntoVenta
         //boton reiniciar el cobro
         private void btnReInicioCobro_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿ Estas seguro de Reiniciar el metodo de pago ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("¿ Estas seguro de Resetear el metodo de pago ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
 
                 setCambiarEstadoTextBoxMetodoPago("sinInf", false);
@@ -496,7 +484,7 @@ namespace COVENTAF.PuntoVenta
                 this.dgvDetallePago.Columns.Clear();
                 ///this.dgvDetallePago.DataSource = metodoPago;
 
-                InicializarMontos();
+                EstablecerMontosInicio();
 
                 this.txtEfectivoCordoba.Text = "C$0.00";
                 this.txtEfectivoCordoba.Enabled = false;
@@ -538,6 +526,8 @@ namespace COVENTAF.PuntoVenta
 
         private void frmMetodoPago_Load(object sender, EventArgs e)
         {
+            //asignarla a una variable temporal
+            TotalCobrarAux = TotalCobrar;
 
             ListarCombox();
 
@@ -548,7 +538,7 @@ namespace COVENTAF.PuntoVenta
 
             lblTitulo.Text = $"Cobrar Factura. Tipo de Cambio: {tipoCambioOficial}";
             //inicializar los datos
-            InicializarMontos();
+            EstablecerMontosInicio();
 
             /*
             decimal montoDolares = (montoTotalCobrar / tipoCambioOficial);
@@ -1922,13 +1912,33 @@ namespace COVENTAF.PuntoVenta
 
         private void btnRetenciones_Click(object sender, EventArgs e)
         {
-            using (var frm = new frmRetenciones(detalleRetenciones))
+            if (metodoPago.Count ==0)
             {
-                frm.montoTotal = TotalCobrar;
-                frm.ShowDialog();
-                        
-               
-    }
+                using (var frm = new frmRetenciones())
+                {
+                    frm.montoTotal = TotalCobrar;
+                    frm._detalleRetenciones = detalleRetenciones;
+                    frm.ShowDialog();
+
+                    if (frm.aplicarRetenciones)
+                    {
+                        detalleRetenciones = frm._detalleRetenciones;
+                        totalRetenciones = frm.totalRetenciones;
+                        this.lblTotalRetenciones.Text = $"Total Retenciones: C${totalRetenciones}";
+                        TotalCobrar = TotalCobrarAux;
+                        TotalCobrar = TotalCobrar - totalRetenciones;
+                        EstablecerMontosInicio();
+                    }
+
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Para aplicar retencion primero debes de resetear el Cobro", "Sistema COVENTAF");                
+            }
+
+
         }
     }
 }

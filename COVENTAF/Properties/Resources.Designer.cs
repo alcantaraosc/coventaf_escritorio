@@ -143,6 +143,26 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap borrar {
+            get {
+                object obj = ResourceManager.GetObject("borrar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cancelar {
+            get {
+                object obj = ResourceManager.GetObject("cancelar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cerrar {
             get {
                 object obj = ResourceManager.GetObject("Cerrar", resourceCulture);
@@ -166,6 +186,16 @@ namespace COVENTAF.Properties {
         internal static System.Drawing.Bitmap close_login {
             get {
                 object obj = ResourceManager.GetObject("close-login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap comprobado {
+            get {
+                object obj = ResourceManager.GetObject("comprobado", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

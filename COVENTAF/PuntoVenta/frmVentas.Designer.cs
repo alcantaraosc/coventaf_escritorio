@@ -489,7 +489,7 @@ namespace COVENTAF.PuntoVenta
             this.cboBodega.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboBodega.ForeColor = System.Drawing.Color.White;
             this.cboBodega.FormattingEnabled = true;
-            this.cboBodega.Location = new System.Drawing.Point(752, 145);
+            this.cboBodega.Location = new System.Drawing.Point(753, 145);
             this.cboBodega.Name = "cboBodega";
             this.cboBodega.Size = new System.Drawing.Size(243, 28);
             this.cboBodega.TabIndex = 84;
