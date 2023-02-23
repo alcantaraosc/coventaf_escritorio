@@ -13,6 +13,6 @@ namespace Api.Model.ViewModels
         public decimal Monto { get; set; }
         public decimal Base { get; set; }
         public string Referencia { get; set; }
-        public bool AutoRenedora { get; set; }
+        public bool AutoRetenedora { get; set; }
     }
 }

@@ -47,6 +47,7 @@ namespace COVENTAF.PuntoVenta
         private decimal diferenciaDolar = 0.00M;
         private decimal totalRetenciones = 0.00M;
         private decimal TotalCobrarAux = 0.00M;
+        private bool ejecutarEventoSelect = false;
 
         /*private ViewModelFacturacion _modelFactura = new ViewModelFacturacion();
         private Encabezado _datoEncabezadoFact = new Encabezado();
@@ -525,7 +526,7 @@ namespace COVENTAF.PuntoVenta
 
 
         private void frmMetodoPago_Load(object sender, EventArgs e)
-        {
+        {            
             //asignarla a una variable temporal
             TotalCobrarAux = TotalCobrar;
 
@@ -540,51 +541,8 @@ namespace COVENTAF.PuntoVenta
             //inicializar los datos
             EstablecerMontosInicio();
 
-            /*
-            decimal montoDolares = (montoTotalCobrar / tipoCambioOficial);
-            montoDolares = Math.Round(montoDolares, 2);
-            var nuevomontoDol = montoDolares;
-
-            decimal montoConError = (nuevomontoDol * tipoCambioOficial);
-            montoConError = Math.Round(montoConError, 2);
-            if (montoConError == montoTotalCobrar)
-            {
-                nuevoTipoCambioAproximado = Math.Round(tipoCambioOficial, 2);
-                tipoCambioOficial = Math.Round(tipoCambioOficial, 2);
-            }
-            else
-            {
-                nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolares);
-                //nuevoTipoCambioAproximado = tipoCambioOficial;
-            }*/
-
-
-  
 
         }
-
-        //private void LlenarCombox()
-        //{
-
-        //    try
-        //    {
-
-        //    }
-        //    catch()
-        //    {
-
-        //    }
-
-        //    //ListarDrownList responseModel = new ListarDrownList();
-        //    //try
-        //    //{
-        //    //    responseModel = await _facturaController.llenarComboxFacturaAsync();
-
-        //    //    if (responseModel.Exito == 1)
-
-        //    //        listarCombox.TipoTarjeta = await _serviceFactura.ListarTipoTarjeta(responseModel);
-        //    //listarCombox.CondicionPago = await _serviceFactura.ListarCondicionPago(responseModel);
-        //}
 
 
         public async void ListarCombox()
@@ -617,7 +575,10 @@ namespace COVENTAF.PuntoVenta
                     this.cboEntidadFinanciera.ValueMember = "Entidad_Financiera";
                     this.cboEntidadFinanciera.DisplayMember = "Descripcion";
                     this.cboEntidadFinanciera.DataSource = listarDrownListModel.EntidadFinanciera;
-                                                       
+
+                    //indicar que se puede ejecutar al evento Select de Forma de pago
+                    ejecutarEventoSelect = true;
+
                 }
                 else
                 {
@@ -1868,46 +1829,49 @@ namespace COVENTAF.PuntoVenta
 
         private void cboFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.cboFormaPago.Enabled = false;
-            switch (this.cboFormaPago.SelectedValue.ToString())
+            if (ejecutarEventoSelect)
             {
-                case "0001":
-                    btnEfectivoCordoba_Click(null, null);                   
-                    break;
+                this.cboFormaPago.Enabled = false;
+                switch (this.cboFormaPago.SelectedValue.ToString())
+                {
+                    case "0001":
+                        btnEfectivoCordoba_Click(null, null);
+                        break;
 
-                //F1= Efectivo Cordoba
-                case "0002":
-                    btnChequeCordoba_Click(null, null);
-                    break;
-                
-                case "0003":
-                    btnTarjetaCordoba_Click(null, null);
-                    break;     
-                
-                case "0004":
-                    btnCredito_Click(null, null);
-                    break;
+                    //F1= Efectivo Cordoba
+                    case "0002":
+                        btnChequeCordoba_Click(null, null);
+                        break;
 
-                case "0005":                    
-                    MessageBox.Show("Use la pestaña Devoluciones", "Sistema COVENTAF");
-                    //por defecto el sistema selecciona otro metodo de pago
-                    this.cboFormaPago.SelectedValue = "0001";
-                    break;
+                    case "0003":
+                        btnTarjetaCordoba_Click(null, null);
+                        break;
 
-                case "0006":
-                    btnBono_Click(null, null);
-                    break;
+                    case "0004":
+                        btnCredito_Click(null, null);
+                        break;
 
-                case "FP01":
-                    btnGiftCardCordobar_Click(null, null);                    
-                    break;
+                    case "0005":
+                        MessageBox.Show("Use la pestaña Devoluciones", "Sistema COVENTAF");
+                        //por defecto el sistema selecciona otro metodo de pago
+                        this.cboFormaPago.SelectedValue = "0001";
+                        break;
 
-                default:
+                    case "0006":
+                        btnBono_Click(null, null);
+                        break;
+
+                    case "FP01":
+                        btnGiftCardCordobar_Click(null, null);
+                        break;
+
+                    default:
                         this.cboFormaPago.Enabled = true;
-                    break;
-
+                        break;
+                }
             }
-        
+
+
         }
 
         private void btnRetenciones_Click(object sender, EventArgs e)
@@ -1921,10 +1885,10 @@ namespace COVENTAF.PuntoVenta
                     frm.ShowDialog();
 
                     if (frm.aplicarRetenciones)
-                    {
+                    {                        
                         detalleRetenciones = frm._detalleRetenciones;
                         totalRetenciones = frm.totalRetenciones;
-                        this.lblTotalRetenciones.Text = $"Total Retenciones: C${totalRetenciones}";
+                        this.lblTotalRetenciones.Text = $"Total Retenciones: C$ {totalRetenciones}";
                         TotalCobrar = TotalCobrarAux;
                         TotalCobrar = TotalCobrar - totalRetenciones;
                         EstablecerMontosInicio();

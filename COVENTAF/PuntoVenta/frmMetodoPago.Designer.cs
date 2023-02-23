@@ -31,15 +31,14 @@ namespace COVENTAF.PuntoVenta
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMetodoPago));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTipoTarjeta = new System.Windows.Forms.Label();
             this.cboTipoTarjeta = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -107,7 +106,6 @@ namespace COVENTAF.PuntoVenta
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.tbpRetenciones = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvDetallePago = new System.Windows.Forms.DataGridView();
             this.lblTotalRetenciones = new System.Windows.Forms.Label();
@@ -127,7 +125,6 @@ namespace COVENTAF.PuntoVenta
             this.tbpPagosPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOtros)).BeginInit();
             this.tpDevoluciones.SuspendLayout();
-            this.tbpRetenciones.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetallePago)).BeginInit();
             this.SuspendLayout();
@@ -192,17 +189,6 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(5, 748);
             this.panel1.TabIndex = 148;
-            // 
-            // lblTipoTarjeta
-            // 
-            this.lblTipoTarjeta.AutoSize = true;
-            this.lblTipoTarjeta.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTipoTarjeta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblTipoTarjeta.Location = new System.Drawing.Point(44, 54);
-            this.lblTipoTarjeta.Name = "lblTipoTarjeta";
-            this.lblTipoTarjeta.Size = new System.Drawing.Size(92, 21);
-            this.lblTipoTarjeta.TabIndex = 192;
-            this.lblTipoTarjeta.Text = "Tipo Tarjeta:";
             // 
             // cboTipoTarjeta
             // 
@@ -803,7 +789,6 @@ namespace COVENTAF.PuntoVenta
             // 
             this.tbpOpcionesPagos.Controls.Add(this.tbpPagosPrincipal);
             this.tbpOpcionesPagos.Controls.Add(this.tpDevoluciones);
-            this.tbpOpcionesPagos.Controls.Add(this.tbpRetenciones);
             this.tbpOpcionesPagos.Dock = System.Windows.Forms.DockStyle.Top;
             this.tbpOpcionesPagos.Location = new System.Drawing.Point(5, 116);
             this.tbpOpcionesPagos.Name = "tbpOpcionesPagos";
@@ -1114,17 +1099,6 @@ namespace COVENTAF.PuntoVenta
             this.label6.Text = "U$ = C$";
             this.label6.Visible = false;
             // 
-            // tbpRetenciones
-            // 
-            this.tbpRetenciones.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tbpRetenciones.Controls.Add(this.lblTipoTarjeta);
-            this.tbpRetenciones.Location = new System.Drawing.Point(4, 24);
-            this.tbpRetenciones.Name = "tbpRetenciones";
-            this.tbpRetenciones.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpRetenciones.Size = new System.Drawing.Size(952, 340);
-            this.tbpRetenciones.TabIndex = 2;
-            this.tbpRetenciones.Text = "Retenciones";
-            // 
             // panel5
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1142,36 +1116,36 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvDetallePago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetallePago.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDetallePago.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetallePago.EnableHeadersVisualStyles = false;
             this.dgvDetallePago.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetallePago.Location = new System.Drawing.Point(0, 0);
             this.dgvDetallePago.Name = "dgvDetallePago";
             this.dgvDetallePago.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDetallePago.RowTemplate.Height = 25;
             this.dgvDetallePago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetallePago.Size = new System.Drawing.Size(787, 161);
@@ -1180,23 +1154,24 @@ namespace COVENTAF.PuntoVenta
             // lblTotalRetenciones
             // 
             this.lblTotalRetenciones.AutoSize = true;
-            this.lblTotalRetenciones.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalRetenciones.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTotalRetenciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblTotalRetenciones.Location = new System.Drawing.Point(27, 660);
+            this.lblTotalRetenciones.Location = new System.Drawing.Point(25, 658);
             this.lblTotalRetenciones.Name = "lblTotalRetenciones";
-            this.lblTotalRetenciones.Size = new System.Drawing.Size(103, 18);
+            this.lblTotalRetenciones.Size = new System.Drawing.Size(106, 19);
             this.lblTotalRetenciones.TabIndex = 205;
             this.lblTotalRetenciones.Text = "Retenciones:";
             // 
             // btnRetenciones
             // 
             this.btnRetenciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnRetenciones.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRetenciones.ForeColor = System.Drawing.Color.White;
             this.btnRetenciones.Location = new System.Drawing.Point(20, 690);
             this.btnRetenciones.Name = "btnRetenciones";
             this.btnRetenciones.Size = new System.Drawing.Size(186, 35);
             this.btnRetenciones.TabIndex = 206;
-            this.btnRetenciones.Text = "Retenciones - Alt + R";
+            this.btnRetenciones.Text = "&Retenciones - Alt + R";
             this.btnRetenciones.UseVisualStyleBackColor = false;
             this.btnRetenciones.Click += new System.EventHandler(this.btnRetenciones_Click);
             // 
@@ -1245,8 +1220,6 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.btnOtros)).EndInit();
             this.tpDevoluciones.ResumeLayout(false);
             this.tpDevoluciones.PerformLayout();
-            this.tbpRetenciones.ResumeLayout(false);
-            this.tbpRetenciones.PerformLayout();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetallePago)).EndInit();
             this.ResumeLayout(false);
@@ -1288,7 +1261,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.ComboBox cboTipoTarjeta;
-        private System.Windows.Forms.Label lblTipoTarjeta;
         private System.Windows.Forms.ComboBox cboCondicionPago;
         private System.Windows.Forms.Label lblCambioCliente;
         private System.Windows.Forms.Button btnReInicioCobro;
@@ -1310,7 +1282,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.TabControl tbpOpcionesPagos;
         private System.Windows.Forms.TabPage tbpPagosPrincipal;
         private System.Windows.Forms.TabPage tpDevoluciones;
-        private System.Windows.Forms.TabPage tbpRetenciones;
         private System.Windows.Forms.ComboBox cboFormaPago;
         private System.Windows.Forms.Label lblTituloCombox;
         private System.Windows.Forms.Label lblTituloMontoGeneral;

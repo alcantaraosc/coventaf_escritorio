@@ -713,33 +713,44 @@ namespace COVENTAF.Services
                 posX = 2;               
                 e.Graphics.DrawString("Forma de Pago: "+ _encabezadoFact.formaDePago , fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 18;               
-                e.Graphics.DrawString("Observaciones: " + _encabezadoFact.observaciones, fuenteRegular, Brushes.Black, posX, posY);
+                posY += 18;
+                string[] newObservacion = _observaciones.Split("\r\n");
 
-                for(var fila=0; fila < _encabezadoFact.observaciones.Length; fila++ )
+                e.Graphics.DrawString("Observaciones: ", fuenteRegular, Brushes.Black, posX, posY);
+
+                if (newObservacion.Length >= 2)
                 {
-
+                    for (var fila = 0; fila < newObservacion.Length; fila++)
+                    {
+                        posY += 15;
+                        e.Graphics.DrawString(newObservacion[fila], fuenteRegular, Brushes.Black, posX + 10, posY);
+                    }
+                }
+                else
+                {
+                    posY += 15;
+                    e.Graphics.DrawString(_observaciones, fuenteRegular, Brushes.Black, posX, posY);
                 }
 
-                posY += 18;
-                e.Graphics.DrawString("Atendido Por: " + _encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 40;
+                posY += 20;
+                e.Graphics.DrawString("Atendido Por: ", fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 50;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 40;
+                posY += 50;
                 e.Graphics.DrawString("RECIBIDO: ", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 40;
+                posY += 50;
                 posX = 30;
                 e.Graphics.DrawString("NO SE ACEPTAN CAMBIOS DESPUES DE", fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
                 e.Graphics.DrawString("48 HORAS. *APLICAN RESTRICCIONES*", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 25;
+                posY += 40;
                 posX += 23;
                 e.Graphics.DrawString("GRACIAS POR SU COMPRA", fuenteRegular, Brushes.Black, posX, posY);
-
 
             }
             catch (Exception ex)
