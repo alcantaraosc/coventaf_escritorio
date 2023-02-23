@@ -27,7 +27,6 @@ namespace Api.Service.DataService
         {
             var listaFactura = new List<ViewFactura>();
             
-
             try
             {
                 switch (filtroFactura.Tipofiltro)
@@ -269,11 +268,23 @@ namespace Api.Service.DataService
                             await _db.SaveChangesAsync();
                         }
 
-                        //consultar la factura de la tabla temporal
-                        // var listFactTemp = await _db.FacturaTemporal.Where(x => x.Factura == model.Factura.Factura).ToListAsync();
-                        //eliminar la factura de la tabla temporal
-                        // _db.FacturaTemporal.RemoveRange(listFactTemp);
-                        await _db.SaveChangesAsync();
+                        //comprobar si tiene registro de retenciones
+                        if (model.FacturaRetenciones.Count >0)
+                        {
+                            for (int row = 0; row < model.FacturaRetenciones.Count; row++)
+                            {
+                                //instanciar la clase Pago_Pos
+                                var _factura_Retenciones = new Factura_Retencion();
+                                //agregar la primera fila a la clase Pago_Pos
+                                _factura_Retenciones = model.FacturaRetenciones.ElementAt<Factura_Retencion>(row);
+                                //asignar el numero de facturas.                        
+                                //generar el Guid
+                                _factura_Retenciones.RowPointer = utilidad.GenerarGuid();
+                                //insertar en la base de datos el p
+                                _db.Add<Factura_Retencion>(_factura_Retenciones);
+                                await _db.SaveChangesAsync();
+                            }
+                        }
 
 
                         await transaction.CommitAsync();

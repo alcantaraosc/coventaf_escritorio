@@ -44,7 +44,6 @@ namespace COVENTAF.PuntoVenta
                 CargarRetencionesGrid();
                 CalcularRetencion();
             }
-
                        
         }
 

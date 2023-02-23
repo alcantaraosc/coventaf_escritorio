@@ -186,15 +186,17 @@ namespace COVENTAF.PuntoVenta
 
         private void btnNuevaFactura1_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult;
-            using (var frmMessageBox = new frmMessageBox("¿ Estas seguro de crear una nueva factura ?"))
-            {
-                frmMessageBox.ShowDialog();
-                dialogResult = frmMessageBox.respuesta;
-            }
+            NuevaFactura();
 
-            if (dialogResult == DialogResult.Yes)
-            {
+            //DialogResult dialogResult;
+            //using (var frmMessageBox = new frmMessageBox("¿ Estas seguro de crear una nueva factura ?"))
+            //{
+            //    frmMessageBox.ShowDialog();
+            //    dialogResult = frmMessageBox.respuesta;
+            //}
+
+            //if (dialogResult == DialogResult.Yes)
+            //{
                 /* NuevaFactura();
                  var frm = new frmVentas();
                  frm.ShowDialog();
@@ -210,9 +212,9 @@ namespace COVENTAF.PuntoVenta
 
                  //listar las facturas en el Grid
                  onListarGridFacturas(filtroFactura);*/
-                NuevaFactura();
+                //NuevaFactura();
 
-            }                        
+            //}                        
         }
 
         private void NuevaFactura()

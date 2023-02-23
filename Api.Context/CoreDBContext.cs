@@ -78,7 +78,7 @@ namespace Api.Context
             modelBuilder.Entity<Cierre_Det_Pago>().ToTable("CIERRE_DET_PAGO", schema: "TIENDA");
             modelBuilder.Entity<Entidad_Financieras>().ToTable("ENTIDAD_FINANCIERA", schema: "TIENDA");
             modelBuilder.Entity<Retenciones>().ToTable("RETENCIONES", schema: "TIENDA");
-
+            modelBuilder.Entity<Factura_Retencion>().ToTable("FACTURA_RETENCION", schema: "TIENDA");
 
 
             //aqui le indico que la tabla ARTICULO_PRECIO su llave es el campo ARTICULO
@@ -122,6 +122,7 @@ namespace Api.Context
             modelBuilder.Entity<Cierre_Det_Pago>().HasKey(cdp => new { cdp.Num_Cierre, cdp.Cajero, cdp.Caja,cdp.Tipo_Pago });
             modelBuilder.Entity<Entidad_Financieras>().HasKey(ef => ef.Entidad_Financiera);
             modelBuilder.Entity<Retenciones>().HasKey(r => r.Codigo_Retencion);
+            modelBuilder.Entity<Factura_Retencion>().HasKey(fr => new { fr.Tipo_Documento, fr.Factura, fr.Codigo_Retencion });
 
             //vista            
             //modelBuilder.Entity<ViewArticulo>().ToView("ViewArticulo", schema: "dbo");
@@ -564,7 +565,7 @@ namespace Api.Context
         //public virtual DbSet<FACTURA_DEVUELTA> FACTURA_DEVUELTA { get; set; }
         //public virtual DbSet<FACTURA_DOC_CC> FACTURA_DOC_CC { get; set; }
         public virtual DbSet<Factura_Linea> Factura_Linea { get; set; }
-        //public virtual DbSet<FACTURA_RETENCION> FACTURA_RETENCION { get; set; }
+        public virtual DbSet<Factura_Retencion> Factura_Retencion { get; set; }
         //public virtual DbSet<FECHA> FECHA { get; set; }
         //public virtual DbSet<FIADORES_DOC_CC> FIADORES_DOC_CC { get; set; }
         //public virtual DbSet<FIADORES_DOC_CO> FIADORES_DOC_CO { get; set; }

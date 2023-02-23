@@ -27,6 +27,11 @@ namespace Api.Model.Modelos
         
         [Column(TypeName = "varchar(1)")]
         public string Es_AutoRetenedor { get; set; }
+
+
+
+
+
        
     }
 }

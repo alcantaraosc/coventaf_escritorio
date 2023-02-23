@@ -74,6 +74,7 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura = new Facturas();
             _modelFactura.FacturaLinea = new List<Factura_Linea>();
             _modelFactura.PagoPos = new List<Pago_Pos>();
+            _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
 
 
         }
@@ -1267,6 +1268,8 @@ namespace COVENTAF.PuntoVenta
             bool GuardarFactura = false;
 
             List<ViewMetodoPago> metodoPago;
+            List<DetalleRetenciones> detalleRetenciones;
+            
             //llamar la ventana de metodo de pago.
             var frmCobrarFactura = new frmMetodoPago();
             frmCobrarFactura.TotalCobrar = Math.Round(listVarFactura.TotalCordobas, 2);
@@ -1277,23 +1280,24 @@ namespace COVENTAF.PuntoVenta
             GuardarFactura = frmCobrarFactura.GuardarFactura;
             //si el cajero presiono el boton guardar factura obtengo el registro del metodo de pago 
             metodoPago = GuardarFactura ? frmCobrarFactura.metodoPago : null;
+            detalleRetenciones = GuardarFactura ? frmCobrarFactura.detalleRetenciones : null;
             //liberar recursos
             frmCobrarFactura.Dispose();
 
             //verificar si el sistema va a proceder a guardar la factura
             if (GuardarFactura)
             {
+                listVarFactura.TotalRetencion = frmCobrarFactura.totalRetenciones;
                 //primero recolectar la informacion de la factura
                 RecolectarDatosFactura();
                 //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
-                RecopilarDatosMetodoPago(metodoPago);
+                RecopilarDatosMetodoPago(metodoPago, detalleRetenciones);
                 GuardarDatosFacturaBaseDatos();
             }            
         }
 
         private async void GuardarDatosFacturaBaseDatos()
-        {
-            //oscar revisa esto urgente 16/02/2023
+        {            
             var datoEncabezadoFact = new Encabezado()
             {
                 noFactura = listVarFactura.NoFactura,
@@ -1306,17 +1310,26 @@ namespace COVENTAF.PuntoVenta
                 //subTotalDolar = listVarFactura.SubTotalDolar,
                 //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
                 //ivaDolar = listVarFactura.IvaDolar,
-                totalDolar = listVarFactura.TotalDolar,
+                
                 subTotalCordoba = listVarFactura.SubTotalCordoba,
                 descuentoCordoba = listVarFactura.DescuentoGeneralCordoba,
+                MontoRetencion = listVarFactura.TotalRetencion,
                 ivaCordoba = listVarFactura.IvaCordoba,
+                //restar la retencion para mostrar en la factura y guardar en la base de datos con el total de la factura
                 totalCordoba = listVarFactura.TotalCordobas,
+                totalDolar = listVarFactura.TotalDolar,
                 atentidoPor = User.NombreUsuario,
                 formaDePago = listVarFactura.TicketFormaPago,
                 observaciones = txtObservaciones.Text
             };
 
-
+            //si existe la retencion, entonces restar la retencion solo para la factura
+            if (datoEncabezadoFact.MontoRetencion >0)
+            {
+                decimal totalRetencionDolar = listVarFactura.TotalRetencion / listVarFactura.TipoDeCambio;
+                datoEncabezadoFact.totalCordoba = datoEncabezadoFact.totalCordoba - listVarFactura.TotalRetencion;
+                datoEncabezadoFact.totalDolar = datoEncabezadoFact.totalDolar - totalRetencionDolar;               
+            }          
 
             //llamar al servidor para guardar la factura
             var responseModel = new ResponseModel();
@@ -1340,7 +1353,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        public void RecopilarDatosMetodoPago(List<ViewMetodoPago> metodoPago)
+        public void RecopilarDatosMetodoPago(List<ViewMetodoPago> metodoPago, List<DetalleRetenciones> _detalleRetencion)
         {
             string TarjetaCredito = "0";
             string Condicion_Pago = "0";
@@ -1371,10 +1384,12 @@ namespace COVENTAF.PuntoVenta
                 if (datosPagosPos_.Pago != "-1")
                 {
                     //forma de pago para mostrar al momento de imprimir la Ticket
-                    listVarFactura.TicketFormaPago += $"{mMetodoPago.DescripcionFormPago} {mMetodoPago.TipoTarjeta} {mMetodoPago.DescripcionCondicionPago}  ";
+                    listVarFactura.TicketFormaPago += $"{( mMetodoPago.DescripcionFormPago is null ? "" : mMetodoPago.DescripcionFormPago)} " +
+                        $"{(mMetodoPago.TipoTarjeta is null ? "" : mMetodoPago.TipoTarjeta + "\r\n")} " +
+                        $"{( mMetodoPago.DescripcionCondicionPago is null ? "" : mMetodoPago.DescripcionCondicionPago)} ";
                 }
 
-                //REVISAR
+                //
                 datosPagosPos_.Entidad_Financiera = mMetodoPago.EntidadFinanciera;
                 datosPagosPos_.Tipo_Tarjeta = mMetodoPago.TipoTarjeta;
 
@@ -1417,6 +1432,28 @@ namespace COVENTAF.PuntoVenta
                 //agregar nuevo registro a la clase FacturaLinea.
                 _modelFactura.PagoPos.Add(datosPagosPos_);                
             }
+
+            foreach(var itemRetencion in _detalleRetencion)
+            {
+                var datosDetRetencion = new Factura_Retencion()
+                {
+                    Tipo_Documento ="F",
+                    Factura =listVarFactura.NoFactura,
+                    Codigo_Retencion = itemRetencion.Retencion,
+                    Monto = itemRetencion.Monto,
+                    Doc_Referencia = itemRetencion.Referencia,
+                    Base = itemRetencion.Base,
+                    AutoRetenedora = itemRetencion.AutoRetenedora ? "S" : "N",
+                    NoteExistsFlag =0,
+                    RecordDate = DateTime.Now,
+                    CreatedBy=User.Usuario,
+                    UpdatedBy=User.Usuario,
+                    CreateDate = DateTime.Now
+                };
+                _modelFactura.FacturaRetenciones.Add(datosDetRetencion);
+            }
+
+
 
             //asingar la tarjeta de credito por el metodo de pago que selecciono el cliente
             _modelFactura.Factura.Tarjeta_Credito = TarjetaCredito;
@@ -1869,7 +1906,33 @@ namespace COVENTAF.PuntoVenta
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _procesoFacturacion.ImprimirTicketFacturaDemo(listDetFactura, txtObservaciones.Text);
+            //oscar revisa esto urgente 16/02/2023
+            var datoEncabezadoFact = new Encabezado()
+            {
+                noFactura = listVarFactura.NoFactura,
+                fecha = listVarFactura.FechaFactura,
+                bodega = this.cboBodega.SelectedValue.ToString(),
+                caja = User.Caja,
+                tipoCambio = listVarFactura.TipoDeCambio,
+                codigoCliente = this.txtCodigoCliente.Text,
+                cliente = listVarFactura.NombreCliente,
+                //subTotalDolar = listVarFactura.SubTotalDolar,
+                //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
+                //ivaDolar = listVarFactura.IvaDolar,                
+                subTotalCordoba = listVarFactura.SubTotalCordoba,
+                descuentoCordoba = listVarFactura.DescuentoGeneralCordoba,                
+                ivaCordoba = listVarFactura.IvaCordoba,
+                totalCordoba = listVarFactura.TotalCordobas,
+                totalDolar = listVarFactura.TotalDolar,
+                atentidoPor = User.NombreUsuario,
+                formaDePago = listVarFactura.TicketFormaPago,
+                observaciones = txtObservaciones.Text
+            };
+
+
+
+
+            _procesoFacturacion.ImprimirTicketFacturaDemo(listDetFactura, datoEncabezadoFact);
         }
     }
 }

@@ -318,6 +318,7 @@ namespace COVENTAF.Services
         /// <param name="listVarFactura"></param>
         public void InicializarTodaslasVariable(varFacturacion listVarFactura)
         {
+            listVarFactura.TotalRetencion = 0;
             listVarFactura.inputActivo = "";
             listVarFactura.IdActivo = "";
             //indica si el descuento esta aplicado o no esta aplicado
@@ -478,18 +479,18 @@ namespace COVENTAF.Services
 
         public void configurarDataGridView(DataGridView dgvDetalleFactura)
         {
-            //this.dgvDetalleFactura.Columns["consecutivo"].Visible = false;            
-            //this.dgvDetalleFactura.Columns["inputArticuloDesactivado"].Visible = false;
-            //this.dgvDetalleFactura.Columns["moneda"].Visible = false;
-            //this.dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;   
-            //this.dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;            
-            //this.dgvDetalleFactura.Columns["descuentoInactivo"].Visible = false;            
-            //this.dgvDetalleFactura.Columns["descuentoGeneralCordoba"].Visible = false;
-            //this.dgvDetalleFactura.Columns["descuentoGeneralDolar"].Visible = false;            
-            //this.dgvDetalleFactura.Columns["inputActivoParaBusqueda"].Visible = false;
-            //this.dgvDetalleFactura.Columns["botonEliminarDesactivado"].Visible = false;
-            //this.dgvDetalleFactura.Columns["BodegaID"].Visible = false;
-            //this.dgvDetalleFactura.Columns["NombreBodega"].Visible = false;   
+            //dgvDetalleFactura.Columns["consecutivo"].Visible = false;
+            //dgvDetalleFactura.Columns["inputArticuloDesactivado"].Visible = false;
+            //dgvDetalleFactura.Columns["moneda"].Visible = false;
+            //dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;
+            //dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;
+            //dgvDetalleFactura.Columns["descuentoInactivo"].Visible = false;
+            //dgvDetalleFactura.Columns["descuentoGeneralCordoba"].Visible = false;
+            //dgvDetalleFactura.Columns["descuentoGeneralDolar"].Visible = false;
+            //dgvDetalleFactura.Columns["inputActivoParaBusqueda"].Visible = false;
+            //dgvDetalleFactura.Columns["botonEliminarDesactivado"].Visible = false;
+            //dgvDetalleFactura.Columns["BodegaID"].Visible = false;
+            //dgvDetalleFactura.Columns["NombreBodega"].Visible = false;
 
             dgvDetalleFactura.Columns["totalDolar"].HeaderText = "Total U$";
             dgvDetalleFactura.Columns["descuentoPorLineaDolar"].HeaderText = "Descuento U$";
@@ -673,6 +674,8 @@ namespace COVENTAF.Services
                 posX += 65;
                 e.Graphics.DrawString("C$ " + _encabezadoFact.subTotalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
+                
+
                 posY += 15;
                 posX = 2;
                 posX += 140;
@@ -680,6 +683,20 @@ namespace COVENTAF.Services
 
                 posX += 65;
                 e.Graphics.DrawString("C$ " + _encabezadoFact.descuentoCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                /************************* RETENCIONES ************************************************************************/
+               if (_encabezadoFact.MontoRetencion >0)
+                {
+                    posY += 15;
+                    posX = 2;
+                    posX += 140;
+                    e.Graphics.DrawString("Retencion:", fuente, Brushes.Black, posX, posY);
+
+                    posX += 65;
+                    e.Graphics.DrawString("C$ " + _encabezadoFact.MontoRetencion.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);                    
+                }
+                /****************************************************************************************************************/
+
 
                 posY += 15;
                 posX = 2;
@@ -708,13 +725,31 @@ namespace COVENTAF.Services
 
                 /************************************************************************************/
 
-                posY += 20;
+                //convertir el registro en arreglo
+                string[] newformaDePago = _encabezadoFact.formaDePago.Split("\r\n");
+                
                 //reiniciar en la posicion X
                 posX = 2;               
-                e.Graphics.DrawString("Forma de Pago: "+ _encabezadoFact.formaDePago , fuenteRegular, Brushes.Black, posX, posY);
+                //comprobar si tiene mas de 2 registro el arreglo                               
+                if (newformaDePago.Length >= 2)
+                {
+                    posY += 20;
+                    e.Graphics.DrawString($"Forma de Pago: {newformaDePago[0]}", fuenteRegular, Brushes.Black, posX, posY);
+
+                    for (var rows = 1; rows < newformaDePago.Length; rows ++)
+                    {
+                        posY += 20;
+                        e.Graphics.DrawString(newformaDePago[rows], fuenteRegular, Brushes.Black, posX, posY);
+                    }
+                }
+                else
+                {
+                    posY += 20;
+                    e.Graphics.DrawString("Forma de Pago: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
+                }
 
                 posY += 18;
-                string[] newObservacion = _observaciones.Split("\r\n");
+                string[] newObservacion = _encabezadoFact.observaciones.Split("\r\n");
 
                 e.Graphics.DrawString("Observaciones: ", fuenteRegular, Brushes.Black, posX, posY);
 
@@ -729,12 +764,12 @@ namespace COVENTAF.Services
                 else
                 {
                     posY += 15;
-                    e.Graphics.DrawString(_observaciones, fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(_encabezadoFact.observaciones, fuenteRegular, Brushes.Black, posX, posY);
                 }
 
 
                 posY += 20;
-                e.Graphics.DrawString("Atendido Por: ", fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"Atendido Por: {_encabezadoFact.atentidoPor} ", fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 50;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
@@ -779,23 +814,20 @@ namespace COVENTAF.Services
 
             return nuevaLista;        
         }
+               
 
-
-        string _observaciones = "";
-
-        public void ImprimirTicketFacturaDemo(List<DetalleFactura> listDetFactura, string Observaciones)
+        public void ImprimirTicketFacturaDemo(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact)
         {
             this._listDetFactura = new List<DetalleFactura>();
             _listDetFactura = listDetFactura;
-            _observaciones = Observaciones;
 
-            //this._encabezadoFact = new Encabezado();
-            //this._encabezadoFact = encabezadoFact;
+            this._encabezadoFact = new Encabezado();
+            this._encabezadoFact = encabezadoFact;
 
 
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
 
-            doc.PrintPage += new PrintPageEventHandler(ImprimirTicketDemo);
+            doc.PrintPage += new PrintPageEventHandler(ImprimirTicket);
             // Set the zoom to 25 percent.
             //this.PrintPreviewControl1.Zoom = 0.25;            
             //vista.Controls.Add(this.PrintPreviewControl1);
@@ -838,19 +870,19 @@ namespace COVENTAF.Services
 
                 //factura
                 posY += 24;
-                e.Graphics.DrawString("N° Factura: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.noFactura, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Codigo Cliente: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Codigo Cliente: " + _encabezadoFact.codigoCliente, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Cliente: ", fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Cliente: " + _encabezadoFact.cliente, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Fecha: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Fecha: " + _encabezadoFact.fecha, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Bodega: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Bodega: " + _encabezadoFact.bodega, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Caja: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Caja: " + _encabezadoFact.caja, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Tipo Cambio: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N4"), fuenteRegular, Brushes.Black, posX, posY);
                 posY += 18;
                 e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
                 posY += 10;
@@ -900,6 +932,7 @@ namespace COVENTAF.Services
                     e.Graphics.DrawString(detalleFactura.descripcion, fuenteRegular_7, Brushes.Black, posX, posY);
 
                     posY += 7;
+
                 }
 
                 posY += 5;
@@ -912,7 +945,7 @@ namespace COVENTAF.Services
 
 
                 posX += 65;
-                e.Graphics.DrawString("C$ " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ " + _encabezadoFact.subTotalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 15;
                 posX = 2;
@@ -920,7 +953,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("Descuento:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
-                e.Graphics.DrawString("C$ "  , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ " + _encabezadoFact.descuentoCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 15;
                 posX = 2;
@@ -928,7 +961,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("IVA:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
-                e.Graphics.DrawString("C$ "  , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ " + _encabezadoFact.ivaCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 15;
                 posX = 2;
@@ -936,7 +969,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
-                e.Graphics.DrawString("C$ " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ " + _encabezadoFact.totalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
 
                 posY += 15;
@@ -945,37 +978,37 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
-                e.Graphics.DrawString("U$ " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("U$ " + _encabezadoFact.totalDolar.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 /************************************************************************************/
 
                 posY += 20;
                 //reiniciar en la posicion X
                 posX = 2;
-                e.Graphics.DrawString("Forma de Pago: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Forma de Pago: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 18;
-                string[] newObservacion = _observaciones.Split("\r\n");
+                string[] newObservacion = _encabezadoFact.observaciones.Split("\r\n");
 
                 e.Graphics.DrawString("Observaciones: ", fuenteRegular, Brushes.Black, posX, posY);
 
-                if (newObservacion.Length >=2)
+                if (newObservacion.Length >= 2)
                 {
                     for (var fila = 0; fila < newObservacion.Length; fila++)
                     {
                         posY += 15;
-                        e.Graphics.DrawString(newObservacion[fila], fuenteRegular, Brushes.Black, posX+10, posY);
+                        e.Graphics.DrawString(newObservacion[fila], fuenteRegular, Brushes.Black, posX + 10, posY);
                     }
                 }
                 else
                 {
                     posY += 15;
-                    e.Graphics.DrawString(_observaciones, fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(_encabezadoFact.observaciones, fuenteRegular, Brushes.Black, posX, posY);
                 }
-         
+
 
                 posY += 20;
-                e.Graphics.DrawString("Atendido Por: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Atendido Por: ", fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 50;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
@@ -993,7 +1026,6 @@ namespace COVENTAF.Services
                 posX += 23;
                 e.Graphics.DrawString("GRACIAS POR SU COMPRA", fuenteRegular, Brushes.Black, posX, posY);
 
-
             }
             catch (Exception ex)
             {
@@ -1001,7 +1033,6 @@ namespace COVENTAF.Services
             }
 
         }
-
 
 
     }

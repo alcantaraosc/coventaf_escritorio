@@ -17,6 +17,9 @@ namespace Api.Model.ViewModels
         public string cliente { get; set; }
         public decimal subTotalDolar { get; set; }
         public decimal descuentoDolar { get; set; }
+
+        public decimal MontoRetencion { get; set; }
+
         public decimal ivaDolar { get; set; }
         public decimal totalDolar { get; set; }
         public decimal subTotalCordoba { get; set; }

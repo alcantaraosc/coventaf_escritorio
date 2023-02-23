@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/kawk6wbnXa6Rdlqfb+m3TauwA8ogmP6EQCxcgB9KDdpebkjhjW8rlVPGqjTeBEh7wzsthbWKvID/8zxHIG2Ag==",
+  "dgSpecHash": "f19mYW//yWeOWOEOTNepTv0HVz4+LyncK7pWPfNB0f+ngevMOxHs6/g56FwtVB46SrCH6UKmsJNlexdVrG5S+g==",
   "success": true,
-  "projectFilePath": "D:\\PROYECTOS\\COVENTAF-DESK\\coventaf_escritorio\\Api.Helpers\\Api.Helpers.csproj",
+  "projectFilePath": "J:\\PROYECTO\\DESK\\Api.COVENTAF\\coventaf_escritorio\\Api.Helpers\\Api.Helpers.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\alcantara\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.17\\microsoft.entityframeworkcore.abstractions.5.0.17.nupkg.sha512"
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.17\\microsoft.entityframeworkcore.abstractions.5.0.17.nupkg.sha512"
   ],
   "logs": []
 }

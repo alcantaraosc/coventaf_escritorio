@@ -44,8 +44,8 @@ namespace COVENTAF.PuntoVenta
         private decimal montoPagadoCordoba = 0.0000M;
         private decimal montoPagadoDolar = 0.00M;
         private decimal diferenciaCordoba = 0.0000M;
-        private decimal diferenciaDolar = 0.00M;
-        private decimal totalRetenciones = 0.00M;
+        private decimal diferenciaDolar = 0;
+        public decimal totalRetenciones = 0.00M;
         private decimal TotalCobrarAux = 0.00M;
         private bool ejecutarEventoSelect = false;
 
