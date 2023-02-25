@@ -435,6 +435,8 @@ namespace COVENTAF.PuntoVenta
             metodoPago[Index].FormaPago = "0001";
             metodoPago[Index].DescripcionFormPago = "Vuelto";
             metodoPago[Index].MontoCordoba = diferencial;
+            metodoPago[Index].Moneda = 'L';//L=Local(C$), D=Dolar(U$)
+
             metodoPago[Index].TeclaPresionaXCajero = false;
             metodoPago[Index].DescripcionTecla = "No Existe Tecla";
         }

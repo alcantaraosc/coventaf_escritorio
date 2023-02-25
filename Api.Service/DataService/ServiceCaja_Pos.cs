@@ -390,6 +390,7 @@ namespace Api.Service.DataService
 
         public async Task<List<ViewModelCierreCaja>> ObtenerDatosParaCierreCaja(string caja, string cajero, string numCierre, ResponseModel responseModel)
         {
+
             //aqui vas almacenar la bodegaId y Consec_Cierre_CT
             var datosCierreCaja = new List<ViewModelCierreCaja>();           
             try
@@ -423,17 +424,17 @@ namespace Api.Service.DataService
                             Monto = Convert.ToDecimal(dr["MONTO"]),
                             //Monto_Dolar = Convert.ToDecimal(dr["MONTO_DOLAR"]),
                             Forma_Pago = dr["FORMA_PAGO"].ToString(),
-                            Descripcion = dr["DESCRIPCION"].ToString()                            
+                            Descripcion = dr["DESCRIPCION"].ToString(),
+                            Moneda =dr["MONEDA"].ToString()
                         };
 
-                        datosCierreCaja.Add(datos_);
-                                               
+                        datosCierreCaja.Add(datos_);                                               
                     }
 
                 }
 
                 if (datosCierreCaja.Count > 0)
-                {
+                {                    
                     responseModel.Exito = 1;
                     responseModel.Mensaje = $"Consulta exitosa";
                 }
