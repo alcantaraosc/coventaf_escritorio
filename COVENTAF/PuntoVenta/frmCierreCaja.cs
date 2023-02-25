@@ -15,7 +15,11 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmCierreCaja : Form
     {
+        private bool existeEfectivoDolar = false;
+        private bool existeEfectivoCordoba = false;
+
         public bool exitoCierreCaja = false;
+        List<Denominacion> denominacion = new List<Denominacion>();
         ServiceCaja_Pos _serviceCajaPos;
         List<ViewModelCierreCaja> _datosCierreCaja;
         public frmCierreCaja()
@@ -30,7 +34,6 @@ namespace COVENTAF.PuntoVenta
             {
                 //
                 PrepararCajaParaCierre(User.Caja, User.Usuario, User.ConsecCierreCT);
-                MostrarDenomincaciones();
             }
             catch (Exception ex)
             {
@@ -57,23 +60,28 @@ namespace COVENTAF.PuntoVenta
                     LlenarGridReportadoXSistema(_datosCierreCaja);
                     LlenarGridReportadoCajero(_datosCierreCaja);
                     CalcularTotalReportadoCajero();
+                    ListarDenomincaciones();
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
             }
             catch (Exception ex)
             {
-                //0 para indicar que existe algun error en la consulta 
-                responseModel.Exito = -1;
-                //indicar el mensaje del error
-                responseModel.Mensaje = ex.Message;
-            }            
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void LlenarGridReportadoXSistema(List<ViewModelCierreCaja> _datosCierreCaja)
         {
+
+
             decimal totalCordobas = 0.00M;
             decimal totalDolares = 0.00M;
             foreach (var itemSistema in _datosCierreCaja)
             {
+               
                 this.dgvGridReportadoPorSistema.Rows.Add(itemSistema.Descripcion, (itemSistema.Moneda == "L" ? $"C$ {itemSistema.Monto.ToString("N2")}" : $"U$ {itemSistema.Monto.ToString("N2")}"), itemSistema.Moneda);
                 //comprobar si la moneda es Local =L (C$)
                 if (itemSistema.Moneda == "L")
@@ -84,8 +92,20 @@ namespace COVENTAF.PuntoVenta
                 {
                     totalDolares += itemSistema.Monto;
                 }
-            }
 
+                //comprobar si existe forma de pago 0001=Efectivo cordoba
+                if (itemSistema.Forma_Pago == "0001" && itemSistema.Moneda == "L")
+                {
+                    existeEfectivoCordoba = true;
+                }
+                //comprobar si existe forma de pago 0001=Efectivo dolar
+                if (itemSistema.Forma_Pago == "0001" && itemSistema.Moneda == "D")
+                {
+                    existeEfectivoDolar = true;
+                }
+
+            }
+           
             this.txtTotalCordobasSistema.Text = totalCordobas.ToString("N2");
             this.txtTotalDolaresSistema.Text = totalDolares.ToString("N2");
 
@@ -107,14 +127,14 @@ namespace COVENTAF.PuntoVenta
             for (var rows = 0; rows < dgvGridRportadoXCajero.RowCount; rows++)
             {
                 //comprobar si la moneda es Local =L (C$)
-                if (dgvGridRportadoXCajero.Rows[rows].Cells["Moneda"].Value.ToString() == "L")
+                if (dgvGridRportadoXCajero.Rows[rows].Cells["datRepCajeroMoneda"].Value.ToString() == "L")
                 {
 
-                    totalCordobas += Convert.ToDecimal(dgvGridRportadoXCajero.Rows[rows].Cells["Monto"].Value.ToString().Replace("C$", ""));
+                    totalCordobas += Convert.ToDecimal(dgvGridRportadoXCajero.Rows[rows].Cells["datRepCajeroMonto"].Value.ToString().Replace("C$", ""));
                 }
-                else if (dgvGridRportadoXCajero.Rows[rows].Cells["Moneda"].Value.ToString() == "D")
+                else if (dgvGridRportadoXCajero.Rows[rows].Cells["datRepCajeroMoneda"].Value.ToString() == "D")
                 {
-                    totalDolares += Convert.ToDecimal(dgvGridRportadoXCajero.Rows[rows].Cells["Monto"].Value.ToString().Replace("U$", ""));
+                    totalDolares += Convert.ToDecimal(dgvGridRportadoXCajero.Rows[rows].Cells["datRepCajeroMonto"].Value.ToString().Replace("U$", ""));
                 }
             }
 
@@ -122,15 +142,21 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalDolaresCajero.Text = totalDolares.ToString("N2");
         }
 
-        void MostrarDenomincaciones()
+        private async void ListarDenomincaciones()
         {
+            ResponseModel responseModel = new ResponseModel();
+
             try
             {
-
+                denominacion = await _serviceCajaPos.ObtenerListaDenominacion(responseModel);
+                if (responseModel.Exito ==1)
+                {
+                    LlenarGridDenominaciones();
+                }
             }
             catch (Exception ex)
             {
-
+                throw new Exception(ex.Message);
             }
         }
 
@@ -138,6 +164,44 @@ namespace COVENTAF.PuntoVenta
         private void btnCierre_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void  LlenarGridDenominaciones()
+        {
+            try
+            {
+                //comprobar si existe el efectivo en cordobas
+                if (existeEfectivoCordoba)
+                {
+                    foreach (var itemDenominacion in denominacion)
+                    {
+                        this.dgvReportePagoCajero.Rows.Add(Descripcion, itemDenominacion.Tipo, itemDenominacion.Denom_Monto, 0, "L");
+                    }
+                }
+
+                //comprobar si existe el efectivo en cordobas
+                if (existeEfectivoDolar)
+                {
+                    foreach (var itemDenominacion in denominacion)
+                    {
+                        this.dgvReportePagoCajero.Rows.Add("TARJETA (DOLAR)", itemDenominacion.Tipo, itemDenominacion.Denom_Monto, 0, "D");
+                    }
+                }
+
+                foreach(var itemDenomincacion in _datosCierreCaja)
+                {
+                    if (itemDenomincacion.Forma_Pago != "0001")
+                    {
+                        this.dgvReportePagoCajero.Rows.Add(itemDenomincacion.Forma_Pago, itemDenomincacion.Descripcion, "0", itemDenomincacion.Moneda);
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
     }
 

@@ -447,9 +447,43 @@ namespace Api.Service.DataService
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                //-1 para indicar que existe una exception
+                responseModel.Exito = -1;
+                //indicar el mensaje del error
+                responseModel.Mensaje = ex.Message;
             }
             return datosCierreCaja;
+        }
+
+        public async Task<List<Denominacion>> ObtenerListaDenominacion( ResponseModel responseModel)
+        {
+            var denominacion = new List<Denominacion>();            
+            try
+            {
+                using (var _db = new CoreDBContext())
+                {
+                    denominacion = await _db.Denominacion.OrderBy(d=>d.Denom_Monto).ToListAsync();
+                }
+
+                
+                if (denominacion.Count > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Consulta exitosa";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"No hay registro de las denominaciones de Billetes";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;               
+            }
+            return denominacion;
         }
     }
 }
