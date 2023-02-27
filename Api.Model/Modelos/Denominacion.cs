@@ -30,6 +30,6 @@ namespace Api.Model.Modelos
         [Column(TypeName = "varchar(30)")]
         public string UpdatedBy { get; set; }
         [Required]
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; }       
     }
 }

@@ -56,18 +56,12 @@ namespace COVENTAF.PuntoVenta
             this.dgvReportePagoCajero = new System.Windows.Forms.DataGridView();
             this.lblCajaApertura = new System.Windows.Forms.Label();
             this.dgvGridRportadoXCajero = new System.Windows.Forms.DataGridView();
-            this.datRepCajeroTipoMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datRepCajeroMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datRepCajeroMoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTotalCordobasCajero = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTotalDolaresCajero = new System.Windows.Forms.TextBox();
             this.dgvGridReportadoPorSistema = new System.Windows.Forms.DataGridView();
-            this.datRepSistTipoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datRepSistMonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datRepSistMoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTotalDolaresSistema = new System.Windows.Forms.TextBox();
@@ -77,11 +71,20 @@ namespace COVENTAF.PuntoVenta
             this.label3 = new System.Windows.Forms.Label();
             this.btnGuardarCierre = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datRepPagCajeroTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datRepPagCajeroDenominacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datRepPagCajeroCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datRepPagCajeroMoneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ids = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoPagos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Montos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Idc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoMontoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Montoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Idd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Denominaciond = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidadd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Resultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -228,7 +231,7 @@ namespace COVENTAF.PuntoVenta
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Location = new System.Drawing.Point(5, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(995, 63);
+            this.label2.Size = new System.Drawing.Size(995, 74);
             this.label2.TabIndex = 135;
             // 
             // lblTituloCaja
@@ -239,7 +242,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.lblTituloCaja.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTituloCaja.ForeColor = System.Drawing.Color.SeaShell;
-            this.lblTituloCaja.Location = new System.Drawing.Point(35, 60);
+            this.lblTituloCaja.Location = new System.Drawing.Point(35, 66);
             this.lblTituloCaja.Name = "lblTituloCaja";
             this.lblTituloCaja.Size = new System.Drawing.Size(553, 23);
             this.lblTituloCaja.TabIndex = 139;
@@ -251,7 +254,7 @@ namespace COVENTAF.PuntoVenta
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.Gold;
-            this.label4.Location = new System.Drawing.Point(15, 27);
+            this.label4.Location = new System.Drawing.Point(15, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(121, 30);
             this.label4.TabIndex = 138;
@@ -275,13 +278,13 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvReportePagoCajero.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvReportePagoCajero.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReportePagoCajero.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Descripcion,
-            this.datRepPagCajeroTipo,
-            this.datRepPagCajeroDenominacion,
-            this.datRepPagCajeroCantidad,
-            this.datRepPagCajeroMoneda});
+            this.Idd,
+            this.Tipod,
+            this.Denominaciond,
+            this.Cantidadd,
+            this.Monedad,
+            this.Resultado});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -294,7 +297,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvReportePagoCajero.GridColor = System.Drawing.Color.Maroon;
             this.dgvReportePagoCajero.Location = new System.Drawing.Point(11, 141);
             this.dgvReportePagoCajero.Name = "dgvReportePagoCajero";
-            this.dgvReportePagoCajero.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveBorder;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -304,10 +306,12 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvReportePagoCajero.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvReportePagoCajero.RowHeadersVisible = false;
+            this.dgvReportePagoCajero.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvReportePagoCajero.RowTemplate.Height = 25;
             this.dgvReportePagoCajero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReportePagoCajero.Size = new System.Drawing.Size(340, 366);
             this.dgvReportePagoCajero.TabIndex = 140;
+            this.dgvReportePagoCajero.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellEndEdit);
             // 
             // lblCajaApertura
             // 
@@ -342,9 +346,10 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridRportadoXCajero.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvGridRportadoXCajero.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGridRportadoXCajero.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.datRepCajeroTipoMonto,
-            this.datRepCajeroMonto,
-            this.datRepCajeroMoneda});
+            this.Idc,
+            this.TipoMontoc,
+            this.Montoc,
+            this.Monedac});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -371,30 +376,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridRportadoXCajero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGridRportadoXCajero.Size = new System.Drawing.Size(292, 247);
             this.dgvGridRportadoXCajero.TabIndex = 146;
-            // 
-            // datRepCajeroTipoMonto
-            // 
-            this.datRepCajeroTipoMonto.Frozen = true;
-            this.datRepCajeroTipoMonto.HeaderText = "Tipo de Pago";
-            this.datRepCajeroTipoMonto.Name = "datRepCajeroTipoMonto";
-            this.datRepCajeroTipoMonto.ReadOnly = true;
-            this.datRepCajeroTipoMonto.Width = 125;
-            // 
-            // datRepCajeroMonto
-            // 
-            this.datRepCajeroMonto.Frozen = true;
-            this.datRepCajeroMonto.HeaderText = "Monto";
-            this.datRepCajeroMonto.Name = "datRepCajeroMonto";
-            this.datRepCajeroMonto.ReadOnly = true;
-            this.datRepCajeroMonto.Width = 81;
-            // 
-            // datRepCajeroMoneda
-            // 
-            this.datRepCajeroMoneda.HeaderText = "Moneda";
-            this.datRepCajeroMoneda.Name = "datRepCajeroMoneda";
-            this.datRepCajeroMoneda.ReadOnly = true;
-            this.datRepCajeroMoneda.Visible = false;
-            this.datRepCajeroMoneda.Width = 91;
             // 
             // label1
             // 
@@ -429,7 +410,7 @@ namespace COVENTAF.PuntoVenta
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label13.ForeColor = System.Drawing.Color.Navy;
-            this.label13.Location = new System.Drawing.Point(432, 410);
+            this.label13.Location = new System.Drawing.Point(428, 410);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(110, 18);
             this.label13.TabIndex = 156;
@@ -481,9 +462,10 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvGridReportadoPorSistema.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGridReportadoPorSistema.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.datRepSistTipoPago,
-            this.datRepSistMonto,
-            this.datRepSistMoneda});
+            this.Ids,
+            this.TipoPagos,
+            this.Montos,
+            this.Monedas});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -510,31 +492,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGridReportadoPorSistema.Size = new System.Drawing.Size(292, 247);
             this.dgvGridReportadoPorSistema.TabIndex = 159;
-            // 
-            // datRepSistTipoPago
-            // 
-            this.datRepSistTipoPago.Frozen = true;
-            this.datRepSistTipoPago.HeaderText = "Tipo de Pago";
-            this.datRepSistTipoPago.Name = "datRepSistTipoPago";
-            this.datRepSistTipoPago.ReadOnly = true;
-            this.datRepSistTipoPago.Width = 125;
-            // 
-            // datRepSistMonto
-            // 
-            this.datRepSistMonto.Frozen = true;
-            this.datRepSistMonto.HeaderText = "Monto";
-            this.datRepSistMonto.Name = "datRepSistMonto";
-            this.datRepSistMonto.ReadOnly = true;
-            this.datRepSistMonto.Width = 81;
-            // 
-            // datRepSistMoneda
-            // 
-            this.datRepSistMoneda.Frozen = true;
-            this.datRepSistMoneda.HeaderText = "Moneda";
-            this.datRepSistMoneda.Name = "datRepSistMoneda";
-            this.datRepSistMoneda.ReadOnly = true;
-            this.datRepSistMoneda.Visible = false;
-            this.datRepSistMoneda.Width = 91;
             // 
             // label6
             // 
@@ -671,44 +628,118 @@ namespace COVENTAF.PuntoVenta
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // Descripcion
+            // Ids
             // 
-            this.Descripcion.Frozen = true;
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 115;
+            this.Ids.Frozen = true;
+            this.Ids.HeaderText = "Id";
+            this.Ids.Name = "Ids";
+            this.Ids.ReadOnly = true;
+            this.Ids.Width = 48;
             // 
-            // datRepPagCajeroTipo
+            // TipoPagos
             // 
-            this.datRepPagCajeroTipo.Frozen = true;
-            this.datRepPagCajeroTipo.HeaderText = "Tipo";
-            this.datRepPagCajeroTipo.Name = "datRepPagCajeroTipo";
-            this.datRepPagCajeroTipo.ReadOnly = true;
-            this.datRepPagCajeroTipo.Width = 65;
+            this.TipoPagos.Frozen = true;
+            this.TipoPagos.HeaderText = "Tipo de Pago";
+            this.TipoPagos.Name = "TipoPagos";
+            this.TipoPagos.ReadOnly = true;
+            this.TipoPagos.Width = 125;
             // 
-            // datRepPagCajeroDenominacion
+            // Montos
             // 
-            this.datRepPagCajeroDenominacion.Frozen = true;
-            this.datRepPagCajeroDenominacion.HeaderText = "Denominacion";
-            this.datRepPagCajeroDenominacion.Name = "datRepPagCajeroDenominacion";
-            this.datRepPagCajeroDenominacion.ReadOnly = true;
-            this.datRepPagCajeroDenominacion.Width = 135;
+            this.Montos.Frozen = true;
+            this.Montos.HeaderText = "Monto";
+            this.Montos.Name = "Montos";
+            this.Montos.ReadOnly = true;
+            this.Montos.Width = 81;
             // 
-            // datRepPagCajeroCantidad
+            // Monedas
             // 
-            this.datRepPagCajeroCantidad.Frozen = true;
-            this.datRepPagCajeroCantidad.HeaderText = "Cantidad";
-            this.datRepPagCajeroCantidad.Name = "datRepPagCajeroCantidad";
-            this.datRepPagCajeroCantidad.Width = 96;
+            this.Monedas.Frozen = true;
+            this.Monedas.HeaderText = "Moneda";
+            this.Monedas.Name = "Monedas";
+            this.Monedas.ReadOnly = true;
+            this.Monedas.Visible = false;
+            this.Monedas.Width = 91;
             // 
-            // datRepPagCajeroMoneda
+            // Idc
             // 
-            this.datRepPagCajeroMoneda.Frozen = true;
-            this.datRepPagCajeroMoneda.HeaderText = "Moneda";
-            this.datRepPagCajeroMoneda.Name = "datRepPagCajeroMoneda";
-            this.datRepPagCajeroMoneda.ReadOnly = true;
-            this.datRepPagCajeroMoneda.Width = 91;
+            this.Idc.Frozen = true;
+            this.Idc.HeaderText = "Id";
+            this.Idc.Name = "Idc";
+            this.Idc.ReadOnly = true;
+            this.Idc.Width = 48;
+            // 
+            // TipoMontoc
+            // 
+            this.TipoMontoc.Frozen = true;
+            this.TipoMontoc.HeaderText = "Tipo de Pago";
+            this.TipoMontoc.Name = "TipoMontoc";
+            this.TipoMontoc.ReadOnly = true;
+            this.TipoMontoc.Width = 125;
+            // 
+            // Montoc
+            // 
+            this.Montoc.Frozen = true;
+            this.Montoc.HeaderText = "Monto";
+            this.Montoc.Name = "Montoc";
+            this.Montoc.ReadOnly = true;
+            this.Montoc.Width = 81;
+            // 
+            // Monedac
+            // 
+            this.Monedac.HeaderText = "Moneda";
+            this.Monedac.Name = "Monedac";
+            this.Monedac.ReadOnly = true;
+            this.Monedac.Visible = false;
+            this.Monedac.Width = 91;
+            // 
+            // Idd
+            // 
+            this.Idd.Frozen = true;
+            this.Idd.HeaderText = "Id";
+            this.Idd.Name = "Idd";
+            this.Idd.ReadOnly = true;
+            this.Idd.Width = 48;
+            // 
+            // Tipod
+            // 
+            this.Tipod.Frozen = true;
+            this.Tipod.HeaderText = "Tipo";
+            this.Tipod.Name = "Tipod";
+            this.Tipod.ReadOnly = true;
+            this.Tipod.Visible = false;
+            this.Tipod.Width = 65;
+            // 
+            // Denominaciond
+            // 
+            this.Denominaciond.Frozen = true;
+            this.Denominaciond.HeaderText = "Denominacion";
+            this.Denominaciond.Name = "Denominaciond";
+            this.Denominaciond.ReadOnly = true;
+            this.Denominaciond.Width = 135;
+            // 
+            // Cantidadd
+            // 
+            this.Cantidadd.Frozen = true;
+            this.Cantidadd.HeaderText = "Cantidad";
+            this.Cantidadd.Name = "Cantidadd";
+            this.Cantidadd.Width = 96;
+            // 
+            // Monedad
+            // 
+            this.Monedad.Frozen = true;
+            this.Monedad.HeaderText = "Moneda";
+            this.Monedad.Name = "Monedad";
+            this.Monedad.ReadOnly = true;
+            this.Monedad.Visible = false;
+            this.Monedad.Width = 91;
+            // 
+            // Resultado
+            // 
+            this.Resultado.HeaderText = "Resultado";
+            this.Resultado.Name = "Resultado";
+            this.Resultado.ReadOnly = true;
+            this.Resultado.Width = 104;
             // 
             // frmCierreCaja
             // 
@@ -791,17 +822,20 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnGuardarCierre;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepSistTipoPago;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepSistMonto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepSistMoneda;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepCajeroTipoMonto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepCajeroMonto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepCajeroMoneda;
         private System.Windows.Forms.DataGridViewTextBoxColumn Denominacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepPagCajeroTipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepPagCajeroDenominacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepPagCajeroCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datRepPagCajeroMoneda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Idd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Denominaciond;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidadd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monedad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Resultado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Idc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoMontoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Montoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monedac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ids;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoPagos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Montos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monedas;
     }
 }
