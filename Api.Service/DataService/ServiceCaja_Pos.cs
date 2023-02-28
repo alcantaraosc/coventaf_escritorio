@@ -421,6 +421,7 @@ namespace Api.Service.DataService
                     {
                         var datos_ = new ViewModelCierreCaja()
                         {
+                            Id = $"{dr["FORMA_PAGO"].ToString()}{dr["MONEDA"].ToString()}",
                             Monto = Convert.ToDecimal(dr["MONTO"]),
                             //Monto_Dolar = Convert.ToDecimal(dr["MONTO_DOLAR"]),
                             Forma_Pago = dr["FORMA_PAGO"].ToString(),

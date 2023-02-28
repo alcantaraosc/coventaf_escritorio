@@ -30,15 +30,15 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCierreCaja));
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMminizar = new System.Windows.Forms.PictureBox();
@@ -54,37 +54,37 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloCaja = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvReportePagoCajero = new System.Windows.Forms.DataGridView();
-            this.lblCajaApertura = new System.Windows.Forms.Label();
-            this.dgvGridRportadoXCajero = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtTotalCordobasCajero = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtTotalDolaresCajero = new System.Windows.Forms.TextBox();
-            this.dgvGridReportadoPorSistema = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtTotalDolaresSistema = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtTotalCordobasSistema = new System.Windows.Forms.TextBox();
-            this.txtObservaciones = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnGuardarCierre = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Ids = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoPagos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Montos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monedas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Idc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoMontoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Montoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monedac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Idd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Denominaciond = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidadd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Monedad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Resultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblCajaApertura = new System.Windows.Forms.Label();
+            this.dgvGridRportadoXCajero = new System.Windows.Forms.DataGridView();
+            this.Idc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoMontoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Montoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTotalCordobasCajero = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTotalDolaresCajero = new System.Windows.Forms.TextBox();
+            this.dgvGridReportadoPorSistema = new System.Windows.Forms.DataGridView();
+            this.Ids = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoPagos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Montos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTotalDolaresSistema = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtTotalCordobasSistema = new System.Windows.Forms.TextBox();
+            this.txtNotas = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnGuardarCierre = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -270,14 +270,14 @@ namespace COVENTAF.PuntoVenta
             this.dgvReportePagoCajero.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvReportePagoCajero.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvReportePagoCajero.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvReportePagoCajero.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvReportePagoCajero.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvReportePagoCajero.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Idd,
             this.Tipod,
@@ -285,33 +285,83 @@ namespace COVENTAF.PuntoVenta
             this.Cantidadd,
             this.Monedad,
             this.Resultado});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReportePagoCajero.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReportePagoCajero.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvReportePagoCajero.EnableHeadersVisualStyles = false;
             this.dgvReportePagoCajero.GridColor = System.Drawing.Color.Maroon;
             this.dgvReportePagoCajero.Location = new System.Drawing.Point(11, 141);
             this.dgvReportePagoCajero.Name = "dgvReportePagoCajero";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvReportePagoCajero.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvReportePagoCajero.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvReportePagoCajero.RowHeadersVisible = false;
             this.dgvReportePagoCajero.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvReportePagoCajero.RowTemplate.Height = 25;
             this.dgvReportePagoCajero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReportePagoCajero.Size = new System.Drawing.Size(340, 366);
             this.dgvReportePagoCajero.TabIndex = 140;
+            this.dgvReportePagoCajero.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellClick);
             this.dgvReportePagoCajero.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellEndEdit);
+            this.dgvReportePagoCajero.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellEnter);
+            // 
+            // Idd
+            // 
+            this.Idd.Frozen = true;
+            this.Idd.HeaderText = "Id";
+            this.Idd.Name = "Idd";
+            this.Idd.ReadOnly = true;
+            this.Idd.Width = 48;
+            // 
+            // Tipod
+            // 
+            this.Tipod.Frozen = true;
+            this.Tipod.HeaderText = "Tipo";
+            this.Tipod.Name = "Tipod";
+            this.Tipod.ReadOnly = true;
+            this.Tipod.Visible = false;
+            this.Tipod.Width = 65;
+            // 
+            // Denominaciond
+            // 
+            this.Denominaciond.Frozen = true;
+            this.Denominaciond.HeaderText = "Denominacion";
+            this.Denominaciond.Name = "Denominaciond";
+            this.Denominaciond.ReadOnly = true;
+            this.Denominaciond.Width = 135;
+            // 
+            // Cantidadd
+            // 
+            this.Cantidadd.Frozen = true;
+            this.Cantidadd.HeaderText = "Cantidad";
+            this.Cantidadd.Name = "Cantidadd";
+            this.Cantidadd.Width = 96;
+            // 
+            // Monedad
+            // 
+            this.Monedad.Frozen = true;
+            this.Monedad.HeaderText = "Moneda";
+            this.Monedad.Name = "Monedad";
+            this.Monedad.ReadOnly = true;
+            this.Monedad.Visible = false;
+            this.Monedad.Width = 91;
+            // 
+            // Resultado
+            // 
+            this.Resultado.HeaderText = "Resultado";
+            this.Resultado.Name = "Resultado";
+            this.Resultado.ReadOnly = true;
+            this.Resultado.Width = 104;
             // 
             // lblCajaApertura
             // 
@@ -336,46 +386,78 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridRportadoXCajero.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvGridRportadoXCajero.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvGridRportadoXCajero.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGridRportadoXCajero.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGridRportadoXCajero.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvGridRportadoXCajero.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGridRportadoXCajero.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Idc,
             this.TipoMontoc,
             this.Montoc,
             this.Monedac});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvGridRportadoXCajero.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvGridRportadoXCajero.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvGridRportadoXCajero.EnableHeadersVisualStyles = false;
             this.dgvGridRportadoXCajero.GridColor = System.Drawing.Color.Maroon;
             this.dgvGridRportadoXCajero.Location = new System.Drawing.Point(382, 145);
             this.dgvGridRportadoXCajero.Name = "dgvGridRportadoXCajero";
             this.dgvGridRportadoXCajero.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGridRportadoXCajero.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGridRportadoXCajero.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvGridRportadoXCajero.RowHeadersVisible = false;
             this.dgvGridRportadoXCajero.RowTemplate.Height = 25;
             this.dgvGridRportadoXCajero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGridRportadoXCajero.Size = new System.Drawing.Size(292, 247);
             this.dgvGridRportadoXCajero.TabIndex = 146;
+            // 
+            // Idc
+            // 
+            this.Idc.Frozen = true;
+            this.Idc.HeaderText = "Id";
+            this.Idc.Name = "Idc";
+            this.Idc.ReadOnly = true;
+            this.Idc.Width = 48;
+            // 
+            // TipoMontoc
+            // 
+            this.TipoMontoc.Frozen = true;
+            this.TipoMontoc.HeaderText = "Tipo de Pago";
+            this.TipoMontoc.Name = "TipoMontoc";
+            this.TipoMontoc.ReadOnly = true;
+            this.TipoMontoc.Width = 125;
+            // 
+            // Montoc
+            // 
+            this.Montoc.Frozen = true;
+            this.Montoc.HeaderText = "Monto";
+            this.Montoc.Name = "Montoc";
+            this.Montoc.ReadOnly = true;
+            this.Montoc.Width = 81;
+            // 
+            // Monedac
+            // 
+            this.Monedac.HeaderText = "Moneda";
+            this.Monedac.Name = "Monedac";
+            this.Monedac.ReadOnly = true;
+            this.Monedac.Visible = false;
+            this.Monedac.Width = 91;
             // 
             // label1
             // 
@@ -452,46 +534,79 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgvGridReportadoPorSistema.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvGridReportadoPorSistema.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGridReportadoPorSistema.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGridReportadoPorSistema.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvGridReportadoPorSistema.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGridReportadoPorSistema.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ids,
             this.TipoPagos,
             this.Montos,
             this.Monedas});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvGridReportadoPorSistema.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvGridReportadoPorSistema.DefaultCellStyle = dataGridViewCellStyle17;
             this.dgvGridReportadoPorSistema.EnableHeadersVisualStyles = false;
             this.dgvGridReportadoPorSistema.GridColor = System.Drawing.Color.Maroon;
             this.dgvGridReportadoPorSistema.Location = new System.Drawing.Point(701, 141);
             this.dgvGridReportadoPorSistema.Name = "dgvGridReportadoPorSistema";
             this.dgvGridReportadoPorSistema.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGridReportadoPorSistema.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGridReportadoPorSistema.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dgvGridReportadoPorSistema.RowHeadersVisible = false;
             this.dgvGridReportadoPorSistema.RowTemplate.Height = 25;
             this.dgvGridReportadoPorSistema.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGridReportadoPorSistema.Size = new System.Drawing.Size(292, 247);
             this.dgvGridReportadoPorSistema.TabIndex = 159;
+            // 
+            // Ids
+            // 
+            this.Ids.Frozen = true;
+            this.Ids.HeaderText = "Id";
+            this.Ids.Name = "Ids";
+            this.Ids.ReadOnly = true;
+            this.Ids.Width = 48;
+            // 
+            // TipoPagos
+            // 
+            this.TipoPagos.Frozen = true;
+            this.TipoPagos.HeaderText = "Tipo de Pago";
+            this.TipoPagos.Name = "TipoPagos";
+            this.TipoPagos.ReadOnly = true;
+            this.TipoPagos.Width = 125;
+            // 
+            // Montos
+            // 
+            this.Montos.Frozen = true;
+            this.Montos.HeaderText = "Monto";
+            this.Montos.Name = "Montos";
+            this.Montos.ReadOnly = true;
+            this.Montos.Width = 81;
+            // 
+            // Monedas
+            // 
+            this.Monedas.Frozen = true;
+            this.Monedas.HeaderText = "Moneda";
+            this.Monedas.Name = "Monedas";
+            this.Monedas.ReadOnly = true;
+            this.Monedas.Visible = false;
+            this.Monedas.Width = 91;
             // 
             // label6
             // 
@@ -558,17 +673,17 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalCordobasSistema.Text = "0.00";
             this.txtTotalCordobasSistema.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtObservaciones
+            // txtNotas
             // 
-            this.txtObservaciones.BackColor = System.Drawing.Color.White;
-            this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtObservaciones.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtObservaciones.ForeColor = System.Drawing.Color.Navy;
-            this.txtObservaciones.Location = new System.Drawing.Point(12, 547);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(501, 74);
-            this.txtObservaciones.TabIndex = 165;
+            this.txtNotas.BackColor = System.Drawing.Color.White;
+            this.txtNotas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNotas.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtNotas.ForeColor = System.Drawing.Color.Navy;
+            this.txtNotas.Location = new System.Drawing.Point(12, 547);
+            this.txtNotas.Multiline = true;
+            this.txtNotas.Name = "txtNotas";
+            this.txtNotas.Size = new System.Drawing.Size(501, 74);
+            this.txtNotas.TabIndex = 165;
             // 
             // label3
             // 
@@ -604,6 +719,7 @@ namespace COVENTAF.PuntoVenta
             this.btnGuardarCierre.Text = "Guardar Cierre - F8";
             this.btnGuardarCierre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarCierre.UseVisualStyleBackColor = false;
+            this.btnGuardarCierre.Click += new System.EventHandler(this.btnGuardarCierre_Click);
             // 
             // button1
             // 
@@ -628,119 +744,6 @@ namespace COVENTAF.PuntoVenta
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // Ids
-            // 
-            this.Ids.Frozen = true;
-            this.Ids.HeaderText = "Id";
-            this.Ids.Name = "Ids";
-            this.Ids.ReadOnly = true;
-            this.Ids.Width = 48;
-            // 
-            // TipoPagos
-            // 
-            this.TipoPagos.Frozen = true;
-            this.TipoPagos.HeaderText = "Tipo de Pago";
-            this.TipoPagos.Name = "TipoPagos";
-            this.TipoPagos.ReadOnly = true;
-            this.TipoPagos.Width = 125;
-            // 
-            // Montos
-            // 
-            this.Montos.Frozen = true;
-            this.Montos.HeaderText = "Monto";
-            this.Montos.Name = "Montos";
-            this.Montos.ReadOnly = true;
-            this.Montos.Width = 81;
-            // 
-            // Monedas
-            // 
-            this.Monedas.Frozen = true;
-            this.Monedas.HeaderText = "Moneda";
-            this.Monedas.Name = "Monedas";
-            this.Monedas.ReadOnly = true;
-            this.Monedas.Visible = false;
-            this.Monedas.Width = 91;
-            // 
-            // Idc
-            // 
-            this.Idc.Frozen = true;
-            this.Idc.HeaderText = "Id";
-            this.Idc.Name = "Idc";
-            this.Idc.ReadOnly = true;
-            this.Idc.Width = 48;
-            // 
-            // TipoMontoc
-            // 
-            this.TipoMontoc.Frozen = true;
-            this.TipoMontoc.HeaderText = "Tipo de Pago";
-            this.TipoMontoc.Name = "TipoMontoc";
-            this.TipoMontoc.ReadOnly = true;
-            this.TipoMontoc.Width = 125;
-            // 
-            // Montoc
-            // 
-            this.Montoc.Frozen = true;
-            this.Montoc.HeaderText = "Monto";
-            this.Montoc.Name = "Montoc";
-            this.Montoc.ReadOnly = true;
-            this.Montoc.Width = 81;
-            // 
-            // Monedac
-            // 
-            this.Monedac.HeaderText = "Moneda";
-            this.Monedac.Name = "Monedac";
-            this.Monedac.ReadOnly = true;
-            this.Monedac.Visible = false;
-            this.Monedac.Width = 91;
-            // 
-            // Idd
-            // 
-            this.Idd.Frozen = true;
-            this.Idd.HeaderText = "Id";
-            this.Idd.Name = "Idd";
-            this.Idd.ReadOnly = true;
-            this.Idd.Width = 48;
-            // 
-            // Tipod
-            // 
-            this.Tipod.Frozen = true;
-            this.Tipod.HeaderText = "Tipo";
-            this.Tipod.Name = "Tipod";
-            this.Tipod.ReadOnly = true;
-            this.Tipod.Visible = false;
-            this.Tipod.Width = 65;
-            // 
-            // Denominaciond
-            // 
-            this.Denominaciond.Frozen = true;
-            this.Denominaciond.HeaderText = "Denominacion";
-            this.Denominaciond.Name = "Denominaciond";
-            this.Denominaciond.ReadOnly = true;
-            this.Denominaciond.Width = 135;
-            // 
-            // Cantidadd
-            // 
-            this.Cantidadd.Frozen = true;
-            this.Cantidadd.HeaderText = "Cantidad";
-            this.Cantidadd.Name = "Cantidadd";
-            this.Cantidadd.Width = 96;
-            // 
-            // Monedad
-            // 
-            this.Monedad.Frozen = true;
-            this.Monedad.HeaderText = "Moneda";
-            this.Monedad.Name = "Monedad";
-            this.Monedad.ReadOnly = true;
-            this.Monedad.Visible = false;
-            this.Monedad.Width = 91;
-            // 
-            // Resultado
-            // 
-            this.Resultado.HeaderText = "Resultado";
-            this.Resultado.Name = "Resultado";
-            this.Resultado.ReadOnly = true;
-            this.Resultado.Width = 104;
-            // 
             // frmCierreCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -750,7 +753,7 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnGuardarCierre);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtObservaciones);
+            this.Controls.Add(this.txtNotas);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtTotalDolaresSistema);
             this.Controls.Add(this.label8);
@@ -818,7 +821,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.TextBox txtTotalDolaresSistema;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTotalCordobasSistema;
-        private System.Windows.Forms.TextBox txtObservaciones;
+        private System.Windows.Forms.TextBox txtNotas;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnGuardarCierre;
         private System.Windows.Forms.Button button1;

@@ -10,6 +10,8 @@ namespace Api.Model.Modelos
 {
     public class Cierre_Det_Pago
     {
+        [NotMapped]
+        public string Identificacion { get; set; }
         [Required]
         [Column(TypeName = "varchar(20)")]
         public string Num_Cierre { get; set; }

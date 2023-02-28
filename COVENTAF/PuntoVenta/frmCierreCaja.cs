@@ -9,7 +9,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace COVENTAF.PuntoVenta
 {
@@ -22,6 +24,12 @@ namespace COVENTAF.PuntoVenta
         List<Denominacion> denominacion = new List<Denominacion>();
         ServiceCaja_Pos _serviceCajaPos;
         List<ViewModelCierreCaja> _datosCierreCaja;
+        VariableCierreCaja _listVarCierreCaja = new VariableCierreCaja();
+        private string idActual = "";
+        private decimal cantidadGrid;
+        private decimal totatCajeroCordobas = 0.00M;
+        private decimal totalCajeroDolares = 0.00M;
+
         public frmCierreCaja()
         {
             InitializeComponent();
@@ -75,14 +83,12 @@ namespace COVENTAF.PuntoVenta
 
         private void LlenarGridReportadoXSistema(List<ViewModelCierreCaja> _datosCierreCaja)
         {
-
-
             decimal totalCordobas = 0.00M;
             decimal totalDolares = 0.00M;
             foreach (var itemSistema in _datosCierreCaja)
             {
                
-                this.dgvGridReportadoPorSistema.Rows.Add($"{itemSistema.Forma_Pago}{itemSistema.Moneda}",itemSistema.Descripcion, 
+                this.dgvGridReportadoPorSistema.Rows.Add(itemSistema.Id,itemSistema.Descripcion, 
                     (itemSistema.Moneda == "L" ? $"C$ {itemSistema.Monto.ToString("N2")}" : $"U$ {itemSistema.Monto.ToString("N2")}"), 
                     itemSistema.Moneda);
                 //comprobar si la moneda es Local =L (C$)
@@ -123,8 +129,8 @@ namespace COVENTAF.PuntoVenta
 
         void CalcularTotalReportadoCajero()
         {
-            decimal totalCordobas = 0.00M;
-            decimal totalDolares = 0.00M;
+            totatCajeroCordobas = 0.00M;
+            totalCajeroDolares = 0.00M;
 
             for (var rows = 0; rows < dgvGridRportadoXCajero.RowCount; rows++)
             {
@@ -132,16 +138,16 @@ namespace COVENTAF.PuntoVenta
                 if (dgvGridRportadoXCajero.Rows[rows].Cells["Monedac"].Value.ToString() == "L")
                 {
 
-                    totalCordobas += Convert.ToDecimal(dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace("C$", ""));
+                    totatCajeroCordobas += Convert.ToDecimal(dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace("C$", ""));
                 }
                 else if (dgvGridRportadoXCajero.Rows[rows].Cells["Monedac"].Value.ToString() == "D")
                 {
-                    totalDolares += Convert.ToDecimal(dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace("U$", ""));
+                    totalCajeroDolares += Convert.ToDecimal(dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace("U$", ""));
                 }
             }
 
-            this.txtTotalCordobasCajero.Text = totalCordobas.ToString("N2");
-            this.txtTotalDolaresCajero.Text = totalDolares.ToString("N2");
+            this.txtTotalCordobasCajero.Text = totatCajeroCordobas.ToString("N2");
+            this.txtTotalDolaresCajero.Text = totalCajeroDolares.ToString("N2");
         }
 
         private async void ListarDenomincaciones()
@@ -216,11 +222,16 @@ namespace COVENTAF.PuntoVenta
             //si la columna es cantidad (4) o descuento(5)
             if (e.ColumnIndex == 3)
             {
+                int filaGrid = e.RowIndex;
+
                 //btnCobrar.Enabled = false;
                 //asignar el consucutivo para indicar en que posicion estas
                 //consecutivoActualFactura = e.RowIndex;
-                ValidarCantidaddelGridDenominacion(e.RowIndex);
-                Calcular();
+                //validar la infor
+                ValidarCantidaddelGridDenominacion(filaGrid);
+
+                //calcular el grid de denominacion y enviar idActua y la fila
+                CalcularGridDenominacion(idActual, filaGrid);
                 //calcular totales
                 CalcularTotalReportadoCajero();
             }
@@ -230,51 +241,264 @@ namespace COVENTAF.PuntoVenta
 
         private void ValidarCantidaddelGridDenominacion(int rows)
         {
+            //obtener el valor del grid
             var cantidad = this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value;
-          //  bool isNumeric = double.TryParse(cantidad);
+            //validar si el valor es null o tiene datos
+            string valorCantidad = cantidad is null ? "" : cantidad.ToString().Trim();
+            //probar si la fila corresponde a los codigo 0001L or 0001D
+            bool permitirPuntDecimal = (this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0001L" || this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0001D") ? false : true;
 
+            //  bool isNumeric = double.TryParse(cantidad);
 
-            //if (cantidad.Trim().Length == 0)
-            //{
-            //    this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value = "0";
-            //}
-            //else if (cantidad.All(char.IsLetterOrDigit))
-            //{
-            //    this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value = "0";
-            //}
+            if (valorCantidad.Length == 0)
+            {
+                MessageBox.Show("Debes Digitar un numero en la columna cantidad", "Sistema COVENTAF");
+                this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value = cantidadGrid;
+                cantidad = 0;
+            }
+            else if (CountPuntoDecimal(valorCantidad)>=2)
+            {
+                MessageBox.Show("El numero que digitaste no es un numero correcto", "COVENTAF");
+                this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value = cantidadGrid;
+                cantidadGrid = 0;
+            }
+            else if (!IsDigit(valorCantidad, permitirPuntDecimal))
+            {
+                MessageBox.Show("La Columna Cantidad solo permite numeros enteros positivos", "COVENTAF");
+                this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value = cantidadGrid;
+                cantidadGrid = 0;
+            }
+            
         }
-          
 
 
-        private void Calcular()
+        private int CountPuntoDecimal(string cantidad)
         {
-            int sumarEfectivoCordoba = 0;
-            int sumarEfectivoDolar = 0;
-            for (var rows = 0; rows < dgvReportePagoCajero.Rows.Count; rows++)
-
-                //verificar si es efectivo cordobas para hacer los calculos 
-                if (dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0001L")
+            byte contadorDecimales = 0;
+            for (var rows = 0; rows < cantidad.Length; rows++)
+            {
+                //comprobar si es un punto decimal 
+                if (cantidad[rows] == '.')
                 {
-                    //obtener el valor
-                    var denominacion = dgvReportePagoCajero.Rows[rows].Cells["Denominaciond"].Value.ToString();
-                    //quitar el simbolo C$
-                    decimal valorDenominacion = Convert.ToDecimal(denominacion.Replace("C$", ""));
-                    dgvReportePagoCajero.Rows[rows].Cells["Resultado"].Value = valorDenominacion * Convert.ToInt32(dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value);
-                    sumarEfectivoCordoba += Convert.ToInt32(dgvReportePagoCajero.Rows[rows].Cells["Resultado"].Value);
+                    //contar los puntos decimal
+                    contadorDecimales +=1;
+                }               
+            }
+
+            return contadorDecimales;
+        }
+
+              
+        private bool IsDigit(string cantidad, bool puntoDecimalPermitid)
+        {
+            bool tieneDigitado = true;
+            for(var rows=0; rows < cantidad.Length; rows ++)
+            {
+                //comprobar si es un punto decimal y ademas si se permite para esta consulta el punto decimal
+                if (cantidad[rows] =='.' && puntoDecimalPermitid)
+                {
+                    continue;
+                }
+                else if (!char.IsDigit(cantidad[rows]))
+                {
+                    tieneDigitado = false;
+                    break;
+                }                
+            }
+
+            return tieneDigitado;
+        }
+
+
+        private void CalcularGridDenominacion(string Id, int filaGrid)
+        {
+            decimal sumaDenominacion = 0;
+            string simboloBuscar = "";
+            
+
+            if (Id== "0001L" || Id == "0001D")
+            {
+                //simbolo a buscar
+                simboloBuscar = Id == "0001L" ? "C$" : "U$";
+
+                for (var rows = 0; rows < dgvReportePagoCajero.Rows.Count; rows++)
+                {
+                    //verificar si el id="0001L" or id="0001D"
+                    if (dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == Id)
+                    {
+                        //obtener el valor
+                        var denominacion = dgvReportePagoCajero.Rows[rows].Cells["Denominaciond"].Value.ToString();
+                        //quitar el simbolo C$ o U$
+                        decimal valorDenominacion = Convert.ToDecimal(denominacion.Replace(simboloBuscar, ""));
+                        dgvReportePagoCajero.Rows[rows].Cells["Resultado"].Value = valorDenominacion * Convert.ToInt32(dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value);
+                        //sumar la lista de denominacion C$ o U$
+                        sumaDenominacion += Convert.ToDecimal(dgvReportePagoCajero.Rows[rows].Cells["Resultado"].Value);
+                    }                   
                 }
 
-                else if (dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0001D")
+            }
+            else
+            {              
+                //simbolo a buscar
+                simboloBuscar = dgvReportePagoCajero.Rows[filaGrid].Cells["Monedad"].Value.ToString() == "L" ? "C$" : "U$";            
+                //sumar la lista de denominacion C$ o U$
+                sumaDenominacion = Convert.ToDecimal(dgvReportePagoCajero.Rows[filaGrid].Cells["Cantidadd"].Value);
+            }
+
+            AsignarValorGridReportadoXCajero(Id, sumaDenominacion, simboloBuscar);
+            
+            //dgvReportePagoCajero.Rows[rows].Cells["Result"] = Convert.ToDecimal(dgvReportePagoCajero.Rows[rows].Cells["datRepPagCajeroDenominacion"].Value.ToString()) * Convert.ToDecimal(dgvReportePagoCajero.Rows[rows].Cells["datRepPagCajeroCantidad"].Value);        
+        }
+
+        private void AsignarValorGridReportadoXCajero(string Id, decimal value, string simbolo)
+        {
+            for (var rows = 0; rows < dgvGridRportadoXCajero.Rows.Count; rows++)
+            {
+                //buscar el Id en el gridview del cajero reportado
+                if (dgvGridRportadoXCajero.Rows[rows].Cells["Idc"].Value.ToString() == Id)
                 {
-                    //obtener el valor
-                    var denominacion = dgvReportePagoCajero.Rows[rows].Cells["Denominaciond"].Value.ToString();
-                    //quitar el simbolo U$
-                    decimal valorDenominacion = Convert.ToDecimal(denominacion.Replace("U$", ""));
-                    dgvReportePagoCajero.Rows[rows].Cells["Resultado"].Value = valorDenominacion * Convert.ToInt32(dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value);
-                    sumarEfectivoDolar += Convert.ToInt32(dgvReportePagoCajero.Rows[rows].Cells["Resultado"].Value);
+                    //asignar el simbolo del C$ o U$ y el monto
+                    dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value =$"{simbolo} {value.ToString("N2")}";
+                    break;
                 }
-            //dgvReportePagoCajero.Rows[rows].Cells["Result"] = Convert.ToDecimal(dgvReportePagoCajero.Rows[rows].Cells["datRepPagCajeroDenominacion"].Value.ToString()) * Convert.ToDecimal(dgvReportePagoCajero.Rows[rows].Cells["datRepPagCajeroCantidad"].Value);
-        
+               
+            }
+        }
+
+        private void dgvReportePagoCajero_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //obtener el consecutivo
+            int index = e.RowIndex;
+            int columna = e.ColumnIndex;
+           
+
+            var columnaIndex = columna;
+
+            if (index != -1 && columna != -1)
+            {
+                //(columna 3) es cantidad
+                //columna Cantidad del DataGridView (columna=3)
+                if (columnaIndex == 3)
+                {
+                    idActual = dgvReportePagoCajero.Rows[index].Cells[0].Value.ToString();
+                    //antes de editar guardar temporalmente la cantidad en la variable  cantidadGrid por si la cantidad que digita el cajero le agrega otra cosa, entonce regresa al ultimo valor 
+                    cantidadGrid = Convert.ToDecimal(dgvReportePagoCajero.Rows[index].Cells[columnaIndex].Value);
+                }              
+            }
+        }
+
+        private void dgvReportePagoCajero_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            int columna = e.ColumnIndex;
+
+
+            var columnaIndex = columna;
+
+            if (index != -1 && columna != -1)
+            {
+                //(columna 3) es cantidad
+                //columna Cantidad del DataGridView (columna=3)
+                if (columnaIndex == 3)
+                {
+                    idActual = dgvReportePagoCajero.Rows[index].Cells[0].Value.ToString();
+                    //antes de editar guardar temporalmente la cantidad en la variable  cantidadGrid por si la cantidad que digita el cajero le agrega otra cosa, entonce regresa al ultimo valor 
+                    cantidadGrid = Convert.ToDecimal(dgvReportePagoCajero.Rows[index].Cells[columnaIndex].Value);
+                }
+            }
+        }
+
+        private void btnGuardarCierre_Click(object sender, EventArgs e)
+        {
+            ViewCierreCaja viewCierreCaja = new ViewCierreCaja();
+            viewCierreCaja.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        void CargarClaseCierreCaja(ViewCierreCaja viewCierreCaja)
+        {
+            viewCierreCaja.Cajero = User.Usuario;
+            viewCierreCaja.NumCierre = User.ConsecCierreCT;
+            viewCierreCaja.Caja = User.Caja;
+            //total en cordoba que el cajero reporto
+            viewCierreCaja.Total_Local = totatCajeroCordobas;
+            //total en dolares que el cajero reporto
+            viewCierreCaja.Total_Dolar = totalCajeroDolares;
+            viewCierreCaja.Ventas_Efectivo = 0.00M;
+            viewCierreCaja.Notas = this.txtNotas.Text;
+            viewCierreCaja.Cobro_Efectivo_Rep = 0.000M;
+            viewCierreCaja.Num_Cierre_Caja = "Num_Cierre_Caja";
+
+            
+
+            //foreach(var itemSistemReportad in _datosCierreCaja)
+            //{
+                //obtener el id
+                //string id = $"{itemSistemReportad.Forma_Pago}{itemSistemReportad.Moneda}";
+                for (int rows = 0; rows < this.dgvGridRportadoXCajero.Rows.Count; rows++)
+                {
+                    var Id = dgvGridRportadoXCajero.Rows[rows].Cells["Idc"].Value.ToString();
+                var datSistema = _datosCierreCaja.Where(x => x.Id == Id).FirstOrDefault();
+
+                    var simbolo = dgvGridRportadoXCajero.Rows[rows].Cells["Monedac"].Value.ToString() == "L" ? "C$" : "U$";
+                    var montoUsuario = dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace(simbolo, "");
+
+                    var _dataCierreDetPago = new Cierre_Det_Pago()
+                    {
+                        Identificacion = dgvGridRportadoXCajero.Rows[rows].Cells["Idc"].Value.ToString(),
+                        Tipo_Pago = dgvGridRportadoXCajero.Rows[rows].Cells["TipoPagoc"].Value.ToString(),
+                        Total_Usuario = Convert.ToDecimal(montoUsuario),
+                        Total_Sistema = datSistema.Monto,
+                        Diferencia = Convert.ToDecimal(montoUsuario) - datSistema.Monto,
+                        //inicia desde cero (0)
+                        Orden = rows,
+
+                        Num_Cierre = User.ConsecCierreCT,
+                        Cajero = User.Usuario,
+                        Caja = User.Caja
+
+                    };
+
+                    viewCierreCaja.Cierre_Det_Pago.Add(_dataCierreDetPago);
+
+                }
+
+            
+
+
+            for (int rows = 0; rows < this.dgvGridReportadoPorSistema.Rows.Count; rows++)
+            {
+                var simbolo = dgvGridRportadoXCajero.Rows[rows].Cells["Monedac"].Value.ToString() == "L" ? "C$" : "U$";
+                var montoUsuario = dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace(simbolo, "");
+
+                var _dataCierreDetPago = new Cierre_Det_Pago()
+                {
+
+                    Identificacion = dgvGridRportadoXCajero.Rows[rows].Cells["Idc"].Value.ToString(),
+                    Tipo_Pago = dgvGridRportadoXCajero.Rows[rows].Cells["TipoPagoc"].Value.ToString(),
+                    Total_Usuario = Convert.ToDecimal(montoUsuario),
+                    Total_Sistema = 0.00M,
+                    Diferencia = 0.00M,
+                    //inicia desde cero (0)
+                    Orden = rows,
+
+                    Num_Cierre = User.ConsecCierreCT,
+                    Cajero = User.Usuario,
+                    Caja = User.Caja
+
+                };
+
+                viewCierreCaja.Cierre_Det_Pago.Add(_dataCierreDetPago);
+
+            }
+
         }
     }
-
 }
