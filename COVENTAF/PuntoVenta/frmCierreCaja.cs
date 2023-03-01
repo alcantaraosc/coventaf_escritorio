@@ -83,39 +83,44 @@ namespace COVENTAF.PuntoVenta
 
         private void LlenarGridReportadoXSistema(List<ViewModelCierreCaja> _datosCierreCaja)
         {
-            decimal totalCordobas = 0.00M;
-            decimal totalDolares = 0.00M;
+            _listVarCierreCaja.TotalCordoba = 0.00M;
+            _listVarCierreCaja.TotalDolar = 0.00M;
+            _listVarCierreCaja.VentaEfectivoCordoba = 0.00M;
+            _listVarCierreCaja.VentaEfectivoDolar = 0.00M;
+        
             foreach (var itemSistema in _datosCierreCaja)
             {
                
-                this.dgvGridReportadoPorSistema.Rows.Add(itemSistema.Id,itemSistema.Descripcion, 
+                this.dgvGridReportadoPorSistema.Rows.Add(itemSistema.Id, itemSistema.Descripcion, 
                     (itemSistema.Moneda == "L" ? $"C$ {itemSistema.Monto.ToString("N2")}" : $"U$ {itemSistema.Monto.ToString("N2")}"), 
                     itemSistema.Moneda);
                 //comprobar si la moneda es Local =L (C$)
                 if (itemSistema.Moneda == "L")
                 {
-                    totalCordobas += itemSistema.Monto;
+                    _listVarCierreCaja.TotalCordoba += itemSistema.Monto;
                 }
+                //comprobar si la moneda es Dolar =D (U$)
                 else if (itemSistema.Moneda == "D")
                 {
-                    totalDolares += itemSistema.Monto;
+                    _listVarCierreCaja.TotalDolar += itemSistema.Monto;
                 }
 
                 //comprobar si existe forma de pago 0001=Efectivo cordoba
                 if (itemSistema.Forma_Pago == "0001" && itemSistema.Moneda == "L")
                 {
                     existeEfectivoCordoba = true;
+                    _listVarCierreCaja.VentaEfectivoCordoba += itemSistema.Monto;
                 }
                 //comprobar si existe forma de pago 0001=Efectivo dolar
                 if (itemSistema.Forma_Pago == "0001" && itemSistema.Moneda == "D")
                 {
                     existeEfectivoDolar = true;
+                    _listVarCierreCaja.VentaEfectivoDolar += itemSistema.Monto;
                 }
+            }       
 
-            }
-           
-            this.txtTotalCordobasSistema.Text = totalCordobas.ToString("N2");
-            this.txtTotalDolaresSistema.Text = totalDolares.ToString("N2");
+            this.txtTotalCordobasSistema.Text = _listVarCierreCaja.TotalCordoba.ToString("N2");
+            this.txtTotalDolaresSistema.Text = _listVarCierreCaja.TotalDolar.ToString("N2");
 
         }
 
@@ -408,13 +413,18 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        private void btnGuardarCierre_Click(object sender, EventArgs e)
+        private async void btnGuardarCierre_Click(object sender, EventArgs e)
         {
+            var responseModel = new ResponseModel();
             ViewCierreCaja viewCierreCaja = new ViewCierreCaja();
             viewCierreCaja.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+            var _service_Datos_Pos = new ServiceCaja_Pos();
+
             try
             {
-                
+                //cargar los datos del cierre de caja  a la clase viewCierreCaja
+                CargarDatosCierreCaja(viewCierreCaja);
+                int x = await _serviceCajaPos.GuardarCierreCaja(viewCierreCaja, responseModel);                
             }
             catch (Exception ex)
             {
@@ -422,70 +432,42 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        void CargarClaseCierreCaja(ViewCierreCaja viewCierreCaja)
+        void CargarDatosCierreCaja(ViewCierreCaja viewCierreCaja)
         {
             viewCierreCaja.Cajero = User.Usuario;
             viewCierreCaja.NumCierre = User.ConsecCierreCT;
             viewCierreCaja.Caja = User.Caja;
-            //total en cordoba que el cajero reporto
-            viewCierreCaja.Total_Local = totatCajeroCordobas;
-            //total en dolares que el cajero reporto
-            viewCierreCaja.Total_Dolar = totalCajeroDolares;
-            viewCierreCaja.Ventas_Efectivo = 0.00M;
+            //TotalDiferencia estoy tratando de entenderle (queda pendiente
+            viewCierreCaja.TotalDiferencia = 0.00M;
+            //total en cordoba que el el sistema reporto
+            viewCierreCaja.Total_Local = _listVarCierreCaja.TotalCordoba;
+            //total en dolares que el sistema Reporto
+            viewCierreCaja.Total_Dolar = _listVarCierreCaja.TotalDolar;
+            viewCierreCaja.Ventas_Efectivo = _listVarCierreCaja.VentaEfectivoCordoba;
+
             viewCierreCaja.Notas = this.txtNotas.Text;
-            viewCierreCaja.Cobro_Efectivo_Rep = 0.000M;
-            viewCierreCaja.Num_Cierre_Caja = "Num_Cierre_Caja";
+            //ventas en solo en efectivo en dolar
+            viewCierreCaja.Cobro_Efectivo_Rep = _listVarCierreCaja.VentaEfectivoDolar;
+            viewCierreCaja.Num_Cierre_Caja = "estoy_investigando_Num_Cierre_Caja";
 
-            
-
-            //foreach(var itemSistemReportad in _datosCierreCaja)
-            //{
-                //obtener el id
-                //string id = $"{itemSistemReportad.Forma_Pago}{itemSistemReportad.Moneda}";
-                for (int rows = 0; rows < this.dgvGridRportadoXCajero.Rows.Count; rows++)
-                {
-                    var Id = dgvGridRportadoXCajero.Rows[rows].Cells["Idc"].Value.ToString();
-                var datSistema = _datosCierreCaja.Where(x => x.Id == Id).FirstOrDefault();
-
-                    var simbolo = dgvGridRportadoXCajero.Rows[rows].Cells["Monedac"].Value.ToString() == "L" ? "C$" : "U$";
-                    var montoUsuario = dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace(simbolo, "");
-
-                    var _dataCierreDetPago = new Cierre_Det_Pago()
-                    {
-                        Identificacion = dgvGridRportadoXCajero.Rows[rows].Cells["Idc"].Value.ToString(),
-                        Tipo_Pago = dgvGridRportadoXCajero.Rows[rows].Cells["TipoPagoc"].Value.ToString(),
-                        Total_Usuario = Convert.ToDecimal(montoUsuario),
-                        Total_Sistema = datSistema.Monto,
-                        Diferencia = Convert.ToDecimal(montoUsuario) - datSistema.Monto,
-                        //inicia desde cero (0)
-                        Orden = rows,
-
-                        Num_Cierre = User.ConsecCierreCT,
-                        Cajero = User.Usuario,
-                        Caja = User.Caja
-
-                    };
-
-                    viewCierreCaja.Cierre_Det_Pago.Add(_dataCierreDetPago);
-
-                }
-
-            
-
-
-            for (int rows = 0; rows < this.dgvGridReportadoPorSistema.Rows.Count; rows++)
+            for (int rows = 0; rows < this.dgvGridRportadoXCajero.Rows.Count; rows++)
             {
+                //obtener el id
+                var Id = dgvGridRportadoXCajero.Rows[rows].Cells["Idc"].Value.ToString();
+                //obtener el registro por Id 
+                var datSistema = _datosCierreCaja.Where(x => x.Id == Id).FirstOrDefault();
+                //obtenere el simbolo de C$ or U$
                 var simbolo = dgvGridRportadoXCajero.Rows[rows].Cells["Monedac"].Value.ToString() == "L" ? "C$" : "U$";
+                //obtener el 
                 var montoUsuario = dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace(simbolo, "");
 
                 var _dataCierreDetPago = new Cierre_Det_Pago()
                 {
-
                     Identificacion = dgvGridRportadoXCajero.Rows[rows].Cells["Idc"].Value.ToString(),
                     Tipo_Pago = dgvGridRportadoXCajero.Rows[rows].Cells["TipoPagoc"].Value.ToString(),
                     Total_Usuario = Convert.ToDecimal(montoUsuario),
-                    Total_Sistema = 0.00M,
-                    Diferencia = 0.00M,
+                    Total_Sistema = datSistema.Monto,
+                    Diferencia = Convert.ToDecimal(montoUsuario) - datSistema.Monto,
                     //inicia desde cero (0)
                     Orden = rows,
 
@@ -496,8 +478,7 @@ namespace COVENTAF.PuntoVenta
                 };
 
                 viewCierreCaja.Cierre_Det_Pago.Add(_dataCierreDetPago);
-
-            }
+            }                 
 
         }
     }

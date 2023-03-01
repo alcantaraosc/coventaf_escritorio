@@ -486,5 +486,101 @@ namespace Api.Service.DataService
             }
             return denominacion;
         }
+
+        public async Task<int> GuardarCierreCaja(ViewCierreCaja viewCierreCaja, ResponseModel responseModel)
+        {
+            var result = 0;
+            try
+            {
+                //model.Fecha = DateTime.Now.Date;
+                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    using (SqlCommand cmd = new SqlCommand("SP_GuardarCierreCaja", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //cmd.CommandTimeout = 0;
+
+                        cmd.Parameters.AddWithValue("@Caja", viewCierreCaja.Caja);
+                        cmd.Parameters.AddWithValue("@Cajero", viewCierreCaja.Cajero);
+                        cmd.Parameters.AddWithValue("@NumCierre", viewCierreCaja.NumCierre);
+                        //cmd.Parameters.AddWithValue("@TipoCambio", viewCierreCaja.);
+                        cmd.Parameters.AddWithValue("@TotalDiferencia", viewCierreCaja.TotalDiferencia);
+                        cmd.Parameters.AddWithValue("@Total_Local", viewCierreCaja.Total_Local);
+                        cmd.Parameters.AddWithValue("@Total_Dolar", viewCierreCaja.Total_Dolar);
+                        cmd.Parameters.AddWithValue("@Ventas_Efectivo", viewCierreCaja.Ventas_Efectivo);
+                        cmd.Parameters.AddWithValue("@CobroEfectivoRep", viewCierreCaja.Cobro_Efectivo_Rep);
+                        cmd.Parameters.AddWithValue("@Notas", viewCierreCaja.Notas);
+
+                        //IList<Cierre_Det_Pago> dtCierrPago = new IList<Cierre_Det_Pago>();
+                        var dt = new DataTable();
+                        dt.Columns.Add("NumCierre", typeof(string));
+                        dt.Columns.Add("Cajero", typeof(string));
+                        dt.Columns.Add("Caja", typeof(string));
+                        dt.Columns.Add("TipoPago", typeof(string));
+                        dt.Columns.Add("TotalSistena", typeof(decimal));
+                        dt.Columns.Add("TotalUsuario", typeof(decimal));
+                        dt.Columns.Add("Diferencia", typeof(decimal));
+                        dt.Columns.Add("Orden", typeof(int));
+
+                        foreach (var item in viewCierreCaja.Cierre_Det_Pago)
+                        {
+                            dt.Rows.Add(viewCierreCaja.NumCierre, viewCierreCaja.Cajero, viewCierreCaja.Caja, item.Tipo_Pago,
+                                 item.Total_Sistema, item.Total_Usuario, item.Diferencia, item.Orden);
+                            //{
+                            //    Num_Cierre = viewCierreCaja.NumCierre,
+                            //    Cajero = viewCierreCaja.Cajero,
+                            //    Caja =viewCierreCaja.Caja,
+                            //    Tipo_Pago = item.Tipo_Pago,
+                            //    Total_Sistema = item.Total_Sistema,
+                            //    Total_Usuario = item.Total_Usuario,
+                            //    Diferencia = item.Diferencia,
+                            //    Orden = item.Orden
+                            //};
+                            //dtCierrPago.Add(_det);
+                        }
+
+                        var parametro = cmd.Parameters.AddWithValue("@ListDetallePago", dt);
+                        parametro.SqlDbType = SqlDbType.Structured;
+
+
+                        // Se añaden los parámetros de salida y se crean variables para facilitar su recuperacion
+                        //SqlParameter paramOutConsec_Cierre_CT = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
+                        //paramOutConsec_Cierre_CT.Direction = ParameterDirection.Output;
+
+                        //SqlParameter paramReturned = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
+                        //paramReturned.Direction = ParameterDirection.ReturnValue;
+
+
+                        var dr = await cmd.ExecuteReaderAsync();
+                        while (await dr.ReadAsync())
+                        {
+                            var x = Convert.ToDecimal(dr["TotalSistema"]);                         
+                        }
+                    }
+                }
+
+
+
+                if (result > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"El cierre correctamente se realizó exitosamente";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El cierre no se pudo realizar";
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return result;
+        }
     }
 }

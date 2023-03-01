@@ -114,6 +114,7 @@ namespace COVENTAF
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(349, 20);
             this.txtPassword.TabIndex = 10;
+            this.txtPassword.Text = "123";
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             // 
@@ -138,6 +139,7 @@ namespace COVENTAF
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(349, 20);
             this.txtUser.TabIndex = 9;
+            this.txtUser.Text = "GERNESTO";
             this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter);
             this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
             // 
