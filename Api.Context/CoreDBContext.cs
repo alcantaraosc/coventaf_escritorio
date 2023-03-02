@@ -79,6 +79,7 @@ namespace Api.Context
             modelBuilder.Entity<Entidad_Financieras>().ToTable("ENTIDAD_FINANCIERA", schema: "TIENDA");
             modelBuilder.Entity<Retenciones>().ToTable("RETENCIONES", schema: "TIENDA");
             modelBuilder.Entity<Factura_Retencion>().ToTable("FACTURA_RETENCION", schema: "TIENDA");
+            modelBuilder.Entity<Unidad_Fraccion>().ToTable("UNIDAD_FRACCION", schema: "TIENDA");
 
 
             //aqui le indico que la tabla ARTICULO_PRECIO su llave es el campo ARTICULO
@@ -123,6 +124,7 @@ namespace Api.Context
             modelBuilder.Entity<Entidad_Financieras>().HasKey(ef => ef.Entidad_Financiera);
             modelBuilder.Entity<Retenciones>().HasKey(r => r.Codigo_Retencion);
             modelBuilder.Entity<Factura_Retencion>().HasKey(fr => new { fr.Tipo_Documento, fr.Factura, fr.Codigo_Retencion });
+            modelBuilder.Entity<Unidad_Fraccion>().HasKey(r => r.Unidad_Medida);
 
             //vista            
             //modelBuilder.Entity<ViewArticulo>().ToView("ViewArticulo", schema: "dbo");
@@ -1027,7 +1029,6 @@ namespace Api.Context
         //public virtual DbSet<U_ESQUEMA_FISCAL> U_ESQUEMA_FISCAL { get; set; }
         //public virtual DbSet<U_TIPO_DOCUMENTO> U_TIPO_DOCUMENTO { get; set; }
         //public virtual DbSet<USO_CFDI> USO_CFDI { get; set; }
-
         
         public virtual DbSet<Facturando> Facturando { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
@@ -1037,6 +1038,7 @@ namespace Api.Context
         public virtual DbSet<Funciones> Funciones { get; set; }
         public virtual DbSet<FacturaBloqueada> FacturaBloqueada { get; set; }
         public virtual DbSet<Membresia> Membresia { get; set; }
+        public virtual DbSet<Unidad_Fraccion> Unidad_Fraccion { get; set; }
 
 
         //vista

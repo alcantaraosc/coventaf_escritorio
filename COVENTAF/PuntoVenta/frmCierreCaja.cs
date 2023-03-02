@@ -17,6 +17,8 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmCierreCaja : Form
     {
+        //esta variable guardar true si se guardo correctamente el cierre de caja
+        public bool CierreCajaExitosamente = false;
         private bool existeEfectivoDolar = false;
         private bool existeEfectivoCordoba = false;
 
@@ -424,7 +426,18 @@ namespace COVENTAF.PuntoVenta
             {
                 //cargar los datos del cierre de caja  a la clase viewCierreCaja
                 CargarDatosCierreCaja(viewCierreCaja);
-                int x = await _serviceCajaPos.GuardarCierreCaja(viewCierreCaja, responseModel);                
+                responseModel = await _serviceCajaPos.GuardarCierreCaja(viewCierreCaja, responseModel);
+                if (responseModel.Exito ==1)
+                {
+                    CierreCajaExitosamente = true;
+                    User.ConsecCierreCT = "";
+                    MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
+                    this.Close();
+                }
+                else
+                {                    
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
             }
             catch (Exception ex)
             {
@@ -444,11 +457,10 @@ namespace COVENTAF.PuntoVenta
             //total en dolares que el sistema Reporto
             viewCierreCaja.Total_Dolar = _listVarCierreCaja.TotalDolar;
             viewCierreCaja.Ventas_Efectivo = _listVarCierreCaja.VentaEfectivoCordoba;
-
             viewCierreCaja.Notas = this.txtNotas.Text;
-            //ventas en solo en efectivo en dolar
+            //Cobro_Efectivo_Rep = ventas solo en efectivo en dolar nada mas
             viewCierreCaja.Cobro_Efectivo_Rep = _listVarCierreCaja.VentaEfectivoDolar;
-            viewCierreCaja.Num_Cierre_Caja = "estoy_investigando_Num_Cierre_Caja";
+            
 
             for (int rows = 0; rows < this.dgvGridRportadoXCajero.Rows.Count; rows++)
             {

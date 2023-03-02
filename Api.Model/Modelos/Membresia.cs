@@ -15,8 +15,7 @@ namespace Api.Model.Modelos
         public string Grupo { get; set; }
         [Required]
         [Column(TypeName = "varchar(25)")]
-        public decimal Usuario { get; set; }
-
+        public string Usuario { get; set; }
         [Required]
         public byte NoteExistsFlag { get; set; }
         [Required]

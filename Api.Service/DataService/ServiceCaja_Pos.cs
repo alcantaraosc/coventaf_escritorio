@@ -487,7 +487,7 @@ namespace Api.Service.DataService
             return denominacion;
         }
 
-        public async Task<int> GuardarCierreCaja(ViewCierreCaja viewCierreCaja, ResponseModel responseModel)
+        public async Task<ResponseModel> GuardarCierreCaja(ViewCierreCaja viewCierreCaja, ResponseModel responseModel)
         {
             var result = 0;
             try
@@ -500,20 +500,18 @@ namespace Api.Service.DataService
                     using (SqlCommand cmd = new SqlCommand("SP_GuardarCierreCaja", cn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        //cmd.CommandTimeout = 0;
+                        cmd.CommandTimeout = 0;
 
                         cmd.Parameters.AddWithValue("@Caja", viewCierreCaja.Caja);
                         cmd.Parameters.AddWithValue("@Cajero", viewCierreCaja.Cajero);
-                        cmd.Parameters.AddWithValue("@NumCierre", viewCierreCaja.NumCierre);
-                        //cmd.Parameters.AddWithValue("@TipoCambio", viewCierreCaja.);
+                        cmd.Parameters.AddWithValue("@NumCierre", viewCierreCaja.NumCierre);                        
                         cmd.Parameters.AddWithValue("@TotalDiferencia", viewCierreCaja.TotalDiferencia);
                         cmd.Parameters.AddWithValue("@Total_Local", viewCierreCaja.Total_Local);
                         cmd.Parameters.AddWithValue("@Total_Dolar", viewCierreCaja.Total_Dolar);
                         cmd.Parameters.AddWithValue("@Ventas_Efectivo", viewCierreCaja.Ventas_Efectivo);
                         cmd.Parameters.AddWithValue("@CobroEfectivoRep", viewCierreCaja.Cobro_Efectivo_Rep);
                         cmd.Parameters.AddWithValue("@Notas", viewCierreCaja.Notas);
-
-                        //IList<Cierre_Det_Pago> dtCierrPago = new IList<Cierre_Det_Pago>();
+                        
                         var dt = new DataTable();
                         dt.Columns.Add("NumCierre", typeof(string));
                         dt.Columns.Add("Cajero", typeof(string));
@@ -544,24 +542,10 @@ namespace Api.Service.DataService
                         var parametro = cmd.Parameters.AddWithValue("@ListDetallePago", dt);
                         parametro.SqlDbType = SqlDbType.Structured;
 
-
-                        // Se añaden los parámetros de salida y se crean variables para facilitar su recuperacion
-                        //SqlParameter paramOutConsec_Cierre_CT = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
-                        //paramOutConsec_Cierre_CT.Direction = ParameterDirection.Output;
-
-                        //SqlParameter paramReturned = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
-                        //paramReturned.Direction = ParameterDirection.ReturnValue;
-
-
-                        var dr = await cmd.ExecuteReaderAsync();
-                        while (await dr.ReadAsync())
-                        {
-                            var x = Convert.ToDecimal(dr["TotalSistema"]);                         
-                        }
+                        result = await cmd.ExecuteNonQueryAsync();
+                        
                     }
                 }
-
-
 
                 if (result > 0)
                 {
@@ -580,7 +564,7 @@ namespace Api.Service.DataService
             {
                 throw new Exception(ex.Message);
             }
-            return result;
+            return responseModel;
         }
     }
 }

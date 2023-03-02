@@ -19,6 +19,9 @@ namespace Api.Model.Modelos
 
         [Column(TypeName = "varchar(15)")]
         public string Caja { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string NumCierreCT { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(4)")]
